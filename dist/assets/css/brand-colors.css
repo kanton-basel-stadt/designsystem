@@ -1,0 +1,27 @@
+@layer base {
+  :root {
+    --color-primary-50: rgba(theme(colors.green-50));
+    --color-primary-100: rgba(theme(colors.green-100));
+    --color-primary-200: rgba(theme(colors.green-200));
+    --color-primary-300: rgba(theme(colors.green-300));
+    --color-primary-400: rgba(theme(colors.green-400));
+    --color-primary-500: rgba(theme(colors.green-500));
+    --color-primary-600: rgba(theme(colors.green-600));
+    --color-primary-700: rgba(theme(colors.green-700));
+    --color-primary-800: rgba(theme(colors.green-800));
+    --color-primary-900: rgba(theme(colors.green-900));
+  }
+
+  html.is-site-bettingen {
+    --color-primary-50: rgba(#FDF3F3);
+    --color-primary-100: rgba(#FBE6E5);
+    --color-primary-200: rgba(#F8D1D0);
+    --color-primary-300: rgba(#F2B1AF);
+    --color-primary-400: rgba(#E98380);
+    --color-primary-500: rgba(#DB5C58);
+    --color-primary-600: rgba(#C73E3A);
+    --color-primary-700: rgba(#A7312E);
+    --color-primary-800: rgba(#8B2C29);
+    --color-primary-900: rgba(#742A28);
+  }
+}

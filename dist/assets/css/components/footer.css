@@ -1,0 +1,29 @@
+@layer components {
+  .footer {
+    @apply bg-gray-200 py-20 lg:py-40 text-xs;
+
+    & .footer-container {
+      @apply flex flex-col gap-25;
+    }
+
+    & .links {
+      @apply flex flex-wrap gap-5 font-medium;
+
+      &.links--spaced {
+        @apply gap-x-15 gap-y-10;
+      }
+
+      & .link {
+        @apply border-b border-white text-blue-700;
+
+        &.link--tall {
+          @apply text-sm;
+        }
+      }
+    }
+
+    & .footer-copyright {
+      @apply font-bold text-blue-900;
+    }
+  }
+}

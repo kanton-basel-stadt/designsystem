@@ -1,0 +1,5 @@
+@layer components {
+  .admin-toolbar-container ~ .page > .page-content {
+    @apply md:min-h-[calc(100vh-117px)];
+  }
+}

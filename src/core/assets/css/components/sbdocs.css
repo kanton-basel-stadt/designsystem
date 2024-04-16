@@ -1,0 +1,39 @@
+@import './link.css';
+@tailwind components;
+
+@layer components {
+  .sbdocs, #panel-tab-content {
+    @apply break-words;
+
+    h1 {
+      @apply !font-sans text-4xl font-bold;
+    }
+
+    h2 {
+      @apply text-3xl font-bold;
+    }
+
+    h3 {
+      @apply text-2xl font-bold;
+    }
+
+    p {
+      @apply not-first:mt-20 not-last:mb-20 xl:not-first:mt-25 xl:not-last:mb-25;
+    }
+
+    a:not([href^="#"]) {
+      @apply inline-link;
+    }
+
+    ol {
+      @apply list-decimal ml-25;
+    }
+    ul {
+      @apply list-disc ml-25;
+
+      li {
+        @apply pb-20 ml-30 pl-[8px];
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@layer components {
+  .arrow-icon {
+    @apply w-[20px] h-[20px] flex items-center justify-center;
+
+    & svg {
+      @apply w-full h-full;
+    }
+  }
+
+  .footer-button .arrow-icon {
+    /* Positional adjustment to make the icon flush with the rounded border */
+    @apply -ml-5 mr-5;
+  }
+}

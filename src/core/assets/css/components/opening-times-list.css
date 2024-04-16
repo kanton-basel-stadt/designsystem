@@ -1,0 +1,17 @@
+@layer components {
+  .opening-times-list {
+    @apply mb-25;
+
+    & > li {
+      @apply mb-25;
+
+      & > span {
+        @apply text-green-600 text-xs font-bold mb-5;
+      }
+
+      & > ul > li > span {
+        @apply font-bold;
+      }
+    }
+  }
+}

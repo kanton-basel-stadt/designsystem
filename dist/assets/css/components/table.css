@@ -1,0 +1,80 @@
+@layer components {
+  details figure > .table {
+    tbody {
+      @apply border-b-0;
+    }
+
+    &:has(~ figcaption) tbody {
+      @apply border-b;
+    }
+  }
+
+  .table {
+    @apply w-full;
+    th,
+    td {
+      @apply p-10;
+      @apply text-left align-top;
+    }
+    thead {
+      @apply border-b-2 border-b-body text-xs text-primary-500;
+      th {
+        @apply pb-5;
+      }
+    }
+
+    tbody {
+      @apply border-b;
+      td,
+      th {
+        @apply p-10;
+      }
+    }
+    td,
+    th {
+      @apply first:pl-0;
+    }
+
+    caption {
+      @apply text-left font-bold mb-10 text-xl;
+    }
+
+    a {
+      @apply inline-link;
+    }
+
+    &.has-mobile-style {
+      @apply mobile-only:border-t;
+      thead {
+        @apply mobile-only:hidden;
+      }
+      tbody th,
+      tbody tr,
+      tbody td {
+        @apply mobile-only:block;
+      }
+      td,
+      th {
+        @apply mobile-only:px-0;
+      }
+
+      tbody tr {
+        @apply mobile-only:border-t;
+      }
+
+      td[data-head-label]:before {
+        @apply mobile-only:content-[attr(data-head-label)] mobile-only:block mobile-only:text-xs mobile-only:text-green-500 mobile-only:font-bold mobile-only:mb-10;
+      }
+
+      td {
+        p {
+          @apply not-last:mb-10;
+        }
+      }
+    }
+  }
+
+  figure > .table ~ figcaption {
+    @apply italic mt-5;
+  }
+}

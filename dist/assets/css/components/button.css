@@ -1,0 +1,182 @@
+@layer components {
+  /* There are several button types: weak, strong, action, and super. For the sake of simplicity, "weak" is the default. */
+  /* For each button type (except "action" and "super"), there are two size variations: base and sm. base is the default. */
+  /* For each button type and each size, there are different states. Each state is implemented with pseudo classes. */
+  /* Buttons may have icons on their left, right, be icon only or have no icon at all. These icons are placed both in the DOM via markup and with classes. */
+  .button {
+    /* Basics */
+    @apply rounded-[30px] border transition-all ease-in-out duration-250;
+    @apply text-base px-20 py-10;
+
+    @apply bg-gray-20 border-blue-900 text-blue-900;
+
+    /* State variants */
+    @apply disabled:bg-gray-300 disabled:border-gray-300 disabled:text-gray-800;
+    @apply hover:bg-blue-700 hover:border-blue-900 hover:text-white;
+    @apply focus:bg-purple-200 focus:border-blue-900 focus:text-blue-900;
+    @apply focus-within:bg-purple-200 focus-within:border-blue-900 focus-within:text-blue-900;
+    @apply active:bg-purple-200 active:border-blue-900 active:text-blue-900;
+    &:not(&.is-action):not(&.is-super).is-feedback {
+      /* Action and super do not have a feedback state */
+      @apply bg-green-100 border-green-700 text-green-700;
+    }
+
+    /* Size variant */
+    &:not(&.is-action):not(&.is-super).is-sm {
+      /* No sm version for action and super buttons */
+      @apply text-xs px-15 py-5;
+    }
+
+    & svg {
+      @apply shrink-0; /* So any flexbox shenanigans don't resize the icon. */
+    }
+
+    &.is-loading {
+      @apply bg-no-repeat bg-center;
+      /* background-image: url(../symbols/loader.svg); */
+      color: transparent !important;
+    }
+  }
+
+  .button.is-strong {
+    @apply bg-blue-900 border-blue-900 text-white;
+
+    /* State variants */
+    @apply disabled:bg-gray-300 disabled:border-gray-300 disabled:text-gray-800;
+    @apply hover:bg-blue-700 hover:border-blue-700 hover:text-white;
+    @apply focus:bg-purple-600 focus:border-purple-600 focus:text-white;
+    @apply focus-within:bg-purple-600 focus-within:border-purple-600 focus-within:text-white;
+    @apply active:bg-purple-600 active:border-purple-600 active:text-white;
+    &:not(&.is-action):not(&.is-super).is-feedback {
+      /* Action and super do not have a feedback state */
+      @apply bg-green-600 border-green-600 text-white;
+    }
+
+    &.is-dark {
+      @apply bg-white border-gray-100 text-blue-900;
+
+      /* State variants */
+      @apply disabled:bg-gray-300 disabled:border-gray-300 disabled:text-gray-800;
+      @apply hover:bg-gray-100 hover:border-gray-100 hover:text-blue-700;
+      @apply focus:bg-purple-600 focus:border-purple-600 focus:text-white;
+      @apply focus-within:bg-purple-600 focus-within:border-purple-600 focus-within:text-white;
+      @apply active:bg-purple-600 active:border-purple-600 active:text-white;
+      &:not(&.is-action):not(&.is-super).is-feedback {
+        /* Action and super do not have a feedback state */
+        @apply bg-green-600 border-green-600 text-white;
+      }
+    }
+  }
+
+  .button svg {
+    @apply w-20 h-20;
+
+    &.is-small {
+      @apply w-[16px] h-[16px];
+    }
+  }
+
+  .button.is-action {
+    /* Basics */
+    @apply rounded-[20px] text-sm;
+    @apply bg-gray-20 border-blue-900 text-blue-900;
+
+    /* State variants */
+    @apply disabled:bg-gray-300 disabled:border-gray-300 disabled:text-gray-800;
+    @apply hover:bg-blue-700 hover:border-blue-700 hover:text-white;
+    @apply focus:bg-blue-700 focus:border-blue-700 focus:text-white;
+    @apply focus-within:bg-blue-700 focus-within:border-blue-700 focus-within:text-white;
+    @apply active:bg-blue-700 active:border-blue-700 active:text-white;
+
+    &.has-icon {
+      @apply inline-flex gap-5 pl-5 pr-20;
+    }
+  }
+
+  .button.is-super {
+    /* Basics */
+    @apply rounded-[40px] text-base font-bold py-20 pl-20 pr-40 inline-flex items-center gap-20;
+
+    @apply bg-gray-20 border-blue-900 text-blue-900;
+
+    @apply disabled:bg-gray-300 disabled:border-gray-300 disabled:text-gray-800;
+    @apply hover:bg-blue-700 hover:border-blue-900 hover:text-white;
+    @apply focus:bg-purple-200 focus:border-blue-900 focus:text-blue-900;
+    @apply focus-within:bg-purple-200 focus-within:border-blue-900 focus-within:text-blue-900;
+    @apply active:bg-purple-200 active:border-blue-900 active:text-blue-900;
+
+    &:not(&.is-strong).is-dark {
+      @apply bg-white border-gray-100 text-blue-900;
+
+      /* State variants */
+      @apply disabled:bg-gray-300 disabled:border-gray-300 disabled:text-gray-800;
+      @apply hover:bg-blue-700 hover:border-blue-700 hover:text-white;
+      @apply focus:bg-purple-600 focus:border-purple-600 focus:text-white;
+      @apply focus-within:bg-purple-600 focus-within:border-purple-600 focus-within:text-white;
+      @apply active:bg-purple-600 active:border-purple-600 active:text-white;
+    }
+
+    &:not(&.is-dark).is-strong {
+      @apply bg-blue-900 border-blue-900 text-white;
+
+      /* State variants */
+      @apply disabled:bg-gray-300 disabled:border-gray-300 disabled:text-gray-800;
+      @apply hover:bg-blue-700 hover:border-blue-700 hover:text-white;
+      @apply focus:bg-purple-600 focus:border-purple-600 focus:text-white;
+      @apply focus-within:bg-purple-600 focus-within:border-purple-600 focus-within:text-white;
+      @apply active:bg-purple-600 active:border-purple-600 active:text-white;
+    }
+
+    & svg {
+      @apply w-40 h-40 rounded-full;
+      @apply bg-blue-900 text-white;
+    }
+
+    &.is-strong svg {
+      @apply bg-white text-blue-900;
+    }
+
+    &:disabled svg {
+      @apply bg-gray-800;
+    }
+
+    &.is-strong:disabled svg {
+      @apply text-gray-800;
+    }
+  }
+
+  .button:not(.button.is-action):not(.button.is-super) {
+    &.has-icon {
+      @apply inline-flex items-center;
+      @apply pl-10 pr-20;
+      & svg {
+        @apply mr-10 bg-transparent;
+        color: inherit;
+      }
+
+      &.is-sm {
+        @apply pl-5 pr-15;
+      }
+    }
+
+    &.has-icon-right {
+      @apply inline-flex items-center;
+      @apply pl-20 pr-10;
+      & svg {
+        @apply ml-10;
+      }
+
+      &.is-sm {
+        @apply pl-15 pr-5;
+      }
+    }
+
+    &.is-icon-only {
+      @apply p-10 inline-flex;
+
+      &.is-sm {
+        @apply p-5;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+@layer components {
+  .link {
+    @apply text-blue-900;
+    @apply hover:text-blue-500 hover:visited:text-purple-900;
+    @apply visited:text-blue-900;
+    @apply active:text-blue-700;
+  }
+
+  .link-inverted {
+    @apply text-white;
+    @apply hover:text-white/80;
+    @apply active:text-white;
+  }
+
+  .inline-link {
+    @apply text-blue-500 border-b border-b-gray-300;
+    @apply hover:text-blue-900 hover:border-b-blue-900;
+    @apply visited:text-purple-600 visited:border-b-purple-600;
+    @apply active:text-blue-700;
+  }
+}

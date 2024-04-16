@@ -1,0 +1,22 @@
+{
+  "name": "webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "@kanton-basel-stadt/designsystem": "file:../../.",
+    "postcss-loader": "^8.1.1",
+    "css-loader": "6.11.0",
+    "mini-css-extract-plugin": "^2.8.1",
+    "style-loader": "^3.3.4"
+  }
+}

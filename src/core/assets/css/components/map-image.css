@@ -1,0 +1,13 @@
+@layer components {
+  .map-image {
+    @apply flex w-full aspect-[343/160] bg-center cursor-pointer mb-10 transition-all duration-250 ease-in-out;
+
+    &:hover {
+      filter: sepia(40%) saturate(50%) hue-rotate(197deg); /* Gives the image a bit of colour and rotates it to purple */
+    }
+
+    &:focus {
+      filter: sepia(40%) saturate(50%) hue-rotate(279deg); /* Gives the image a bit of colour and rotates it to purple */
+    }
+  }
+}

@@ -1,0 +1,53 @@
+@import './link.css';
+@tailwind components;
+
+@layer components {
+  .ck-content {
+    @apply break-words;
+
+    &:not(.is-small) {
+      @apply md:text-lg xl:text-xl;
+    }
+
+    h3 {
+      @apply text-2xl font-bold;
+    }
+
+    p {
+      @apply not-first:mt-20 not-last:mb-20 xl:not-first:mt-25 xl:not-last:mb-25;
+    }
+
+    a {
+      @apply inline-link;
+    }
+
+    ol, ul {
+      @apply not-first:mt-20 ml-25;
+
+      li {
+        @apply pb-20 ml-30 pl-[8px];
+      }
+    }
+
+    ol {
+      @apply list-decimal;
+    }
+
+    ul {
+      @apply list-disc;
+    }
+
+    .ck-list-bogus-paragraph {
+      @apply inline;
+    }
+  }
+
+  /* List margin fix for Box paragraph */
+  .box-paragraph .ck-content {
+    ol, ul {
+      li {
+        @apply ml-0 pb-0 pl-0;
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "./node_modules/.bin/astro dev",
+    "start": "./node_modules/.bin/astro dev",
+    "build": "./node_modules/.bin/astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.6.0",
+    "@astrojs/check": "^0.5.10",
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "@kanton-basel-stadt/designsystem": "file:../../."
+  }
+}
