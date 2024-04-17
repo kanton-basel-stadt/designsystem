@@ -4,7 +4,11 @@
 
 This unplugin (based on unplugin-starter) installs both icons and CSS for the WebBS design system.
 
-## Install
+## Installation and setup
+
+This package has several dependencies and peer dependencies.
+
+### Package installation
 
 ```bash
 npm i git+https://github.com/kanton-basel-stadt/designsystem.git
@@ -12,11 +16,11 @@ npm i git+https://github.com/kanton-basel-stadt/designsystem.git
 
 Also, you need to install all peer dependencies for your framework:
 
-Vite:
+For Vite, install
 
  * `vite`
 
-Webpack:
+For Webpack, install
 
  * `webpack`
  * `css-loader`
@@ -24,20 +28,22 @@ Webpack:
  * `postcss-loader`
  * `style-loader`
 
-Nuxt:
+For Nuxt, install
 
  * `@vue/compiler-sfc`
  * `@nuxt/kit`
  * `@nuxt/schema`
 
-Rollup:
+For Rollup, install
 
  * `rollup`
  * `rollup-plugin-postcss`
 
-ESBuild:
+For ESBuild, install
 
  * `esbuild`
+
+### Setup depending on your build tool of choice
 
 <details>
 <summary>Vite</summary><br>
@@ -190,9 +196,11 @@ this plugin apply, but they are set to sensible defaults in order to work correc
 Use the following code snippets to include the icon `pen`. All other icons can be found in `src/core/assets/symbols/`
 of this repository.
 
+> TODO #01: A full list of icons will be published in Storybook, so people don't have to dig into the source code of this repo.
+
 The following examples are what is implemented in the current examples. Since unplugin-icons also offers support for
 various frontend frameworks, the `compiler` option may need to be different from the default configuration. For that,
-please consult the official [unplugin-icons](https://www.npmjs.com/package/unplugin-icons) documentation.
+please consult the official [unplugin-icons](https://www.npmjs.com/package/unplugin-icons#configuration) documentation.
 
 <details>
 <summary>Astro</summary><br>
@@ -264,3 +272,5 @@ what to do with it.
 If you want to simply use Tailwind as is with no additional CSS, you can do so by applying the desired classes to your
 HTML elements. For that, please consult the official [Tailwind documentation](https://tailwindcss.com/docs/installation),
 Storybook and the Tailwind config of this repository.
+
+> TODO #02: A Tailwind config viewer will be implemented in Storybook, so people don't have to dig into the source code of this repo.
