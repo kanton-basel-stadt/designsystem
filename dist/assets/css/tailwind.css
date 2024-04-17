@@ -20,6 +20,7 @@
 @import './components/checkbox.css';
 @import './components/radio.css';
 @import './components/tag.css';
+@import './components/header-console.css';
 
 @tailwind base;
 @tailwind components;

@@ -1,4 +1,4 @@
-<svg viewBox="0 0 15 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg data-symbol="send-mail" viewBox="0 0 15 10" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M6.17647 3L9.08824 5L12 3M2.29412 6H3.58824M1 4H3.58824" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M4 2.42857V2.14286C4 1.83975 4.12395 1.54906 4.34458 1.33474C4.56521 1.12041 4.86445 1 5.17647 1H12.8235C13.1355 1 13.4348 1.12041 13.6554 1.33474C13.8761 1.54906 14 1.83975 14 2.14286V7.85714C14 8.16025 13.8761 8.45094 13.6554 8.66527C13.4348 8.87959 13.1355 9 12.8235 9H5.17647C4.86445 9 4.56521 8.87959 4.34458 8.66527C4.12395 8.45094 4 8.16025 4 7.85714V7.57143" stroke="currentColor" stroke-width="0.7" stroke-linecap="round"/>
 </svg>

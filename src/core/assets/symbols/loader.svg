@@ -1,4 +1,4 @@
-<svg fill="white" width="36" height="36" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<svg data-symbol="loader" fill="white" width="36" height="36" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <style>.spinner_b2T7{animation:spinner_xe7Q .8s linear
         infinite}.spinner_YRVV{animation-delay:-.65s}.spinner_c9oY{animation-delay:-.5s}@keyframes
         spinner_xe7Q{93.75%,100%{r:3px}46.875%{r:.2px}}
