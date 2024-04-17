@@ -1,4 +1,4 @@
-@import './brand-colors.css';
+@import './settings/brand-colors.css';
 @import './components/page.css';
 @import './components/button.css';
 @import './components/arrow-icon.css';

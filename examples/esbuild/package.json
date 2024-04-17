@@ -1,8 +1,8 @@
 {
-  "name": "esbuild",
+  "name": "esbuild-example",
   "type": "module",
   "version": "1.0.0",
-  "description": "",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "build": "node ./build.cjs"

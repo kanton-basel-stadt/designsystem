@@ -1,8 +1,7 @@
 {
-  "name": "rollup",
+  "name": "rollup-example",
   "type": "module",
   "version": "1.0.0",
-  "description": "",
   "license": "ISC",
   "scripts": {
     "build": "./node_modules/.bin/rollup -c rollup.config.mjs"

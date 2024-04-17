@@ -190,6 +190,10 @@ this plugin apply, but they are set to sensible defaults in order to work correc
 Use the following code snippets to include the icon `pen`. All other icons can be found in `src/core/assets/symbols/`
 of this repository.
 
+The following examples are what is implemented in the current examples. Since unplugin-icons also offers support for
+various frontend frameworks, the `compiler` option may need to be different from the default configuration. For that,
+please consult the official [unplugin-icons](https://www.npmjs.com/package/unplugin-icons) documentation.
+
 <details>
 <summary>Astro</summary><br>
 
@@ -210,7 +214,7 @@ Example: Can be found in `examples/astro`.
 
 ```vue
 <script lang="ts" setup>
-  import IconSymbolPen from '@kanton-basel-stadt/designsystem/icons/symbol/pen';
+  import IconSymbolPen from '@kanton-basel-stadt/designsystem/icons/symbol/pen'
 </script>
 
 <template>
@@ -256,3 +260,7 @@ To include the framework in your CSS, apply the top of your CSS:
 
 Please keep in mind that any additional CSS should be kept within `@layer components {  /* ... */ }`, so Tailwind knows
 what to do with it.
+
+If you want to simply use Tailwind as is with no additional CSS, you can do so by applying the desired classes to your
+HTML elements. For that, please consult the official [Tailwind documentation](https://tailwindcss.com/docs/installation),
+Storybook and the Tailwind config of this repository.

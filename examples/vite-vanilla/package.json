@@ -1,8 +1,8 @@
 {
-  "name": "vite-project",
+  "name": "vite-example",
   "type": "module",
   "version": "0.0.0",
-  "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

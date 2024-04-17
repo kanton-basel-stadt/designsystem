@@ -1,7 +1,7 @@
 {
-  "name": "nuxt-app",
+  "name": "nuxt-example",
   "type": "module",
-  "private": true,
+  "license": "MIT",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",

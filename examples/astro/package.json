@@ -1,7 +1,8 @@
 {
-  "name": "",
+  "name": "astro-example",
   "type": "module",
   "version": "0.0.1",
+  "license": "MIT",
   "scripts": {
     "dev": "./node_modules/.bin/astro dev",
     "start": "./node_modules/.bin/astro dev",

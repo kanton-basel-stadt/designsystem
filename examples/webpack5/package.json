@@ -1,8 +1,8 @@
 {
-  "name": "webpack",
+  "name": "webpack-example",
   "version": "1.0.0",
   "description": "",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
