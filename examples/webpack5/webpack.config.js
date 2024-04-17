@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path')
 
 module.exports = {
   mode: 'production',
@@ -10,6 +10,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
-    require('@kanton-basel-stadt/designsystem/webpack').default({ /* options */ })
+    require('@kanton-basel-stadt/designsystem/webpack').default({ /* options */ }),
   ],
-};
+}

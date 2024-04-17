@@ -4,6 +4,6 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
-    KantonBSDesignsystemPlugin({ /* Options */  }),
+    KantonBSDesignsystemPlugin({ /* Options */ }),
   ],
 })

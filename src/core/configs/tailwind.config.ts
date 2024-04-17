@@ -1,7 +1,6 @@
-// import formKitTailwind from '@formkit/themes/tailwindcss'
+import path from 'node:path'
+import fs from 'node:fs'
 import plugin from 'tailwindcss/plugin.js'
-import path from 'path'
-import fs from 'fs'
 
 export const COLORS: Record<string, Record<number, string>> = {
   green: {
@@ -80,18 +79,18 @@ const fontSize = {
   '4xl': ['36px', '40px'],
   '3xl': ['30px', '34px'],
   '2xl': ['24px', '32px'],
-  xl: ['20px', '28px'],
-  lg: ['18px', '24px'],
-  base: ['16px', '22px'],
-  sm: ['14px', '20px'],
-  xs: ['12px', '18px'],
+  'xl': ['20px', '28px'],
+  'lg': ['18px', '24px'],
+  'base': ['16px', '22px'],
+  'sm': ['14px', '20px'],
+  'xs': ['12px', '18px'],
 }
 
 const colors = Object.keys(COLORS).reduce<Record<string, string>>(
   (acc, color) => {
     const shades = COLORS[color]
     Object.entries(shades).forEach(([shade, hex]) => {
-      acc[color + '-' + shade] = hex
+      acc[`${color}-${shade}`] = hex
     })
     return acc
   },
@@ -128,19 +127,19 @@ function getContentDependencies(path: string) {
     // decides to use it. We won't support any other form
     // framework for the time being, as this is meant to
     // be otherwise framework-agnostic.
-    '/formkit.config.ts'
+    '/formkit.config.ts',
   ]
 
   // We need to explicitly filter for existing directories/files,
   // because otherwise esbuild-plugin-postcss2 will try to scan
   // directories that don't exist and will fall flat on its face.
   return [
-    './*.{' + fileEndings + '}',
-    ...dirCandidates.map(d => path + '/' + d)
+    `./*.{${fileEndings}`,
+    ...dirCandidates.map(d => `${path}/${d}`)
       .filter(d => fs.existsSync(d))
-      .map(d => d + '/**/*.{' + fileEndings + '}'),
-    ...fileCandidates.map(f => path + '/' + f)
-      .filter(f => fs.existsSync(f))
+      .map(d => `${d}/**/*.{${fileEndings}}`),
+    ...fileCandidates.map(f => `${path}/${f}`)
+      .filter(f => fs.existsSync(f)),
   ]
 }
 
@@ -151,15 +150,14 @@ export default {
     /**
      * Various additional variants
      */
-    plugin(function ({ addVariant }) {
+    plugin(({ addVariant }) => {
       addVariant(
         'mobile-only',
-        "@media screen and (max-width: theme('screens.md'))",
+        '@media screen and (max-width: theme(\'screens.md\'))',
       )
       addVariant('not-last', '&:not(:last-child)')
       addVariant('not-first', '&:not(:first-child)')
     }),
-    // formKitTailwind,
   ],
   corePlugins: {
     textOpacity: false,
@@ -264,7 +262,7 @@ export default {
       },
       boxShadow: {
         'purple-600': '0 0 10px 0 #9156B4',
-        none: '0 0 0 0 #000',
+        'none': '0 0 0 0 #000',
       },
     },
   },

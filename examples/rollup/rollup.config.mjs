@@ -1,4 +1,5 @@
-import KantonBSDesignsystemPlugin from '@kanton-basel-stadt/designsystem/dist/rollup.cjs';
+import path from 'node:path'
+import KantonBSDesignsystemPlugin from '@kanton-basel-stadt/designsystem/dist/rollup.cjs'
 
 export default {
   input: 'main.js',
@@ -6,8 +7,8 @@ export default {
   plugins: [
     KantonBSDesignsystemPlugin.default({
       tailwindOptions: {
-        targetDir: process.cwd() + '/dist'
-      }
+        targetDir: path.resolve(__dirname, '/dist'),
+      },
     }),
   ],
-};
+}

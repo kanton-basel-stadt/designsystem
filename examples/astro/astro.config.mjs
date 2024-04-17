@@ -1,5 +1,5 @@
-import { defineConfig } from 'astro/config';
-import KantonBSDesignsystemPlugin from '@kanton-basel-stadt/designsystem/astro';
+import { defineConfig } from 'astro/config'
+import KantonBSDesignsystemPlugin from '@kanton-basel-stadt/designsystem/astro'
 
 // https://astro.build/config
 export default defineConfig({
@@ -7,7 +7,7 @@ export default defineConfig({
     KantonBSDesignsystemPlugin({
       iconOptions: {
         compiler: 'astro',
-      }
-    })
+      },
+    }),
   ],
-});
+})

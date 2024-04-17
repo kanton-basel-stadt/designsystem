@@ -1,8 +1,8 @@
 {
   "name": "@kanton-basel-stadt/designsystem",
   "type": "module",
-  "version": "0.1.0",
-  "packageManager": "pnpm@8.6.12",
+  "version": "1.0.0-beta.0",
+  "packageManager": "npm@6.7.0",
   "description": "",
   "license": "MIT",
   "homepage": "https://github.com/antfu/@kanton-basel-stadt/designsystem#readme",
@@ -18,7 +18,10 @@
     "vite",
     "webpack",
     "rollup",
-    "transform"
+    "transform",
+    "basel-stadt",
+    "designsystem",
+    "switzerland"
   ],
   "exports": {
     ".": {
@@ -30,11 +33,6 @@
       "types": "./dist/astro.d.ts",
       "import": "./dist/astro.js",
       "require": "./dist/astro.cjs"
-    },
-    "./rspack": {
-      "types": "./dist/rspack.d.ts",
-      "import": "./dist/rspack.js",
-      "require": "./dist/rspack.cjs"
     },
     "./vite": {
       "types": "./dist/vite.d.ts",
@@ -88,8 +86,7 @@
     "build": "tsup",
     "dev": "tsup --watch src",
     "build:fix": "esno scripts/postbuild.ts",
-    "lint": "eslint .",
-    "play": "npm -C playground run dev",
+    "lint": "node ./node_modules/.bin/eslint .",
     "prepublishOnly": "npm run build",
     "release": "bumpp && npm publish",
     "start": "esno src/index.ts",

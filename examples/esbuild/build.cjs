@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-"use strict";
+'use strict'
 
-const KantonBSDesignsystemPlugin = require('@kanton-basel-stadt/designsystem/dist/esbuild.cjs').default;
-const esbuild = require('esbuild');
+const KantonBSDesignsystemPlugin = require('@kanton-basel-stadt/designsystem/dist/esbuild.cjs').default
+const esbuild = require('esbuild')
 
 esbuild.build({
   entryPoints: [
@@ -17,5 +17,5 @@ esbuild.build({
     // Necessary for the font files to work
     '.woff': 'file',
     '.woff2': 'file',
-  }
-});
+  },
+})

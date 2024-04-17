@@ -1,18 +1,18 @@
 {
   "name": "vite-project",
-  "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
+  "dependencies": {
+    "@kanton-basel-stadt/designsystem": "github:kanton-basel-stadt/designsystem"
+  },
   "devDependencies": {
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
-  },
-  "dependencies": {
-    "@kanton-basel-stadt/designsystem": "file:../../."
   }
 }

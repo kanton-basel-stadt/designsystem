@@ -4,13 +4,13 @@
     "lib": ["ESNext", "DOM"],
     "module": "ESNext",
     "moduleResolution": "node",
+    "paths": {
+      "*": ["./types/*"]
+    },
     "resolveJsonModule": true,
     "strict": true,
     "strictNullChecks": true,
-    "esModuleInterop": true,
-    "paths": {
-      "*": ["./types/*"]
-    }
+    "esModuleInterop": true
   },
   "exclude": ["dist", "eslint.config.js"]
 }

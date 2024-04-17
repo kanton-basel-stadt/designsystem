@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     ['@kanton-basel-stadt/designsystem/nuxt', {
       iconOptions: {
         compiler: 'vue3',
-      }
+      },
     }],
   ],
 

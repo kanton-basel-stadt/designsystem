@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path')
 
 module.exports = {
   plugins: {
@@ -6,14 +6,14 @@ module.exports = {
     'postcss-mixins': {},
     'tailwindcss/nesting': {},
     'tailwindcss': {
-      config: path.resolve(__dirname + '/tailwind.config.ts')
+      config: path.resolve(path.join(__dirname, '/tailwind.config.ts')),
     },
     'postcss-hexrgba': {
       colorFunctionNotation: 'modern',
       transformToBareValue: true,
     },
     'cssnano': {
-      preset: 'default'
-    }
+      preset: 'default',
+    },
   },
-};
+}

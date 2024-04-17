@@ -10,11 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.6.0",
     "@astrojs/check": "^0.5.10",
+    "astro": "^4.6.0",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "@kanton-basel-stadt/designsystem": "file:../../."
+    "@kanton-basel-stadt/designsystem": "github:kanton-basel-stadt/designsystem"
   }
 }

@@ -1,1 +1,1 @@
-import '@kanton-basel-stadt/designsystem/icons/symbol/pen';
+import '@kanton-basel-stadt/designsystem/icons/symbol/pen'

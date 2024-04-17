@@ -1,8 +1,8 @@
-import { type Options as UnpluginIconsOptions } from 'unplugin-icons'
+import type { Options as UnpluginIconsOptions } from 'unplugin-icons'
 
 export interface Options {
-  iconOptions?: UnpluginIconsOptions,
+  iconOptions?: UnpluginIconsOptions
   tailwindOptions?: {
     targetDir?: string
-  },
+  }
 }

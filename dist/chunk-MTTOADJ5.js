@@ -1,41 +1,21 @@
-"use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __commonJS = (cb, mod) => function __require() {
+var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
+  get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
+}) : x)(function(x) {
+  if (typeof require !== "undefined")
+    return require.apply(this, arguments);
+  throw Error('Dynamic require of "' + x + '" is not supported');
+});
+var __commonJS = (cb, mod) => function __require2() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // node_modules/postcss-import/lib/join-media.js
 var require_join_media = __commonJS({
-  "node_modules/postcss-import/lib/join-media.js"(exports2, module2) {
+  "node_modules/postcss-import/lib/join-media.js"(exports, module) {
     "use strict";
     var startsWithKeywordRegexp = /^(all|not|only|print|screen)/i;
-    module2.exports = function(parentMedia, childMedia) {
+    module.exports = function(parentMedia, childMedia) {
       if (!parentMedia.length && childMedia.length)
         return childMedia;
       if (parentMedia.length && !childMedia.length)
@@ -63,9 +43,9 @@ var require_join_media = __commonJS({
 
 // node_modules/postcss-import/lib/join-layer.js
 var require_join_layer = __commonJS({
-  "node_modules/postcss-import/lib/join-layer.js"(exports2, module2) {
+  "node_modules/postcss-import/lib/join-layer.js"(exports, module) {
     "use strict";
-    module2.exports = function(parentLayer, childLayer) {
+    module.exports = function(parentLayer, childLayer) {
       if (!parentLayer.length && childLayer.length)
         return childLayer;
       if (parentLayer.length && !childLayer.length)
@@ -79,10 +59,10 @@ var require_join_layer = __commonJS({
 
 // node_modules/resolve/lib/homedir.js
 var require_homedir = __commonJS({
-  "node_modules/resolve/lib/homedir.js"(exports2, module2) {
+  "node_modules/resolve/lib/homedir.js"(exports, module) {
     "use strict";
-    var os = require("os");
-    module2.exports = os.homedir || function homedir() {
+    var os = __require("os");
+    module.exports = os.homedir || function homedir() {
       var home = process.env.HOME;
       var user = process.env.LOGNAME || process.env.USER || process.env.LNAME || process.env.USERNAME;
       if (process.platform === "win32") {
@@ -101,9 +81,9 @@ var require_homedir = __commonJS({
 
 // node_modules/resolve/lib/caller.js
 var require_caller = __commonJS({
-  "node_modules/resolve/lib/caller.js"(exports2, module2) {
+  "node_modules/resolve/lib/caller.js"(exports, module) {
     "use strict";
-    module2.exports = function() {
+    module.exports = function() {
       var origPrepareStackTrace = Error.prepareStackTrace;
       Error.prepareStackTrace = function(_, stack2) {
         return stack2;
@@ -117,7 +97,7 @@ var require_caller = __commonJS({
 
 // node_modules/path-parse/index.js
 var require_path_parse = __commonJS({
-  "node_modules/path-parse/index.js"(exports2, module2) {
+  "node_modules/path-parse/index.js"(exports, module) {
     "use strict";
     var isWindows = process.platform === "win32";
     var splitWindowsRe = /^(((?:[a-zA-Z]:|[\\\/]{2}[^\\\/]+[\\\/]+[^\\\/]+)?[\\\/]?)(?:[^\\\/]*[\\\/])*)((\.{1,2}|[^\\\/]+?|)(\.[^.\/\\]*|))[\\\/]*$/;
@@ -167,19 +147,19 @@ var require_path_parse = __commonJS({
       };
     };
     if (isWindows)
-      module2.exports = win32.parse;
+      module.exports = win32.parse;
     else
-      module2.exports = posix.parse;
-    module2.exports.posix = posix.parse;
-    module2.exports.win32 = win32.parse;
+      module.exports = posix.parse;
+    module.exports.posix = posix.parse;
+    module.exports.win32 = win32.parse;
   }
 });
 
 // node_modules/resolve/lib/node-modules-paths.js
 var require_node_modules_paths = __commonJS({
-  "node_modules/resolve/lib/node-modules-paths.js"(exports2, module2) {
+  "node_modules/resolve/lib/node-modules-paths.js"(exports, module) {
     "use strict";
-    var path4 = require("path");
+    var path4 = __require("path");
     var parse = path4.parse || require_path_parse();
     var getNodeModulesDirs = function getNodeModulesDirs2(absoluteStart, modules) {
       var prefix = "/";
@@ -200,7 +180,7 @@ var require_node_modules_paths = __commonJS({
         }));
       }, []);
     };
-    module2.exports = function nodeModulesPaths(start, opts, request) {
+    module.exports = function nodeModulesPaths(start, opts, request) {
       var modules = opts && opts.moduleDirectory ? [].concat(opts.moduleDirectory) : ["node_modules"];
       if (opts && typeof opts.paths === "function") {
         return opts.paths(
@@ -220,9 +200,9 @@ var require_node_modules_paths = __commonJS({
 
 // node_modules/resolve/lib/normalize-options.js
 var require_normalize_options = __commonJS({
-  "node_modules/resolve/lib/normalize-options.js"(exports2, module2) {
+  "node_modules/resolve/lib/normalize-options.js"(exports, module) {
     "use strict";
-    module2.exports = function(x, opts) {
+    module.exports = function(x, opts) {
       return opts || {};
     };
   }
@@ -230,7 +210,7 @@ var require_normalize_options = __commonJS({
 
 // node_modules/function-bind/implementation.js
 var require_implementation = __commonJS({
-  "node_modules/function-bind/implementation.js"(exports2, module2) {
+  "node_modules/function-bind/implementation.js"(exports, module) {
     "use strict";
     var ERROR_MESSAGE = "Function.prototype.bind called on incompatible ";
     var toStr = Object.prototype.toString;
@@ -263,7 +243,7 @@ var require_implementation = __commonJS({
       }
       return str;
     };
-    module2.exports = function bind(that) {
+    module.exports = function bind(that) {
       var target = this;
       if (typeof target !== "function" || toStr.apply(target) !== funcType) {
         throw new TypeError(ERROR_MESSAGE + target);
@@ -306,28 +286,28 @@ var require_implementation = __commonJS({
 
 // node_modules/function-bind/index.js
 var require_function_bind = __commonJS({
-  "node_modules/function-bind/index.js"(exports2, module2) {
+  "node_modules/function-bind/index.js"(exports, module) {
     "use strict";
     var implementation = require_implementation();
-    module2.exports = Function.prototype.bind || implementation;
+    module.exports = Function.prototype.bind || implementation;
   }
 });
 
 // node_modules/hasown/index.js
 var require_hasown = __commonJS({
-  "node_modules/hasown/index.js"(exports2, module2) {
+  "node_modules/hasown/index.js"(exports, module) {
     "use strict";
     var call = Function.prototype.call;
     var $hasOwn = Object.prototype.hasOwnProperty;
     var bind = require_function_bind();
-    module2.exports = bind.call(call, $hasOwn);
+    module.exports = bind.call(call, $hasOwn);
   }
 });
 
 // node_modules/is-core-module/core.json
 var require_core = __commonJS({
-  "node_modules/is-core-module/core.json"(exports2, module2) {
-    module2.exports = {
+  "node_modules/is-core-module/core.json"(exports, module) {
+    module.exports = {
       assert: true,
       "node:assert": [">= 14.18 && < 15", ">= 16"],
       "assert/strict": ">= 15",
@@ -490,7 +470,7 @@ var require_core = __commonJS({
 
 // node_modules/is-core-module/index.js
 var require_is_core_module = __commonJS({
-  "node_modules/is-core-module/index.js"(exports2, module2) {
+  "node_modules/is-core-module/index.js"(exports, module) {
     "use strict";
     var hasOwn = require_hasown();
     function specifierIncluded(current, specifier) {
@@ -545,7 +525,7 @@ var require_is_core_module = __commonJS({
       return matchesRange(current, specifierValue);
     }
     var data = require_core();
-    module2.exports = function isCore(x, nodeVersion) {
+    module.exports = function isCore(x, nodeVersion) {
       return hasOwn(data, x) && versionIncluded(nodeVersion, data[x]);
     };
   }
@@ -553,11 +533,11 @@ var require_is_core_module = __commonJS({
 
 // node_modules/resolve/lib/async.js
 var require_async = __commonJS({
-  "node_modules/resolve/lib/async.js"(exports2, module2) {
+  "node_modules/resolve/lib/async.js"(exports, module) {
     "use strict";
-    var fs3 = require("fs");
+    var fs3 = __require("fs");
     var getHomedir = require_homedir();
-    var path4 = require("path");
+    var path4 = __require("path");
     var caller = require_caller();
     var nodeModulesPaths = require_node_modules_paths();
     var normalizeOptions = require_normalize_options();
@@ -626,7 +606,7 @@ var require_async = __commonJS({
       }
       return dirs;
     };
-    module2.exports = function resolve(x, options, callback) {
+    module.exports = function resolve(x, options, callback) {
       var cb = callback;
       var opts = options;
       if (typeof options === "function") {
@@ -892,8 +872,8 @@ var require_async = __commonJS({
 
 // node_modules/resolve/lib/core.json
 var require_core2 = __commonJS({
-  "node_modules/resolve/lib/core.json"(exports2, module2) {
-    module2.exports = {
+  "node_modules/resolve/lib/core.json"(exports, module) {
+    module.exports = {
       assert: true,
       "node:assert": [">= 14.18 && < 15", ">= 16"],
       "assert/strict": ">= 15",
@@ -1056,7 +1036,7 @@ var require_core2 = __commonJS({
 
 // node_modules/resolve/lib/core.js
 var require_core3 = __commonJS({
-  "node_modules/resolve/lib/core.js"(exports2, module2) {
+  "node_modules/resolve/lib/core.js"(exports, module) {
     "use strict";
     var isCoreModule = require_is_core_module();
     var data = require_core2();
@@ -1067,16 +1047,16 @@ var require_core3 = __commonJS({
       }
     }
     var mod;
-    module2.exports = core;
+    module.exports = core;
   }
 });
 
 // node_modules/resolve/lib/is-core.js
 var require_is_core = __commonJS({
-  "node_modules/resolve/lib/is-core.js"(exports2, module2) {
+  "node_modules/resolve/lib/is-core.js"(exports, module) {
     "use strict";
     var isCoreModule = require_is_core_module();
-    module2.exports = function isCore(x) {
+    module.exports = function isCore(x) {
       return isCoreModule(x);
     };
   }
@@ -1084,11 +1064,11 @@ var require_is_core = __commonJS({
 
 // node_modules/resolve/lib/sync.js
 var require_sync = __commonJS({
-  "node_modules/resolve/lib/sync.js"(exports2, module2) {
+  "node_modules/resolve/lib/sync.js"(exports, module) {
     "use strict";
     var isCore = require_is_core_module();
-    var fs3 = require("fs");
-    var path4 = require("path");
+    var fs3 = __require("fs");
+    var path4 = __require("path");
     var getHomedir = require_homedir();
     var caller = require_caller();
     var nodeModulesPaths = require_node_modules_paths();
@@ -1152,7 +1132,7 @@ var require_sync = __commonJS({
       }
       return dirs;
     };
-    module2.exports = function resolveSync(x, options) {
+    module.exports = function resolveSync(x, options) {
       if (typeof x !== "string") {
         throw new TypeError("Path must be a string.");
       }
@@ -1289,19 +1269,19 @@ var require_sync = __commonJS({
 
 // node_modules/resolve/index.js
 var require_resolve = __commonJS({
-  "node_modules/resolve/index.js"(exports2, module2) {
+  "node_modules/resolve/index.js"(exports, module) {
     "use strict";
     var async = require_async();
     async.core = require_core3();
     async.isCore = require_is_core();
     async.sync = require_sync();
-    module2.exports = async;
+    module.exports = async;
   }
 });
 
 // node_modules/postcss-import/lib/resolve-id.js
 var require_resolve_id = __commonJS({
-  "node_modules/postcss-import/lib/resolve-id.js"(exports2, module2) {
+  "node_modules/postcss-import/lib/resolve-id.js"(exports, module) {
     "use strict";
     var resolve = require_resolve();
     var moduleDirectories = ["web_modules", "node_modules"];
@@ -1310,7 +1290,7 @@ var require_resolve_id = __commonJS({
         resolve(id, opts, (err, path4) => err ? rej(err) : res(path4));
       });
     }
-    module2.exports = function(id, base, options) {
+    module.exports = function(id, base, options) {
       const paths = options.path;
       const resolveOpts = {
         basedir: base,
@@ -1342,7 +1322,7 @@ var require_resolve_id = __commonJS({
 
 // node_modules/pify/index.js
 var require_pify = __commonJS({
-  "node_modules/pify/index.js"(exports2, module2) {
+  "node_modules/pify/index.js"(exports, module) {
     "use strict";
     var processFn = function(fn, P, opts) {
       return function() {
@@ -1369,7 +1349,7 @@ var require_pify = __commonJS({
         });
       };
     };
-    var pify = module2.exports = function(obj, P, opts) {
+    var pify = module.exports = function(obj, P, opts) {
       if (typeof P !== "function") {
         opts = P;
         P = Promise;
@@ -1400,10 +1380,10 @@ var require_pify = __commonJS({
 
 // node_modules/read-cache/index.js
 var require_read_cache = __commonJS({
-  "node_modules/read-cache/index.js"(exports2, module2) {
+  "node_modules/read-cache/index.js"(exports, module) {
     "use strict";
-    var fs3 = require("fs");
-    var path4 = require("path");
+    var fs3 = __require("fs");
+    var path4 = __require("path");
     var pify = require_pify();
     var stat = pify(fs3.stat);
     var readFile = pify(fs3.readFile);
@@ -1415,7 +1395,7 @@ var require_read_cache = __commonJS({
       }
       return content;
     }
-    module2.exports = function(path5, encoding) {
+    module.exports = function(path5, encoding) {
       path5 = resolve(path5);
       return stat(path5).then(function(stats) {
         var item = cache[path5];
@@ -1434,7 +1414,7 @@ var require_read_cache = __commonJS({
         return Promise.reject(err);
       });
     };
-    module2.exports.sync = function(path5, encoding) {
+    module.exports.sync = function(path5, encoding) {
       path5 = resolve(path5);
       try {
         var stats = fs3.statSync(path5);
@@ -1453,14 +1433,14 @@ var require_read_cache = __commonJS({
         throw err;
       }
     };
-    module2.exports.get = function(path5, encoding) {
+    module.exports.get = function(path5, encoding) {
       path5 = resolve(path5);
       if (cache[path5]) {
         return convert(cache[path5].content, encoding);
       }
       return null;
     };
-    module2.exports.clear = function() {
+    module.exports.clear = function() {
       cache = /* @__PURE__ */ Object.create(null);
     };
   }
@@ -1468,7 +1448,7 @@ var require_read_cache = __commonJS({
 
 // node_modules/postcss-import/lib/data-url.js
 var require_data_url = __commonJS({
-  "node_modules/postcss-import/lib/data-url.js"(exports2, module2) {
+  "node_modules/postcss-import/lib/data-url.js"(exports, module) {
     "use strict";
     var dataURLRegexp = /^data:text\/css;base64,/i;
     function isValid(url) {
@@ -1477,7 +1457,7 @@ var require_data_url = __commonJS({
     function contents(url) {
       return Buffer.from(url.slice(21), "base64").toString();
     }
-    module2.exports = {
+    module.exports = {
       isValid,
       contents
     };
@@ -1486,11 +1466,11 @@ var require_data_url = __commonJS({
 
 // node_modules/postcss-import/lib/load-content.js
 var require_load_content = __commonJS({
-  "node_modules/postcss-import/lib/load-content.js"(exports2, module2) {
+  "node_modules/postcss-import/lib/load-content.js"(exports, module) {
     "use strict";
     var readCache = require_read_cache();
     var dataURL = require_data_url();
-    module2.exports = (filename) => {
+    module.exports = (filename) => {
       if (dataURL.isValid(filename)) {
         return dataURL.contents(filename);
       }
@@ -1501,7 +1481,7 @@ var require_load_content = __commonJS({
 
 // node_modules/sugarss/stringifier.js
 var require_stringifier = __commonJS({
-  "node_modules/sugarss/stringifier.js"(exports2, module2) {
+  "node_modules/sugarss/stringifier.js"(exports, module) {
     "use strict";
     var DEFAULT_RAWS = {
       colon: ": ",
@@ -1509,7 +1489,7 @@ var require_stringifier = __commonJS({
       commentLeft: " ",
       commentRight: " "
     };
-    module2.exports = class Stringifier {
+    module.exports = class Stringifier {
       constructor(builder) {
         this.builder = builder;
       }
@@ -1608,10 +1588,10 @@ var require_stringifier = __commonJS({
 
 // node_modules/sugarss/stringify.js
 var require_stringify = __commonJS({
-  "node_modules/sugarss/stringify.js"(exports2, module2) {
+  "node_modules/sugarss/stringify.js"(exports, module) {
     "use strict";
     var Stringifier = require_stringifier();
-    module2.exports = function stringify(node, builder) {
+    module.exports = function stringify(node, builder) {
       let str = new Stringifier(builder);
       str.stringify(node);
     };
@@ -1620,12 +1600,12 @@ var require_stringify = __commonJS({
 
 // node_modules/sugarss/preprocess.js
 var require_preprocess = __commonJS({
-  "node_modules/sugarss/preprocess.js"(exports2, module2) {
+  "node_modules/sugarss/preprocess.js"(exports, module) {
     "use strict";
     function indentError(input, l, p) {
       throw input.error("Mixed tabs and spaces are not allowed", l, p + 1);
     }
-    module2.exports = function preprocess(input, lines) {
+    module.exports = function preprocess(input, lines) {
       let indentType;
       let prevNumber = 0;
       let parts = lines.map((line) => {
@@ -1732,7 +1712,7 @@ var require_preprocess = __commonJS({
 
 // node_modules/sugarss/tokenize.js
 var require_tokenize = __commonJS({
-  "node_modules/sugarss/tokenize.js"(exports2, module2) {
+  "node_modules/sugarss/tokenize.js"(exports, module) {
     "use strict";
     var SINGLE_QUOTE = "'".charCodeAt(0);
     var DOUBLE_QUOTE = '"'.charCodeAt(0);
@@ -1756,7 +1736,7 @@ var require_tokenize = __commonJS({
     var RE_NEW_LINE = /[\n\f\r]/g;
     var RE_WORD_END = /[\t\n\f\r !"'(),:;@\\{}]|\/(?=\*)/g;
     var RE_BAD_BRACKET = /.[\n"'(/\\]/;
-    module2.exports = function tokenize(input) {
+    module.exports = function tokenize(input) {
       let tokens = [];
       let css = input.css.valueOf();
       let code, next, quote, lines, last, content, escape, nextLine, nextOffset, escaped, escapePos, prev, n;
@@ -2025,10 +2005,10 @@ var require_tokenize = __commonJS({
 
 // node_modules/sugarss/parser.js
 var require_parser = __commonJS({
-  "node_modules/sugarss/parser.js"(exports2, module2) {
+  "node_modules/sugarss/parser.js"(exports, module) {
     "use strict";
-    var { Declaration, Comment, AtRule, Rule, Root } = require("postcss");
-    module2.exports = class Parser {
+    var { Declaration, Comment, AtRule, Rule, Root } = __require("postcss");
+    module.exports = class Parser {
       constructor(input) {
         this.input = input;
         this.pos = 0;
@@ -2371,9 +2351,9 @@ var require_parser = __commonJS({
 
 // node_modules/sugarss/liner.js
 var require_liner = __commonJS({
-  "node_modules/sugarss/liner.js"(exports2, module2) {
+  "node_modules/sugarss/liner.js"(exports, module) {
     "use strict";
-    module2.exports = function liner(tokens) {
+    module.exports = function liner(tokens) {
       let line = [];
       let result = [line];
       let brackets = 0;
@@ -2395,14 +2375,14 @@ var require_liner = __commonJS({
 
 // node_modules/sugarss/parse.js
 var require_parse = __commonJS({
-  "node_modules/sugarss/parse.js"(exports2, module2) {
+  "node_modules/sugarss/parse.js"(exports, module) {
     "use strict";
-    var { Input } = require("postcss");
+    var { Input } = __require("postcss");
     var preprocess = require_preprocess();
     var tokenizer = require_tokenize();
     var Parser = require_parser();
     var liner = require_liner();
-    module2.exports = function parse(source, opts) {
+    module.exports = function parse(source, opts) {
       let input = new Input(source, opts);
       let parser = new Parser(input);
       parser.tokens = tokenizer(input);
@@ -2415,21 +2395,21 @@ var require_parse = __commonJS({
 
 // node_modules/sugarss/index.js
 var require_sugarss = __commonJS({
-  "node_modules/sugarss/index.js"(exports2, module2) {
+  "node_modules/sugarss/index.js"(exports, module) {
     "use strict";
     var stringify = require_stringify();
     var parse = require_parse();
-    module2.exports = { stringify, parse };
+    module.exports = { stringify, parse };
   }
 });
 
 // node_modules/postcss-import/lib/process-content.js
 var require_process_content = __commonJS({
-  "node_modules/postcss-import/lib/process-content.js"(exports2, module2) {
+  "node_modules/postcss-import/lib/process-content.js"(exports, module) {
     "use strict";
-    var path4 = require("path");
+    var path4 = __require("path");
     var sugarss;
-    module2.exports = function processContent(result, content, filename, options, postcss2) {
+    module.exports = function processContent(result, content, filename, options, postcss2) {
       const { plugins } = options;
       const ext = path4.extname(filename);
       const parserList = [];
@@ -2469,7 +2449,7 @@ var require_process_content = __commonJS({
 
 // node_modules/postcss-value-parser/lib/parse.js
 var require_parse2 = __commonJS({
-  "node_modules/postcss-value-parser/lib/parse.js"(exports2, module2) {
+  "node_modules/postcss-value-parser/lib/parse.js"(exports, module) {
     "use strict";
     var openParentheses = "(".charCodeAt(0);
     var closeParentheses = ")".charCodeAt(0);
@@ -2484,7 +2464,7 @@ var require_parse2 = __commonJS({
     var uUpper = "U".charCodeAt(0);
     var plus = "+".charCodeAt(0);
     var isUnicodeRange = /^[a-f0-9?-]+$/i;
-    module2.exports = function(input) {
+    module.exports = function(input) {
       var tokens = [];
       var value = input;
       var next, quote, prev, token, escape, escapePos, whitespacePos, parenthesesOpenPos;
@@ -2720,9 +2700,9 @@ var require_parse2 = __commonJS({
 
 // node_modules/postcss-value-parser/lib/walk.js
 var require_walk = __commonJS({
-  "node_modules/postcss-value-parser/lib/walk.js"(exports2, module2) {
+  "node_modules/postcss-value-parser/lib/walk.js"(exports, module) {
     "use strict";
-    module2.exports = function walk(nodes, cb, bubble) {
+    module.exports = function walk(nodes, cb, bubble) {
       var i, max, node, result;
       for (i = 0, max = nodes.length; i < max; i += 1) {
         node = nodes[i];
@@ -2742,7 +2722,7 @@ var require_walk = __commonJS({
 
 // node_modules/postcss-value-parser/lib/stringify.js
 var require_stringify2 = __commonJS({
-  "node_modules/postcss-value-parser/lib/stringify.js"(exports2, module2) {
+  "node_modules/postcss-value-parser/lib/stringify.js"(exports, module) {
     "use strict";
     function stringifyNode(node, custom) {
       var type = node.type;
@@ -2780,13 +2760,13 @@ var require_stringify2 = __commonJS({
       }
       return stringifyNode(nodes, custom);
     }
-    module2.exports = stringify;
+    module.exports = stringify;
   }
 });
 
 // node_modules/postcss-value-parser/lib/unit.js
 var require_unit = __commonJS({
-  "node_modules/postcss-value-parser/lib/unit.js"(exports2, module2) {
+  "node_modules/postcss-value-parser/lib/unit.js"(exports, module) {
     "use strict";
     var minus = "-".charCodeAt(0);
     var plus = "+".charCodeAt(0);
@@ -2819,7 +2799,7 @@ var require_unit = __commonJS({
       }
       return false;
     }
-    module2.exports = function(value) {
+    module.exports = function(value) {
       var pos = 0;
       var length = value.length;
       var code;
@@ -2874,7 +2854,7 @@ var require_unit = __commonJS({
 
 // node_modules/postcss-value-parser/lib/index.js
 var require_lib = __commonJS({
-  "node_modules/postcss-value-parser/lib/index.js"(exports2, module2) {
+  "node_modules/postcss-value-parser/lib/index.js"(exports, module) {
     "use strict";
     var parse = require_parse2();
     var walk = require_walk();
@@ -2896,13 +2876,13 @@ var require_lib = __commonJS({
     ValueParser.unit = require_unit();
     ValueParser.walk = walk;
     ValueParser.stringify = stringify;
-    module2.exports = ValueParser;
+    module.exports = ValueParser;
   }
 });
 
 // node_modules/postcss-import/lib/parse-statements.js
 var require_parse_statements = __commonJS({
-  "node_modules/postcss-import/lib/parse-statements.js"(exports2, module2) {
+  "node_modules/postcss-import/lib/parse-statements.js"(exports, module) {
     "use strict";
     var valueParser = require_lib();
     var { stringify } = valueParser;
@@ -2920,7 +2900,7 @@ var require_parse_statements = __commonJS({
       list.push(last);
       return list;
     }
-    module2.exports = function(result, styles) {
+    module.exports = function(result, styles) {
       const statements = [];
       let nodes = [];
       styles.each((node) => {
@@ -3042,9 +3022,9 @@ var require_parse_statements = __commonJS({
 
 // node_modules/postcss-import/lib/assign-layer-names.js
 var require_assign_layer_names = __commonJS({
-  "node_modules/postcss-import/lib/assign-layer-names.js"(exports2, module2) {
+  "node_modules/postcss-import/lib/assign-layer-names.js"(exports, module) {
     "use strict";
-    module2.exports = function(layer, node, state, options) {
+    module.exports = function(layer, node, state, options) {
       layer.forEach((layerPart, i) => {
         if (layerPart.trim() === "") {
           if (options.nameLayer) {
@@ -3062,9 +3042,9 @@ var require_assign_layer_names = __commonJS({
 
 // node_modules/postcss-import/index.js
 var require_postcss_import = __commonJS({
-  "node_modules/postcss-import/index.js"(exports2, module2) {
+  "node_modules/postcss-import/index.js"(exports, module) {
     "use strict";
-    var path4 = require("path");
+    var path4 = __require("path");
     var joinMedia = require_join_media();
     var joinLayer = require_join_layer();
     var resolveId = require_resolve_id();
@@ -3395,34 +3375,25 @@ var require_postcss_import = __commonJS({
       };
     }
     AtImport.postcss = true;
-    module2.exports = AtImport;
+    module.exports = AtImport;
   }
 });
 
-// src/rspack.ts
-var rspack_exports = {};
-__export(rspack_exports, {
-  default: () => rspack_default
-});
-module.exports = __toCommonJS(rspack_exports);
-var import_unplugin2 = require("unplugin");
-
 // src/index.ts
-var import_path3 = __toESM(require("path"), 1);
-var import_url2 = require("url");
-var import_lodash = __toESM(require("lodash.merge"), 1);
-var import_unplugin = require("unplugin");
+import path3 from "node:path";
+import { fileURLToPath as fileURLToPath2 } from "node:url";
+import merge from "lodash.merge";
+import { createUnplugin } from "unplugin";
 
 // src/core/configs/postcss.config.mjs
-var import_path = __toESM(require("path"), 1);
-var import_url = require("url");
-var import_meta = {};
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 var dirname;
 try {
   dirname = __dirname;
 } catch (_) {
-  const filename = (0, import_url.fileURLToPath)(import_meta.url);
-  dirname = import_path.default.dirname(filename);
+  const filename = fileURLToPath(import.meta.url);
+  dirname = path.dirname(filename);
 }
 var postcss_config_default = {
   plugins: {
@@ -3430,7 +3401,7 @@ var postcss_config_default = {
     "postcss-mixins": {},
     "tailwindcss/nesting": {},
     "tailwindcss": {
-      config: import_path.default.resolve(dirname + "/configs/tailwind.config.ts")
+      config: path.resolve(`${dirname}/configs/tailwind.config.ts`)
     },
     "postcss-hexrgba": {
       colorFunctionNotation: "modern",
@@ -3443,9 +3414,9 @@ var postcss_config_default = {
 };
 
 // src/core/configs/tailwind.config.ts
-var import_plugin = __toESM(require("tailwindcss/plugin.js"), 1);
-var import_path2 = __toESM(require("path"), 1);
-var import_fs = __toESM(require("fs"), 1);
+import path2 from "node:path";
+import fs from "node:fs";
+import plugin from "tailwindcss/plugin.js";
 var COLORS = {
   green: {
     50: "#F2F7F3",
@@ -3518,23 +3489,23 @@ var fontSize = {
   "4xl": ["36px", "40px"],
   "3xl": ["30px", "34px"],
   "2xl": ["24px", "32px"],
-  xl: ["20px", "28px"],
-  lg: ["18px", "24px"],
-  base: ["16px", "22px"],
-  sm: ["14px", "20px"],
-  xs: ["12px", "18px"]
+  "xl": ["20px", "28px"],
+  "lg": ["18px", "24px"],
+  "base": ["16px", "22px"],
+  "sm": ["14px", "20px"],
+  "xs": ["12px", "18px"]
 };
 var colors = Object.keys(COLORS).reduce(
   (acc, color) => {
     const shades = COLORS[color];
     Object.entries(shades).forEach(([shade, hex]) => {
-      acc[color + "-" + shade] = hex;
+      acc[`${color}-${shade}`] = hex;
     });
     return acc;
   },
   {}
 );
-var projectRoot = import_path2.default.resolve(".");
+var projectRoot = path2.resolve(".");
 function getContentDependencies(path4) {
   const fileEndings = [
     "html",
@@ -3564,9 +3535,9 @@ function getContentDependencies(path4) {
     "/formkit.config.ts"
   ];
   return [
-    "./*.{" + fileEndings + "}",
-    ...dirCandidates.map((d) => path4 + "/" + d).filter((d) => import_fs.default.existsSync(d)).map((d) => d + "/**/*.{" + fileEndings + "}"),
-    ...fileCandidates.map((f) => path4 + "/" + f).filter((f) => import_fs.default.existsSync(f))
+    `./*.{${fileEndings}`,
+    ...dirCandidates.map((d) => `${path4}/${d}`).filter((d) => fs.existsSync(d)).map((d) => `${d}/**/*.{${fileEndings}}`),
+    ...fileCandidates.map((f) => `${path4}/${f}`).filter((f) => fs.existsSync(f))
   ];
 }
 var tailwind_config_default = {
@@ -3576,7 +3547,7 @@ var tailwind_config_default = {
     /**
      * Various additional variants
      */
-    (0, import_plugin.default)(function({ addVariant }) {
+    plugin(({ addVariant }) => {
       addVariant(
         "mobile-only",
         "@media screen and (max-width: theme('screens.md'))"
@@ -3584,7 +3555,6 @@ var tailwind_config_default = {
       addVariant("not-last", "&:not(:last-child)");
       addVariant("not-first", "&:not(:first-child)");
     })
-    // formKitTailwind,
   ],
   corePlugins: {
     textOpacity: false,
@@ -3688,56 +3658,51 @@ var tailwind_config_default = {
       },
       boxShadow: {
         "purple-600": "0 0 10px 0 #9156B4",
-        none: "0 0 0 0 #000"
+        "none": "0 0 0 0 #000"
       }
     }
   }
 };
 
 // src/index.ts
-var import_postcss = __toESM(require("postcss"), 1);
-var import_unplugin_icons = __toESM(require("unplugin-icons"), 1);
-var import_loaders = require("unplugin-icons/loaders");
-var import_fs2 = __toESM(require("fs"), 1);
-var import_meta2 = {};
+import postcss from "postcss";
+import unpluginIcons from "unplugin-icons";
+import { FileSystemIconLoader } from "unplugin-icons/loaders";
+import fs2 from "node:fs";
 var dirname2;
 try {
   dirname2 = __dirname;
 } catch (_) {
-  const filename = (0, import_url2.fileURLToPath)(import_meta2.url);
-  dirname2 = import_path3.default.dirname(filename);
+  const filename = fileURLToPath2(import.meta.url);
+  dirname2 = path3.dirname(filename);
 }
 var MODULE_PATH = dirname2;
 var MODULE_ALIAS = /(['"(])@kanton-basel-stadt\/designsystem/g;
 var ICON_PATH_ALIAS = /(['"(])@kanton-basel-stadt\/designsystem\/icons\/symbol/g;
 var ICON_PATH = "~icons/symbol";
-var ASSETS_PATH = import_path3.default.resolve(dirname2 + "/assets/");
-var CONFIGS_PATH = import_path3.default.resolve(dirname2 + "/configs/");
-var FONT_PATH_ROLLUP = new RegExp("../fonts/([a-zA-Z-]).woff2?", "g");
+var ASSETS_PATH = path3.resolve(`${dirname2}/assets/`);
+var CONFIGS_PATH = path3.resolve(`${dirname2}/configs/`);
 var unpluginIconsConfig = {
   customCollections: {
-    symbol: (0, import_loaders.FileSystemIconLoader)(ASSETS_PATH + "/symbols")
+    symbol: FileSystemIconLoader(`${ASSETS_PATH}/symbols`)
   },
   compiler: "web-components",
   webComponents: {
     autoDefine: true
   }
 };
-var builtUnpluginIcons = import_unplugin_icons.default;
-if ("default" in import_unplugin_icons.default) {
-  builtUnpluginIcons = import_unplugin_icons.default.default;
-}
+var builtUnpluginIcons = unpluginIcons;
+if ("default" in unpluginIcons)
+  builtUnpluginIcons = unpluginIcons.default;
 var unpluginFactory = (options, meta) => {
-  if (options === void 0) {
+  if (options === void 0)
     options = {};
+  function transform(code) {
+    return code.replace(ICON_PATH_ALIAS, `$1${ICON_PATH}`).replace(MODULE_ALIAS, `$1${MODULE_PATH}`).replace(/dist\/dist/g, "dist");
   }
-  function transform(code, id) {
-    return code.replace(ICON_PATH_ALIAS, "$1" + ICON_PATH).replace(MODULE_ALIAS, "$1" + MODULE_PATH).replace(/dist\/dist/g, "dist");
-  }
-  const mergedUnpluginIconsConfig = (0, import_lodash.default)(unpluginIconsConfig, options.iconOptions);
-  if (mergedUnpluginIconsConfig.compiler !== "web-components") {
+  const mergedUnpluginIconsConfig = merge(unpluginIconsConfig, options.iconOptions);
+  if (mergedUnpluginIconsConfig.compiler !== "web-components")
     delete mergedUnpluginIconsConfig.webComponents;
-  }
   return [
     builtUnpluginIcons.raw(mergedUnpluginIconsConfig, meta),
     {
@@ -3752,18 +3717,18 @@ var unpluginFactory = (options, meta) => {
       name: "@kanton-basel-stadt/designsystem/postcss-tailwind",
       esbuild: {
         setup(build) {
-          build.onLoad({ filter: /\.woff2?$/i }, (args) => {
+          build.onLoad({ filter: /\.woff2?$/i }, () => {
             return { loader: "copy" };
           });
           build.onLoad({ filter: /\.css$/i }, async (args) => {
-            const contents = transform(import_fs2.default.readFileSync(args.path, "utf-8"), args.path);
+            const contents = transform(fs2.readFileSync(args.path, "utf-8"));
             const postcssImport = require_postcss_import();
-            const postcssMixins = require("postcss-mixins");
-            const tailwindNesting = require("tailwindcss/nesting");
-            const tailwindcss = require("tailwindcss");
-            const postcssHexRgba = require("postcss-hexrgba");
-            const cssnano = require("cssnano");
-            const postcssInstance = (0, import_postcss.default)([
+            const postcssMixins = __require("postcss-mixins");
+            const tailwindNesting = __require("tailwindcss/nesting");
+            const tailwindcss = __require("tailwindcss");
+            const postcssHexRgba = __require("postcss-hexrgba");
+            const cssnano = __require("cssnano");
+            const postcssInstance = postcss([
               postcssImport(),
               postcssMixins(),
               tailwindNesting(),
@@ -3790,14 +3755,14 @@ var unpluginFactory = (options, meta) => {
         }
       },
       webpack(compiler) {
-        const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+        const MiniCssExtractPlugin = __require("mini-css-extract-plugin");
         if (compiler.options.mode === "production") {
           new MiniCssExtractPlugin({
             filename: "app.css"
           }).apply(compiler);
         }
         compiler.options.module.rules.unshift({
-          test: (value) => {
+          test(value) {
             return value.endsWith(".css");
           },
           use: [
@@ -3815,16 +3780,15 @@ var unpluginFactory = (options, meta) => {
       rollup: {
         async options(rollupOptions) {
           const postcss2 = (await import("rollup-plugin-postcss")).default;
-          if (!rollupOptions.plugins) {
+          if (!rollupOptions.plugins)
             rollupOptions.plugins = [];
-          }
           const postcssImport = require_postcss_import();
-          const postcssMixins = require("postcss-mixins");
-          const tailwindNesting = require("tailwindcss/nesting");
-          const tailwindcss = require("tailwindcss");
-          const postcssHexRgba = require("postcss-hexrgba");
-          const cssnano = require("cssnano");
-          const url = require("postcss-url");
+          const postcssMixins = __require("postcss-mixins");
+          const tailwindNesting = __require("tailwindcss/nesting");
+          const tailwindcss = __require("tailwindcss");
+          const postcssHexRgba = __require("postcss-hexrgba");
+          const cssnano = __require("cssnano");
+          const url = __require("postcss-url");
           const plugins = [
             postcssImport(),
             postcssMixins(),
@@ -3841,10 +3805,10 @@ var unpluginFactory = (options, meta) => {
             }),
             url({
               url: "copy",
-              basePath: import_path3.default.resolve(ASSETS_PATH + "/../../../../"),
+              basePath: path3.resolve(`${ASSETS_PATH}/../../../../`),
               assetsPath: options.tailwindOptions?.targetDir || "dist",
               useHash: true,
-              maxSize: Infinity
+              maxSize: Number.POSITIVE_INFINITY
             })
           ];
           if (Array.isArray(rollupOptions.plugins)) {
@@ -3858,16 +3822,19 @@ var unpluginFactory = (options, meta) => {
       },
       vite: {
         config(config) {
-          if (!config.css) {
+          if (!config.css)
             config.css = {};
-          }
           config.css.postcss = CONFIGS_PATH;
         }
       }
     }
   ];
 };
+var unplugin = /* @__PURE__ */ createUnplugin(unpluginFactory);
+var src_default = unplugin;
 
-// src/rspack.ts
-var rspack_default = (0, import_unplugin2.createRspackPlugin)(unpluginFactory);
-exports.default = module.exports;
+export {
+  unpluginFactory,
+  unplugin,
+  src_default
+};

@@ -3411,21 +3411,21 @@ var import_kit = require("@nuxt/kit");
 var import_unplugin2 = require("unplugin");
 
 // src/index.ts
-var import_path3 = __toESM(require("path"), 1);
-var import_url2 = require("url");
+var import_node_path3 = __toESM(require("path"), 1);
+var import_node_url2 = require("url");
 var import_lodash = __toESM(require("lodash.merge"), 1);
 var import_unplugin = require("unplugin");
 
 // src/core/configs/postcss.config.mjs
-var import_path = __toESM(require("path"), 1);
-var import_url = require("url");
+var import_node_path = __toESM(require("path"), 1);
+var import_node_url = require("url");
 var import_meta = {};
 var dirname;
 try {
   dirname = __dirname;
 } catch (_) {
-  const filename = (0, import_url.fileURLToPath)(import_meta.url);
-  dirname = import_path.default.dirname(filename);
+  const filename = (0, import_node_url.fileURLToPath)(import_meta.url);
+  dirname = import_node_path.default.dirname(filename);
 }
 var postcss_config_default = {
   plugins: {
@@ -3433,7 +3433,7 @@ var postcss_config_default = {
     "postcss-mixins": {},
     "tailwindcss/nesting": {},
     "tailwindcss": {
-      config: import_path.default.resolve(dirname + "/configs/tailwind.config.ts")
+      config: import_node_path.default.resolve(`${dirname}/configs/tailwind.config.ts`)
     },
     "postcss-hexrgba": {
       colorFunctionNotation: "modern",
@@ -3446,9 +3446,9 @@ var postcss_config_default = {
 };
 
 // src/core/configs/tailwind.config.ts
+var import_node_path2 = __toESM(require("path"), 1);
+var import_node_fs = __toESM(require("fs"), 1);
 var import_plugin = __toESM(require("tailwindcss/plugin.js"), 1);
-var import_path2 = __toESM(require("path"), 1);
-var import_fs = __toESM(require("fs"), 1);
 var COLORS = {
   green: {
     50: "#F2F7F3",
@@ -3521,23 +3521,23 @@ var fontSize = {
   "4xl": ["36px", "40px"],
   "3xl": ["30px", "34px"],
   "2xl": ["24px", "32px"],
-  xl: ["20px", "28px"],
-  lg: ["18px", "24px"],
-  base: ["16px", "22px"],
-  sm: ["14px", "20px"],
-  xs: ["12px", "18px"]
+  "xl": ["20px", "28px"],
+  "lg": ["18px", "24px"],
+  "base": ["16px", "22px"],
+  "sm": ["14px", "20px"],
+  "xs": ["12px", "18px"]
 };
 var colors = Object.keys(COLORS).reduce(
   (acc, color) => {
     const shades = COLORS[color];
     Object.entries(shades).forEach(([shade, hex]) => {
-      acc[color + "-" + shade] = hex;
+      acc[`${color}-${shade}`] = hex;
     });
     return acc;
   },
   {}
 );
-var projectRoot = import_path2.default.resolve(".");
+var projectRoot = import_node_path2.default.resolve(".");
 function getContentDependencies(path4) {
   const fileEndings = [
     "html",
@@ -3567,9 +3567,9 @@ function getContentDependencies(path4) {
     "/formkit.config.ts"
   ];
   return [
-    "./*.{" + fileEndings + "}",
-    ...dirCandidates.map((d) => path4 + "/" + d).filter((d) => import_fs.default.existsSync(d)).map((d) => d + "/**/*.{" + fileEndings + "}"),
-    ...fileCandidates.map((f) => path4 + "/" + f).filter((f) => import_fs.default.existsSync(f))
+    `./*.{${fileEndings}`,
+    ...dirCandidates.map((d) => `${path4}/${d}`).filter((d) => import_node_fs.default.existsSync(d)).map((d) => `${d}/**/*.{${fileEndings}}`),
+    ...fileCandidates.map((f) => `${path4}/${f}`).filter((f) => import_node_fs.default.existsSync(f))
   ];
 }
 var tailwind_config_default = {
@@ -3579,7 +3579,7 @@ var tailwind_config_default = {
     /**
      * Various additional variants
      */
-    (0, import_plugin.default)(function({ addVariant }) {
+    (0, import_plugin.default)(({ addVariant }) => {
       addVariant(
         "mobile-only",
         "@media screen and (max-width: theme('screens.md'))"
@@ -3587,7 +3587,6 @@ var tailwind_config_default = {
       addVariant("not-last", "&:not(:last-child)");
       addVariant("not-first", "&:not(:first-child)");
     })
-    // formKitTailwind,
   ],
   corePlugins: {
     textOpacity: false,
@@ -3691,7 +3690,7 @@ var tailwind_config_default = {
       },
       boxShadow: {
         "purple-600": "0 0 10px 0 #9156B4",
-        none: "0 0 0 0 #000"
+        "none": "0 0 0 0 #000"
       }
     }
   }
@@ -3701,25 +3700,24 @@ var tailwind_config_default = {
 var import_postcss = __toESM(require("postcss"), 1);
 var import_unplugin_icons = __toESM(require("unplugin-icons"), 1);
 var import_loaders = require("unplugin-icons/loaders");
-var import_fs2 = __toESM(require("fs"), 1);
+var import_node_fs2 = __toESM(require("fs"), 1);
 var import_meta2 = {};
 var dirname2;
 try {
   dirname2 = __dirname;
 } catch (_) {
-  const filename = (0, import_url2.fileURLToPath)(import_meta2.url);
-  dirname2 = import_path3.default.dirname(filename);
+  const filename = (0, import_node_url2.fileURLToPath)(import_meta2.url);
+  dirname2 = import_node_path3.default.dirname(filename);
 }
 var MODULE_PATH = dirname2;
 var MODULE_ALIAS = /(['"(])@kanton-basel-stadt\/designsystem/g;
 var ICON_PATH_ALIAS = /(['"(])@kanton-basel-stadt\/designsystem\/icons\/symbol/g;
 var ICON_PATH = "~icons/symbol";
-var ASSETS_PATH = import_path3.default.resolve(dirname2 + "/assets/");
-var CONFIGS_PATH = import_path3.default.resolve(dirname2 + "/configs/");
-var FONT_PATH_ROLLUP = new RegExp("../fonts/([a-zA-Z-]).woff2?", "g");
+var ASSETS_PATH = import_node_path3.default.resolve(`${dirname2}/assets/`);
+var CONFIGS_PATH = import_node_path3.default.resolve(`${dirname2}/configs/`);
 var unpluginIconsConfig = {
   customCollections: {
-    symbol: (0, import_loaders.FileSystemIconLoader)(ASSETS_PATH + "/symbols")
+    symbol: (0, import_loaders.FileSystemIconLoader)(`${ASSETS_PATH}/symbols`)
   },
   compiler: "web-components",
   webComponents: {
@@ -3727,20 +3725,17 @@ var unpluginIconsConfig = {
   }
 };
 var builtUnpluginIcons = import_unplugin_icons.default;
-if ("default" in import_unplugin_icons.default) {
+if ("default" in import_unplugin_icons.default)
   builtUnpluginIcons = import_unplugin_icons.default.default;
-}
 var unpluginFactory = (options, meta) => {
-  if (options === void 0) {
+  if (options === void 0)
     options = {};
-  }
-  function transform(code, id) {
-    return code.replace(ICON_PATH_ALIAS, "$1" + ICON_PATH).replace(MODULE_ALIAS, "$1" + MODULE_PATH).replace(/dist\/dist/g, "dist");
+  function transform(code) {
+    return code.replace(ICON_PATH_ALIAS, `$1${ICON_PATH}`).replace(MODULE_ALIAS, `$1${MODULE_PATH}`).replace(/dist\/dist/g, "dist");
   }
   const mergedUnpluginIconsConfig = (0, import_lodash.default)(unpluginIconsConfig, options.iconOptions);
-  if (mergedUnpluginIconsConfig.compiler !== "web-components") {
+  if (mergedUnpluginIconsConfig.compiler !== "web-components")
     delete mergedUnpluginIconsConfig.webComponents;
-  }
   return [
     builtUnpluginIcons.raw(mergedUnpluginIconsConfig, meta),
     {
@@ -3755,11 +3750,11 @@ var unpluginFactory = (options, meta) => {
       name: "@kanton-basel-stadt/designsystem/postcss-tailwind",
       esbuild: {
         setup(build) {
-          build.onLoad({ filter: /\.woff2?$/i }, (args) => {
+          build.onLoad({ filter: /\.woff2?$/i }, () => {
             return { loader: "copy" };
           });
           build.onLoad({ filter: /\.css$/i }, async (args) => {
-            const contents = transform(import_fs2.default.readFileSync(args.path, "utf-8"), args.path);
+            const contents = transform(import_node_fs2.default.readFileSync(args.path, "utf-8"));
             const postcssImport = require_postcss_import();
             const postcssMixins = require("postcss-mixins");
             const tailwindNesting = require("tailwindcss/nesting");
@@ -3800,7 +3795,7 @@ var unpluginFactory = (options, meta) => {
           }).apply(compiler);
         }
         compiler.options.module.rules.unshift({
-          test: (value) => {
+          test(value) {
             return value.endsWith(".css");
           },
           use: [
@@ -3818,9 +3813,8 @@ var unpluginFactory = (options, meta) => {
       rollup: {
         async options(rollupOptions) {
           const postcss2 = (await import("rollup-plugin-postcss")).default;
-          if (!rollupOptions.plugins) {
+          if (!rollupOptions.plugins)
             rollupOptions.plugins = [];
-          }
           const postcssImport = require_postcss_import();
           const postcssMixins = require("postcss-mixins");
           const tailwindNesting = require("tailwindcss/nesting");
@@ -3844,10 +3838,10 @@ var unpluginFactory = (options, meta) => {
             }),
             url({
               url: "copy",
-              basePath: import_path3.default.resolve(ASSETS_PATH + "/../../../../"),
+              basePath: import_node_path3.default.resolve(`${ASSETS_PATH}/../../../../`),
               assetsPath: options.tailwindOptions?.targetDir || "dist",
               useHash: true,
-              maxSize: Infinity
+              maxSize: Number.POSITIVE_INFINITY
             })
           ];
           if (Array.isArray(rollupOptions.plugins)) {
@@ -3861,9 +3855,8 @@ var unpluginFactory = (options, meta) => {
       },
       vite: {
         config(config) {
-          if (!config.css) {
+          if (!config.css)
             config.css = {};
-          }
           config.css.postcss = CONFIGS_PATH;
         }
       }

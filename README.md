@@ -47,7 +47,7 @@ import KantonBSDesignsystemPlugin from '@kanton-basel-stadt/designsystem/vite'
 
 export default defineConfig({
   plugins: [
-    KantonBSDesignsystemPlugin({ /* Options */  }),
+    KantonBSDesignsystemPlugin({ /* Options */ }),
   ],
 })
 ```
@@ -61,7 +61,7 @@ Example: Can be found in `examples/vite-vanillla`.
 
 ```ts
 // rollup.config.js
-import KantonBSDesignsystemPlugin from '@kanton-basel-stadt/designsystem/dist/rollup.cjs';
+import KantonBSDesignsystemPlugin from '@kanton-basel-stadt/designsystem/dist/rollup.cjs'
 
 export default {
   input: 'main.js',
@@ -69,11 +69,11 @@ export default {
   plugins: [
     KantonBSDesignsystemPlugin.default({
       tailwindOptions: {
-        targetDir: process.cwd() + '/dist' // Necessary for the output of font files to work
+        targetDir: `${process.cwd()}/dist` // Necessary for the output of font files to work
       }
     }),
   ],
-};
+}
 ```
 
 Example: Can be found in `examples/rollup`.
@@ -88,7 +88,7 @@ Example: Can be found in `examples/rollup`.
 module.exports = {
   /* ... */
   plugins: [
-    require('@kanton-basel-stadt/designsystem/webpack').default({ /* options */ })
+    require('@kanton-basel-stadt/designsystem/webpack').default({ /* Options */ })
   ],
 }
 ```
@@ -162,7 +162,7 @@ Example: Can be found in `examples/esbuild`.
 
 ```ts
 // astro.config.mjs
-import KantonBSDesignsystemPlugin from '@kanton-basel-stadt/designsystem/astro';
+import KantonBSDesignsystemPlugin from '@kanton-basel-stadt/designsystem/astro'
 
 // https://astro.build/config
 export default defineConfig({
@@ -173,7 +173,7 @@ export default defineConfig({
       }
     })
   ],
-});
+})
 ```
 
 Example: Can be found in `examples/astro`.
@@ -182,12 +182,12 @@ Example: Can be found in `examples/astro`.
 
 ## How to use icons
 
-This unplugin uses [unplugin-icons](https://www.npmjs.com/package/unplugin-icons) as a nested plugin. All options of 
+This unplugin uses [unplugin-icons](https://www.npmjs.com/package/unplugin-icons) as a nested plugin. All options of
 this plugin apply, but they are set to sensible defaults in order to work correctly with the supplied icon set.
 
 **Please keep in mind: In the examples specified above, the correct icon compilers are already configured.**
 
-Use the following code snippets to include the icon `pen`. All other icons can be found in `src/core/assets/symbols/` 
+Use the following code snippets to include the icon `pen`. All other icons can be found in `src/core/assets/symbols/`
 of this repository.
 
 <details>
@@ -195,7 +195,7 @@ of this repository.
 
 ```astro
 ---
-import IconSymbolPen from '@kanton-basel-stadt/designsystem/icons/symbol/pen';
+import IconSymbolPen from '@kanton-basel-stadt/designsystem/icons/symbol/pen'
 ---
 
 <IconSymbolPen />
@@ -229,7 +229,7 @@ Example: Can be found in `examples/nuxt`.
 
 In your bundle file:
 ```js
-import '@kanton-basel-stadt/designsystem/icons/symbol/pen';
+import '@kanton-basel-stadt/designsystem/icons/symbol/pen'
 ```
 
 And then, in your HTML file:
@@ -249,10 +249,10 @@ This unplugin uses PostCSS and Tailwind, both preconfigured. So, any tree-shakin
 To include the framework in your CSS, apply the top of your CSS:
 
 ```css
-@import '@kanton-basel-stadt/designsystem/assets/css/tailwind.css';
+@import '@kanton-basel-stadt/designsystem/assets/css/tailwind.css'
 
 /* Apply custom CSS here */
 ```
 
-Please keep in mind that any additional CSS should be kept within `@layer components {  /* ... */ }`, so Tailwind knows 
+Please keep in mind that any additional CSS should be kept within `@layer components {  /* ... */ }`, so Tailwind knows
 what to do with it.
