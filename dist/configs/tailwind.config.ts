@@ -108,6 +108,7 @@ function getContentDependencies(path: string) {
     'tsx',
     'vue',
     'astro',
+    'svelte',
   ].join(',')
 
   const dirCandidates = [

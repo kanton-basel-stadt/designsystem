@@ -3409,6 +3409,7 @@ var import_unplugin2 = require("unplugin");
 
 // src/index.ts
 var import_node_path3 = __toESM(require("path"), 1);
+var import_node_fs2 = __toESM(require("fs"), 1);
 var import_node_url2 = require("url");
 var import_lodash = __toESM(require("lodash.merge"), 1);
 var import_unplugin = require("unplugin");
@@ -3543,7 +3544,8 @@ function getContentDependencies(path4) {
     "jsx",
     "tsx",
     "vue",
-    "astro"
+    "astro",
+    "svelte"
   ].join(",");
   const dirCandidates = [
     "components",
@@ -3697,7 +3699,6 @@ var tailwind_config_default = {
 var import_postcss = __toESM(require("postcss"), 1);
 var import_unplugin_icons = __toESM(require("unplugin-icons"), 1);
 var import_loaders = require("unplugin-icons/loaders");
-var import_node_fs2 = __toESM(require("fs"), 1);
 var import_meta2 = {};
 var dirname2;
 try {

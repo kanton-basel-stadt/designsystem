@@ -271,6 +271,33 @@ what to do with it.
 
 If you want to simply use Tailwind as is with no additional CSS, you can do so by applying the desired classes to your
 HTML elements. For that, please consult the official [Tailwind documentation](https://tailwindcss.com/docs/installation),
-Storybook and the Tailwind config of this repository.
+Storybook and the Tailwind config of this repository. Please keep in mind that Storybook is currently not up to date with 
+the latest implementations, especially when it comes to icons. They may need some adjustment.
+
+
 
 > TODO #02: A Tailwind config viewer will be implemented in Storybook, so people don't have to dig into the source code of this repo.
+
+## Development
+
+To create a new release (i.e. after you added changes) execute the following:
+
+```
+npm run build
+git add .
+git add dist/ -f
+git commit -m "YOUR COMMIT MESSAGE HERE"
+git push -u origin main
+```
+
+Adding the dist folder is currently necessary, since we don't yet have a 
+strategy for either building and/or releasing to npmjs.org.
+
+Now, please tell users to update the package.
+
+Please feel free to also submit pull requests and/or issues.
+
+> TODO #03: Add a sensible build/test suite to work with GitHub actions, and define release management.
+> TODO #04: Add issue/PR templates.
+> TODO #05: Add contributors wiki.
+> TODO #06: Update Storybook to be up-to-date and exhaustive.

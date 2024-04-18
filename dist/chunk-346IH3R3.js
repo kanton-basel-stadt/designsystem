@@ -3381,6 +3381,7 @@ var require_postcss_import = __commonJS({
 
 // src/index.ts
 import path3 from "node:path";
+import fs2 from "node:fs";
 import { fileURLToPath as fileURLToPath2 } from "node:url";
 import merge from "lodash.merge";
 import { createUnplugin } from "unplugin";
@@ -3514,7 +3515,8 @@ function getContentDependencies(path4) {
     "jsx",
     "tsx",
     "vue",
-    "astro"
+    "astro",
+    "svelte"
   ].join(",");
   const dirCandidates = [
     "components",
@@ -3668,7 +3670,6 @@ var tailwind_config_default = {
 import postcss from "postcss";
 import unpluginIcons from "unplugin-icons";
 import { FileSystemIconLoader } from "unplugin-icons/loaders";
-import fs2 from "node:fs";
 var dirname2;
 try {
   dirname2 = __dirname;

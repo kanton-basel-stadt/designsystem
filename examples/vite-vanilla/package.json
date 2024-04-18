@@ -8,10 +8,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
-  "dependencies": {
-    "@kanton-basel-stadt/designsystem": "github:kanton-basel-stadt/designsystem"
-  },
   "devDependencies": {
+    "@kanton-basel-stadt/designsystem": "github:kanton-basel-stadt/designsystem",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   }

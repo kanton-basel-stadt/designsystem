@@ -7,6 +7,7 @@
 
 // System dependencies
 import path from 'node:path'
+import fs from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import merge from 'lodash.merge'
 
@@ -21,11 +22,10 @@ import postcssConfig from './core/configs/postcss.config.mjs'
 import tailwindConfig from './core/configs/tailwind.config'
 import postcss from 'postcss'
 
-// Different unplugins for icons, webfonts, etc. and general unplugin-icons dependencies
+// Unplugin-icons dependencies
 import unpluginIcons from 'unplugin-icons'
 import type { Options as UnpluginIconsOptions } from 'unplugin-icons'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
-import fs from 'node:fs'
 
 // CJS vs TS stuff
 let dirname
