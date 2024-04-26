@@ -421,7 +421,7 @@ KantonBSDesignsystemPlugin({
 <br/></details>
 
 **Please consult the [documentation of unplugin-icons](https://github.com/unplugin/unplugin-icons) for further 
-information on types, etc. 
+information on types, etc.**
 
 ### I receive warnings that Vite cannot find a specific package. What should I do?
 
