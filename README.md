@@ -133,7 +133,11 @@ Example: Can be found in `examples/nuxt`.
 module.exports = {
   configureWebpack: {
     plugins: [
-      require('@kanton-basel-stadt/designsystem/webpack')({ /* options */ }),
+      require('@kanton-basel-stadt/designsystem/webpack')({
+        iconOptions: {
+          compiler: 'vue3',
+        },
+      }),
     ],
   },
 }
@@ -183,6 +187,40 @@ export default defineConfig({
 ```
 
 Example: Can be found in `examples/astro`.
+
+<br></details>
+
+<details>
+<summary>Vue3 + Vite</summary><br>
+
+```ts
+// vite.config.ts
+import { fileURLToPath, URL } from 'node:url'
+
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import KantonBSDesignsystemPlugin from '@kanton-basel-stadt/designsystem/vite'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    KantonBSDesignsystemPlugin({
+      iconOptions: {
+        compiler: 'vue3',
+      },
+    }),
+    vue(),
+  ],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  }
+})
+
+```
+
+Example: Can be found in `examples/vue-vite`.
 
 <br></details>
 
@@ -254,6 +292,142 @@ Example: Can be found in `examples/nuxt`.
 
 <br></details>
 
+### List of compilers
+
+To use icons with your framework of choice, you may need to specify a compiler. The unplugin defaults to web components, 
+which work with most non-framework related build tools, such as standalone Webpack or standalone Vite. However, if 
+you're using one of the following frameworks, you need to specify the compiler in the unplugin options with the following 
+patterns:
+
+<details>
+<summary>Vue 3 / Vue 2.7+</summary><br>
+
+Requires peer dependency `@vue/compiler-sfc`.
+
+```js
+KantonBSDesignsystemPlugin({
+  iconOptions: {
+    compiler: 'vue3',
+  },
+})
+```
+<br/></details>
+
+<details>
+<summary>Vue 2 (only versions <2.7)</summary><br>
+
+Requires peer dependency `vue-template-compiler`.
+
+```js
+KantonBSDesignsystemPlugin({
+  iconOptions: {
+    compiler: 'vue2',
+  },
+})
+```
+<br/></details>
+
+<details>
+<summary>React</summary><br>
+
+Requires peer dependencies `@svgr/core` and its plugin `@svgr/plugin-jsx`.
+
+```js
+KantonBSDesignsystemPlugin({
+  iconOptions: {
+    compiler: 'jsx',
+    jsx: 'react',
+  },
+})
+```
+<br/></details>
+
+<details>
+<summary>Preact</summary><br>
+
+Requires peer dependencies `@svgr/core` and its plugin `@svgr/plugin-jsx`.
+
+```js
+KantonBSDesignsystemPlugin({
+  iconOptions: {
+    compiler: 'jsx',
+    jsx: 'preact',
+  },
+})
+```
+<br/></details>
+
+<details>
+<summary>Solid</summary><br>
+
+```js
+KantonBSDesignsystemPlugin({
+  iconOptions: {
+    compiler: 'solid'
+  },
+})
+```
+<br/></details>
+
+<details>
+<summary>Svelte</summary><br>
+
+```js
+KantonBSDesignsystemPlugin({
+  iconOptions: {
+    compiler: 'svelte'
+  },
+})
+```
+<br/></details>
+
+<details>
+<summary>Astro</summary><br>
+
+```js
+KantonBSDesignsystemPlugin({
+  iconOptions: {
+    compiler: 'astro'
+  },
+})
+```
+<br/></details>
+
+<details>
+<summary>qwik</summary><br>
+
+```js
+KantonBSDesignsystemPlugin({
+  iconOptions: {
+    compiler: 'qwik'
+  },
+})
+```
+<br/></details>
+
+<details>
+<summary>qwik + JSX</summary><br>
+
+Requires peer dependencies `@svgr/core` and its plugin `@svgr/plugin-jsx`.
+
+```js
+KantonBSDesignsystemPlugin({
+  iconOptions: {
+    compiler: 'jsx',
+    jsx: 'qwik',
+  },
+})
+```
+<br/></details>
+
+**Please consult the [documentation of unplugin-icons](https://github.com/unplugin/unplugin-icons) for further 
+information on types, etc. 
+
+### I receive warnings that Vite cannot find a specific package. What should I do?
+
+Since the library rewrites imported icon paths to work with unplugin-icons, you may ignore these warnings. This is a 
+known issue, and we're working on a fix for that.
+
 ## How to use the CSS
 
 This unplugin uses PostCSS and Tailwind, both preconfigured. So, any tree-shaking of any Tailwind classes will be handled.
@@ -301,3 +475,7 @@ Please feel free to also submit pull requests and/or issues.
 > TODO #04: Add issue/PR templates.
 > TODO #05: Add contributors wiki.
 > TODO #06: Update Storybook to be up-to-date and exhaustive.
+
+## Contributing
+
+If you'd like to contribute, please open an issue on GitHub. The core team can then help you get started.
