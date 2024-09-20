@@ -8,6 +8,7 @@ module.exports = {
     'tailwindcss': {
       config: path.resolve(path.join(__dirname, '/tailwind.config.ts')),
     },
+    'postcss-inline-svg': {},
     'postcss-hexrgba': {
       colorFunctionNotation: 'modern',
       transformToBareValue: true,

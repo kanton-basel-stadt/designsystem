@@ -8,7 +8,7 @@
     "build": "webpack"
   },
   "devDependencies": {
-    "@kanton-basel-stadt/designsystem": "github:kanton-basel-stadt/designsystem",
+    "@kanton-basel-stadt/designsystem": "../../",
     "css-loader": "6.11.0",
     "mini-css-extract-plugin": "^2.8.1",
     "postcss-loader": "^8.1.1",

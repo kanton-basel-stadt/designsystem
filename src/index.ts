@@ -91,6 +91,8 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
       name: '@kanton-basel-stadt/designsystem/postcss-tailwind',
       esbuild: {
         setup(build) {
+          build.onTransform
+
           build.onLoad({ filter: /\.woff2?$/i }, () => {
             return { loader: 'copy' }
           })
@@ -214,8 +216,9 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
 
       vite: {
         config(config) {
-          if (!config.css)
+          if (!config.css) {
             config.css = {}
+          }
 
           config.css.postcss = CONFIGS_PATH
         },

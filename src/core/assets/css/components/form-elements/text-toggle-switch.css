@@ -1,0 +1,56 @@
+@tailwind components;
+
+@layer components {
+  .text-toggle-switch {
+    @apply border inline-flex rounded-full text-blue-900 hover:border-blue-500;
+    @apply h-[2.4em];
+    @apply p-[0.2em];
+  }
+
+  .text-toggle-switch-inner {
+    @apply relative flex overflow-hidden rounded-[inherit];
+
+    a {
+      @apply flex relative items-center font-bold rounded-[inherit] transition-colors no-underline h-full px-[0.85em];
+      @apply focus-visible:outline focus-visible:-outline-offset-[3px] focus-visible:outline-[3px] focus-visible:outline-body;
+      @apply duration-500;
+
+      span {
+        @apply relative z-40;
+      }
+
+      &:before {
+        @apply content-[''] pointer-events-none block rounded-[inherit] bg-blue-700 w-full h-full absolute top-0 left-0 z-[-2];
+        @apply transition duration-500;
+        @apply translate-x-[110%];
+        @apply select-none;
+      }
+
+      &:not(.is-active):hover span {
+        @apply text-blue-500;
+      }
+
+      &.is-active {
+        @apply text-white;
+
+        @apply contrast-more:border-blue-900;
+        @apply contrast-more:border-2;
+
+        &:before {
+          @apply translate-x-0;
+        }
+      }
+
+      &:first-child {
+        @apply overflow-hidden;
+        &:not(.is-active):before {
+          @apply translate-x-[250%];
+        }
+      }
+
+      &:first-child.is-active + a:before {
+        @apply translate-x-[-110%];
+      }
+    }
+  }
+}

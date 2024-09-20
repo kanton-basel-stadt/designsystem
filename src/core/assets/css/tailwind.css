@@ -1,106 +1,67 @@
-@import './settings/brand-colors.css';
-@import './components/page.css';
-@import './components/button.css';
-@import './components/arrow-icon.css';
-@import './components/box-section.css';
-@import './components/opening-times-list.css';
-@import './components/header.css';
-@import './components/footer.css';
-@import './components/carousel.css';
-@import './components/loading-spinner.css';
-@import './components/raeppli-raege.css';
-@import './components/ck-content.css';
-@import './components/link.css';
-@import './components/table.css';
-@import './components/sprite-symbol.css';
-@import './components/toggle-switch.css';
-@import './components/hero-image.css';
-@import './components/map-image.css';
-@import './components/input.css';
-@import './components/checkbox.css';
-@import './components/radio.css';
-@import './components/tag.css';
-@import './components/header-console.css';
+/* Base */
+@import './base/brand-colors.css';
+@import './base/html.css';
+@import './base/fonts.css';
+
+/* Page frame */
+@import './components/frame/container.css';
+@import './components/frame/page-header.css';
+
+/* Sections */
+@import './components/sections/table.css';
+
+/* Typography-related things. */
+@import './components/typography/defaults.css';
+@import './components/typography/link.css';
+@import './components/typography/tag.css';
+
+/* Buttons */
+@import './components/button/base.css';
+@import './components/button/super.css';
+@import './components/button/link.css';
+
+/* Form elements */
+@import './components/form-elements/autocomplete.css';
+@import './components/form-elements/checkbox.css';
+@import './components/form-elements/dropdown.css';
+@import './components/form-elements/fieldset.css';
+@import './components/form-elements/help-box.css';
+@import './components/form-elements/info.css';
+@import './components/form-elements/input.css';
+@import './components/form-elements/label.css';
+@import './components/form-elements/radio.css';
+@import './components/form-elements/slider.css';
+@import './components/form-elements/stepper-nav.css';
+@import './components/form-elements/text-toggle-switch.css';
+@import './components/form-elements/toggle-switch.css';
+@import './components/form-elements/weekday-percentage-input.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Inter';
-  src:
-    url(@kanton-basel-stadt/designsystem/dist/assets/fonts/Inter-Regular.woff2) format('woff2'),
-    url(@kanton-basel-stadt/designsystem/dist/assets/fonts/Inter-Regular.woff) format('woff');
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Inter';
-  src:
-    url(@kanton-basel-stadt/designsystem/dist/assets/fonts/Inter-Medium.woff2) format('woff2'),
-    url(@kanton-basel-stadt/designsystem/dist/assets/fonts/Inter-Medium.woff) format('woff');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src:
-    url(@kanton-basel-stadt/designsystem/dist/assets/fonts/Inter-Bold.woff2) format('woff2'),
-    url(@kanton-basel-stadt/designsystem/dist/assets/fonts/Inter-Bold.woff) format('woff');
-  font-weight: 700;
-  font-style: normal;
-}
-
 body {
   @apply font-sans;
 }
 
-@layer base {
-  html {
-    @apply text-gray-900;
-
-    /* Cypress has a hard time finding elements when smooth scrolling is enabled. */
-    &:not(.e2e):not(.pb-html-preview) {
-      @apply scroll-smooth;
-    }
-
-    @media (prefers-reduced-motion) {
-      @apply scroll-auto;
-    }
-
-    ---base-sticky-top: 48px;
-
-    @screen md {
-      ---base-sticky-top: 0px;
-    }
-
-    &.has-header-visible {
-      ---base-sticky-top: var(--page-header-height);
-    }
-  }
-
-  hr {
-    @apply text-gray-200;
-  }
-}
-
 @layer utilities {
-  .hyphens-auto {
-    hyphens: auto;
+  .grid-area-m {
+    grid-area: M;
   }
 
-  .top-sticky {
-    top: var(---base-sticky-top);
-  }
-}
-
-@layer components {
-  .container {
-    @apply mx-auto px-15 md:px-20 xl:px-40 max-w-hero md:max-w-[768px] lg:max-w-prose xl:max-w-[1120px];
+  .grid-area-l {
+    grid-area: L;
   }
 
-  .comma-list > li {
-    @apply not-last:after:content-[',_'] not-last:after:whitespace-pre inline-block;
+  .grid-area-n {
+    grid-area: N;
+  }
+
+  .animation-state-running {
+    animation-play-state: running;
+  }
+
+  .animation-state-paused {
+    animation-play-state: paused;
   }
 }

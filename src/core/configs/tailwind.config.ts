@@ -1,76 +1,37 @@
+import { type Config } from 'tailwindcss'
+
 import path from 'node:path'
 import fs from 'node:fs'
 import plugin from 'tailwindcss/plugin.js'
+import COLORS from './colors'
 
-export const COLORS: Record<string, Record<number, string>> = {
-  green: {
-    50: '#F2F7F3',
-    100: '#DDECDE',
-    200: '#B8D6BE',
-    300: '#7BB589',
-    400: '#469A5D',
-    500: '#2A9749',
-    600: '#32834A',
-    700: '#2A713F',
-    800: '#245333',
-    900: '#1F402A',
-  },
-
-  blue: {
-    50: '#F2FDFF',
-    100: '#DBF9FF',
-    200: '#B6EDFA',
-    300: '#85D4EE',
-    400: '#51b9da',
-    500: '#079BCA',
-    600: '#0E81A7',
-    700: '#146C8B',
-    800: '#1B5268',
-    900: '#1E4557',
-  },
-
-  purple: {
-    50: '#F9F6FD',
-    100: '#F4EDFA',
-    200: '#E8DAF4',
-    300: '#D7BDEA',
-    400: '#C196DC',
-    500: '#A56CC9',
-    600: '#9156B4',
-    700: '#723D8E',
-    800: '#5F3375',
-    900: '#512E61',
-  },
-
-  red: {
-    50: '#FFF1EF',
-    100: '#FFE0DC',
-    200: '#FFC7BF',
-    300: '#FF9F92',
-    400: '#FF6854',
-    500: '#FF3A1F',
-    600: '#FF1E00',
-    700: '#DB1A00',
-    800: '#B81600',
-    900: '#941908',
-  },
-
-  gray: {
-    20: '#F8F8F8',
-    50: '#F2F2F2',
-    100: '#EBEBEB',
-    200: '#E3E3E3',
-    300: '#BABABA',
-    400: '#A5A5A5',
-    500: '#949494',
-    600: '#777777',
-    700: '#535353',
-    800: '#403F3F',
-    900: '#333333',
-  },
+const customContent: Record<string, string> = {
+  'arrow-east': '"→"',
+  'arrow-west': '"←"',
+  'arrow-north-east': '"↗"',
+  'arrow-south': '"↓"',
+  'underscore-long': '""',
+  cross: '"✗"',
+  plus: '""',
+  reload: '"↻"',
+  check: '"✓"',
+  'caret-south': '"⌄"',
+  'caret-north': '"⌃"',
+  dot: '"•"',
+  empty: '""',
 }
 
-const fontSize = {
+// Automatically define z-index for global components.
+// The order is from bottom to top.
+const zIndex = ['app-top', 'alva', 'search-input-suggestions'].reduce<
+  Record<string, string>
+>((acc, key, index) => {
+  // We start our automatic z-indexes at 300 and increase by 10.
+  acc[key] = (300 + index * 10).toString()
+  return acc
+}, {})
+
+const fontSize: Record<string, [string, string]> = {
   '9xl': ['128px', '128px'],
   '8xl': ['96px', '96px'],
   '7xl': ['72px', '72px'],
@@ -79,18 +40,18 @@ const fontSize = {
   '4xl': ['36px', '40px'],
   '3xl': ['30px', '34px'],
   '2xl': ['24px', '32px'],
-  'xl': ['20px', '28px'],
-  'lg': ['18px', '24px'],
-  'base': ['16px', '22px'],
-  'sm': ['14px', '20px'],
-  'xs': ['12px', '18px'],
+  xl: ['20px', '28px'],
+  lg: ['18px', '24px'],
+  base: ['16px', '22px'],
+  sm: ['14px', '20px'],
+  xs: ['12px', '18px'],
 }
 
 const colors = Object.keys(COLORS).reduce<Record<string, string>>(
   (acc, color) => {
     const shades = COLORS[color]
     Object.entries(shades).forEach(([shade, hex]) => {
-      acc[`${color}-${shade}`] = hex
+      acc[color + '-' + shade] = hex
     })
     return acc
   },
@@ -144,35 +105,81 @@ function getContentDependencies(path: string) {
   ]
 }
 
-export default {
+const config: Config = {
   content: getContentDependencies(projectRoot),
   safelist: ['h-0', 'sbdocs'],
   plugins: [
     /**
      * Various additional variants
      */
-    plugin(({ addVariant }) => {
+    plugin(function ({ addVariant }) {
       addVariant(
         'mobile-only',
-        '@media screen and (max-width: theme(\'screens.md\'))',
+        "@media screen and (max-width: theme('screens.md'))",
       )
       addVariant('not-last', '&:not(:last-child)')
       addVariant('not-first', '&:not(:first-child)')
+    }),
+
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'animation-rotation': (value: string) => ({
+            '--animation-rotation': value,
+          }),
+        },
+        {
+          values: theme('rotate'),
+          type: 'any',
+        },
+      )
+
+      matchUtilities(
+        {
+          'animation-duration': (value: string) => ({
+            '--animation-duration': value,
+          }),
+        },
+        {
+          values: theme('transitionDuration'),
+          type: 'any',
+        },
+      )
+
+      // Custom implementation of the `content-` utility class that adds support
+      // for alt text in content.
+      matchUtilities(
+        {
+          content: (content: string) => {
+            return {
+              // `/ ""` acts as an alt text for the `content`, which is then read by screen readers instead.
+              // If empty, the content will be ignored. See https://developer.mozilla.org/en-US/docs/Web/CSS/content
+              // Defining an array here will create two CSS content properties, where the first one is the fallback
+              // for browsers that don't support the syntax with alt text.
+              content: [content, `${content} / ""`],
+            }
+          },
+        },
+        {
+          values: theme('customContent'),
+        },
+      )
     }),
   ],
   corePlugins: {
     textOpacity: false,
     container: false,
+    // Disabled because we have our own implementation that adds a fallback.
+    content: false,
   },
   theme: {
+    customContent,
     screens: {
-      mobile_s: '320px',
-      mobile_m: '375px',
-      mobile_l: '425px',
       sm: '480px',
       md: '768px',
       lg: '1024px',
       xl: '1210px',
+      xxl: '1920px',
     },
     spacing: {
       220: '220px',
@@ -185,17 +192,20 @@ export default {
       60: '60px',
       50: '50px',
       40: '40px',
+      35: '35px',
       30: '30px',
       25: '25px',
       20: '20px',
       15: '15px',
       10: '10px',
       8: '8px',
+      6: '6px',
       5: '5px',
       3: '3px',
       2: '2px',
       1: '1px',
       0: '0px',
+      'sticky-top': 'var(--base-sticky-top)',
     },
     borderWidth: {
       DEFAULT: '1px',
@@ -208,23 +218,30 @@ export default {
       reduced: '970px',
       // @todo: Consolidate sizing with container, max-width and other layout classes.
       prose: '836px',
-      hero: '560px',
+      box: '610px',
       fit: 'fit-content',
     },
     lineHeight: {
-      none: 1,
-      tight: 1.2,
-      snug: 1.3,
-      normal: 1.4,
+      none: '1',
+      tight: '1.2',
+      snug: '1.3',
+      normal: '1.4',
     },
     fontSize,
     fontFamily: {
-      sans: ['Inter', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+      sans: [
+        'Inter',
+        'Inter Fallback',
+        'Helvetica Neue',
+        'Helvetica',
+        'Arial',
+        'sans-serif',
+      ],
     },
     fontWeight: {
-      normal: 400,
-      medium: 500,
-      bold: 700,
+      normal: '400',
+      medium: '500',
+      bold: '700',
     },
     borderRadius: {
       none: '0px',
@@ -255,16 +272,142 @@ export default {
       },
     },
     extend: {
+      zIndex,
       gap: {
         DEFAULT: '20px',
       },
       transitionDuration: {
         250: '250ms',
       },
+      transitionTimingFunction: {
+        swing: 'cubic-bezier(0.56, 0.04, 0.25, 1)',
+        momentum: 'cubic-bezier(1,-0.76,.46,1.01)',
+      },
       boxShadow: {
         'purple-600': '0 0 10px 0 #9156B4',
-        'none': '0 0 0 0 #000',
+        none: '0 0 0 0 #000',
+      },
+
+      keyframes: {
+        'jump-x': {
+          '0%': {
+            // eslint-disable-next-line sonarjs/no-duplicate-string
+            transform: 'translateX(0)',
+          },
+          '20%': {
+            transform: 'translateX(0.15em)',
+          },
+          '60%': {
+            transform: 'translateX(-0.15em)',
+          },
+          '100%': {
+            transform: 'translateX(0)',
+          },
+        },
+        'jump-y': {
+          '0%': {
+            transform: 'translateY(0)',
+          },
+          '20%': {
+            transform: 'translateY(0.15em)',
+          },
+          '60%': {
+            transform: 'translateY(-0.15em)',
+          },
+          '100%': {
+            transform: 'translateY(0)',
+          },
+        },
+        'jump-x-reverse': {
+          '0%': {
+            transform: 'translateX(0)',
+          },
+          '20%': {
+            transform: 'translateX(-0.15em)',
+          },
+          '60%': {
+            transform: 'translateX(0.15em)',
+          },
+          '100%': {
+            transform: 'translateX(0)',
+          },
+        },
+        'jump-xy': {
+          '0%': {
+            transform: 'translate(0, 0)',
+          },
+          '20%': {
+            transform: 'translate(0.15em, -0.15em)',
+          },
+          '60%': {
+            transform: 'translate(-0.1em, 0.1em)',
+          },
+          '100%': {
+            transform: 'translate(0, 0)',
+          },
+        },
+
+        'jump-scale': {
+          '0%': {
+            transform: 'scale(1)',
+          },
+          '20%': {
+            transform: 'scale(1.3)',
+          },
+          '60%': {
+            transform: 'scale(0.9)',
+          },
+          '100%': {
+            transform: 'scale(1)',
+          },
+        },
+
+        wiggle: {
+          '0%': {
+            // eslint-disable-next-line sonarjs/no-duplicate-string
+            transform: 'rotate(0deg)',
+          },
+          '20%': {
+            transform: 'rotate(var(--animation-rotation, 15deg))',
+          },
+          '40%': {
+            transform: 'rotate(calc(-1 * var(--animation-rotation, 15deg)))',
+          },
+          '60%': {
+            transform: 'rotate(var(--animation-rotation, 15deg))',
+          },
+          '80%': {
+            transform: 'rotate(calc(-1 * var(--animation-rotation, 15deg)))',
+          },
+          '100%': {
+            transform: 'rotate(0deg)',
+          },
+        },
+
+        rotate: {
+          from: {
+            transform: 'rotate(0deg)',
+          },
+          to: {
+            transform: 'rotate(var(--animation-rotation, 360deg))',
+          },
+        },
+      },
+
+      animation: {
+        'jump-x': `jump-x var(--animation-duration, 0.4s) ease-in-out`,
+        'jump-y': `jump-y var(--animation-duration, 0.5s) ease-in-out`,
+        'jump-scale': `jump-scale var(--animation-duration, 0.5s) ease-in-out`,
+        'jump-x-reverse':
+          'jump-x-reverse var(--animation-duration, 0.5s) ease-in-out',
+        'jump-xy': 'jump-xy var(--animation-duration, 0.5s) ease-in-out',
+        wiggle: 'wiggle var(--animation-duration, 0.5s) linear',
+        rotate: 'rotate var(--animation-duration, 0.5s) ease-in-out',
+        'rotate-infinite':
+          'rotate var(--animation-duration, 0.5s) linear infinite',
       },
     },
   },
 }
+
+export default config

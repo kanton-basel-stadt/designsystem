@@ -1,0 +1,18 @@
+.tag {
+  @apply rounded-full;
+  @apply p-10 pr-20;
+  @apply inline-flex items-center gap-10;
+  @apply text-white bg-primary-700 font-medium;
+
+  &.is-dark {
+    @apply bg-primary-900;
+  }
+
+  &.is-light {
+    @apply bg-primary-600;
+  }
+
+  svg {
+    @apply w-20 h-20;
+  }
+}

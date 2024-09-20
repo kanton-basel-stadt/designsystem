@@ -1,4 +1,4 @@
-<svg data-symbol="circle-ko" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#B81600"/>
 <rect x="10" y="22" width="3" height="20" rx="1.5" transform="rotate(-90 10 22)" fill="#B81600"/>
 </svg>

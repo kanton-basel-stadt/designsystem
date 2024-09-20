@@ -1,0 +1,63 @@
+@import './input.css';
+@import './../icons/icon-animations.css';
+
+@tailwind components;
+
+@layer components {
+  /* Many of these nested elements stem from formkit. Once Pro elements can be exported, we'd need to rethink that structure. */
+  /* Related GH issue: https://github.com/formkit/formkit/issues/412 */
+  .autocomplete {
+    /* Wrapper */
+    & .autocomplete-wrapper {
+      @apply min-h-[90px] relative h-auto;
+
+      /* Inner */
+      & .autocomplete-inner {
+        @apply input h-auto p-0 absolute top-[26px] w-full my-10;
+
+        & .autocomplete-input {
+          @apply w-full p-10 outline-0 bg-transparent;
+        }
+
+        & .autocomplete-listbox-button {
+          @apply absolute top-[10px] right-[10px];
+
+          &:after {
+            @apply content-[""] w-20 h-20 block;
+            @apply transition-all ease-in-out duration-250;
+            @apply has-symbol-caret;
+            @apply rotate-0;
+          }
+        }
+
+        & .autocomplete-dropdown-wrapper {
+          @apply !static;
+        }
+      }
+
+      & .autocomplete-list-item {
+        @apply p-10 text-blue-700 hover:text-blue-900 cursor-pointer;
+      }
+    }
+
+    &[data-disabled='true'] {
+      & .autocomplete-inner {
+        @apply border-gray-300 bg-gray-300;
+
+        & .placeholder {
+          @apply text-gray-800;
+        }
+      }
+    }
+
+    &[data-expanded='true'] {
+      & .autocomplete-inner {
+        @apply z-10;
+
+        & .autocomplete-listbox-button:after {
+          @apply rotate-180;
+        }
+      }
+    }
+  }
+}

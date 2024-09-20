@@ -6,4 +6,9 @@ export default defineConfig({
   plugins: [
     KantonBSDesignsystemPlugin({ /* Options */ }),
   ],
+  server: {
+    fs: {
+      strict: false,
+    }
+  }
 })

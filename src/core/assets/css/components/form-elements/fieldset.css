@@ -1,0 +1,9 @@
+@layer components {
+  .fieldset:not(.fieldset .fieldset) {
+    @apply rounded-[20px] border border-gray-300 bg-white p-20;
+  }
+
+  .fieldset-legend {
+    @apply text-2xl font-bold mb-20;
+  }
+}

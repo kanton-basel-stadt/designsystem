@@ -7,6 +7,7 @@ try {
   dirname = __dirname
 }
 catch (_) {
+  console.log(import.meta.url)
   const filename = fileURLToPath(import.meta.url)
   dirname = path.dirname(filename)
 }
@@ -19,6 +20,7 @@ export default {
     'tailwindcss': {
       config: path.resolve(`${dirname}/configs/tailwind.config.ts`),
     },
+    'postcss-inline-svg': {},
     'postcss-hexrgba': {
       colorFunctionNotation: 'modern',
       transformToBareValue: true,

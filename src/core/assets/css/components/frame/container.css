@@ -1,0 +1,9 @@
+@layer components {
+  .container {
+    @apply mx-auto px-15 md:px-20 xl:px-40 max-w-box md:max-w-[768px] lg:max-w-prose xl:max-w-[1120px] print:!max-w-[100%];
+
+    &.is-wide {
+      @apply max-w-[1920px];
+    }
+  }
+}

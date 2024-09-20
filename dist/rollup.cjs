@@ -36,12 +36,9 @@ var require_join_media = __commonJS({
     "use strict";
     var startsWithKeywordRegexp = /^(all|not|only|print|screen)/i;
     module2.exports = function(parentMedia, childMedia) {
-      if (!parentMedia.length && childMedia.length)
-        return childMedia;
-      if (parentMedia.length && !childMedia.length)
-        return parentMedia;
-      if (!parentMedia.length && !childMedia.length)
-        return [];
+      if (!parentMedia.length && childMedia.length) return childMedia;
+      if (parentMedia.length && !childMedia.length) return parentMedia;
+      if (!parentMedia.length && !childMedia.length) return [];
       const media = [];
       parentMedia.forEach((parentItem) => {
         const parentItemStartsWithKeyword = startsWithKeywordRegexp.test(parentItem);
@@ -66,12 +63,9 @@ var require_join_layer = __commonJS({
   "node_modules/postcss-import/lib/join-layer.js"(exports2, module2) {
     "use strict";
     module2.exports = function(parentLayer, childLayer) {
-      if (!parentLayer.length && childLayer.length)
-        return childLayer;
-      if (parentLayer.length && !childLayer.length)
-        return parentLayer;
-      if (!parentLayer.length && !childLayer.length)
-        return [];
+      if (!parentLayer.length && childLayer.length) return childLayer;
+      if (parentLayer.length && !childLayer.length) return parentLayer;
+      if (!parentLayer.length && !childLayer.length) return [];
       return parentLayer.concat(childLayer);
     };
   }
@@ -115,9 +109,9 @@ var require_caller = __commonJS({
   }
 });
 
-// node_modules/path-parse/index.js
+// node_modules/resolve/node_modules/path-parse/index.js
 var require_path_parse = __commonJS({
-  "node_modules/path-parse/index.js"(exports2, module2) {
+  "node_modules/resolve/node_modules/path-parse/index.js"(exports2, module2) {
     "use strict";
     var isWindows = process.platform === "win32";
     var splitWindowsRe = /^(((?:[a-zA-Z]:|[\\\/]{2}[^\\\/]+[\\\/]+[^\\\/]+)?[\\\/]?)(?:[^\\\/]*[\\\/])*)((\.{1,2}|[^\\\/]+?|)(\.[^.\/\\]*|))[\\\/]*$/;
@@ -228,9 +222,9 @@ var require_normalize_options = __commonJS({
   }
 });
 
-// node_modules/function-bind/implementation.js
+// node_modules/resolve/node_modules/function-bind/implementation.js
 var require_implementation = __commonJS({
-  "node_modules/function-bind/implementation.js"(exports2, module2) {
+  "node_modules/resolve/node_modules/function-bind/implementation.js"(exports2, module2) {
     "use strict";
     var ERROR_MESSAGE = "Function.prototype.bind called on incompatible ";
     var toStr = Object.prototype.toString;
@@ -304,18 +298,18 @@ var require_implementation = __commonJS({
   }
 });
 
-// node_modules/function-bind/index.js
+// node_modules/resolve/node_modules/function-bind/index.js
 var require_function_bind = __commonJS({
-  "node_modules/function-bind/index.js"(exports2, module2) {
+  "node_modules/resolve/node_modules/function-bind/index.js"(exports2, module2) {
     "use strict";
     var implementation = require_implementation();
     module2.exports = Function.prototype.bind || implementation;
   }
 });
 
-// node_modules/hasown/index.js
+// node_modules/resolve/node_modules/hasown/index.js
 var require_hasown = __commonJS({
-  "node_modules/hasown/index.js"(exports2, module2) {
+  "node_modules/resolve/node_modules/hasown/index.js"(exports2, module2) {
     "use strict";
     var call = Function.prototype.call;
     var $hasOwn = Object.prototype.hasOwnProperty;
@@ -324,9 +318,9 @@ var require_hasown = __commonJS({
   }
 });
 
-// node_modules/is-core-module/core.json
+// node_modules/resolve/node_modules/is-core-module/core.json
 var require_core = __commonJS({
-  "node_modules/is-core-module/core.json"(exports2, module2) {
+  "node_modules/resolve/node_modules/is-core-module/core.json"(exports2, module2) {
     module2.exports = {
       assert: true,
       "node:assert": [">= 14.18 && < 15", ">= 16"],
@@ -418,6 +412,7 @@ var require_core = __commonJS({
       "node:readline/promises": ">= 17",
       repl: true,
       "node:repl": [">= 14.18 && < 15", ">= 16"],
+      "node:sea": [">= 20.12 && < 21", ">= 21.7"],
       smalloc: ">= 0.11.5 && < 3",
       _stream_duplex: ">= 0.9.4",
       "node:_stream_duplex": [">= 14.18 && < 15", ">= 16"],
@@ -445,6 +440,8 @@ var require_core = __commonJS({
       "node:sys": [">= 14.18 && < 15", ">= 16"],
       "test/reporters": ">= 19.9 && < 20.2",
       "node:test/reporters": [">= 18.17 && < 19", ">= 19.9", ">= 20"],
+      "test/mock_loader": ">= 22.3 && < 22.7",
+      "node:test/mock_loader": ">= 22.3 && < 22.7",
       "node:test": [">= 16.17 && < 17", ">= 18"],
       timers: true,
       "node:timers": [">= 14.18 && < 15", ">= 16"],
@@ -488,9 +485,9 @@ var require_core = __commonJS({
   }
 });
 
-// node_modules/is-core-module/index.js
+// node_modules/resolve/node_modules/is-core-module/index.js
 var require_is_core_module = __commonJS({
-  "node_modules/is-core-module/index.js"(exports2, module2) {
+  "node_modules/resolve/node_modules/is-core-module/index.js"(exports2, module2) {
     "use strict";
     var hasOwn = require_hasown();
     function specifierIncluded(current, specifier) {
@@ -575,8 +572,7 @@ var require_async = __commonJS({
         if (!err) {
           return cb(null, stat.isFile() || stat.isFIFO());
         }
-        if (err.code === "ENOENT" || err.code === "ENOTDIR")
-          return cb(null, false);
+        if (err.code === "ENOENT" || err.code === "ENOTDIR") return cb(null, false);
         return cb(err);
       });
     };
@@ -585,17 +581,14 @@ var require_async = __commonJS({
         if (!err) {
           return cb(null, stat.isDirectory());
         }
-        if (err.code === "ENOENT" || err.code === "ENOTDIR")
-          return cb(null, false);
+        if (err.code === "ENOENT" || err.code === "ENOTDIR") return cb(null, false);
         return cb(err);
       });
     };
     var defaultRealpath = function realpath(x, cb) {
       realpathFS(x, function(realpathErr, realPath) {
-        if (realpathErr && realpathErr.code !== "ENOENT")
-          cb(realpathErr);
-        else
-          cb(null, realpathErr ? x : realPath);
+        if (realpathErr && realpathErr.code !== "ENOENT") cb(realpathErr);
+        else cb(null, realpathErr ? x : realPath);
       });
     };
     var maybeRealpath = function maybeRealpath2(realpath, x, opts, cb) {
@@ -607,8 +600,7 @@ var require_async = __commonJS({
     };
     var defaultReadPackage = function defaultReadPackage2(readFile, pkgfile, cb) {
       readFile(pkgfile, function(readFileErr, body) {
-        if (readFileErr)
-          cb(readFileErr);
+        if (readFileErr) cb(readFileErr);
         else {
           try {
             var pkg = JSON.parse(body);
@@ -663,66 +655,56 @@ var require_async = __commonJS({
         absoluteStart,
         opts,
         function(err2, realStart) {
-          if (err2)
-            cb(err2);
-          else
-            init(realStart);
+          if (err2) cb(err2);
+          else init(realStart);
         }
       );
       var res;
       function init(basedir2) {
         if (/^(?:\.\.?(?:\/|$)|\/|([A-Za-z]:)?[/\\])/.test(x)) {
           res = path4.resolve(basedir2, x);
-          if (x === "." || x === ".." || x.slice(-1) === "/")
-            res += "/";
+          if (x === "." || x === ".." || x.slice(-1) === "/") res += "/";
           if (/\/$/.test(x) && res === basedir2) {
             loadAsDirectory(res, opts.package, onfile);
-          } else
-            loadAsFile(res, opts.package, onfile);
+          } else loadAsFile(res, opts.package, onfile);
         } else if (includeCoreModules && isCore(x)) {
           return cb(null, x);
-        } else
-          loadNodeModules(x, basedir2, function(err2, n, pkg) {
-            if (err2)
-              cb(err2);
-            else if (n) {
-              return maybeRealpath(realpath, n, opts, function(err3, realN) {
-                if (err3) {
-                  cb(err3);
-                } else {
-                  cb(null, realN, pkg);
-                }
-              });
-            } else {
-              var moduleError = new Error("Cannot find module '" + x + "' from '" + parent + "'");
-              moduleError.code = "MODULE_NOT_FOUND";
-              cb(moduleError);
-            }
-          });
+        } else loadNodeModules(x, basedir2, function(err2, n, pkg) {
+          if (err2) cb(err2);
+          else if (n) {
+            return maybeRealpath(realpath, n, opts, function(err3, realN) {
+              if (err3) {
+                cb(err3);
+              } else {
+                cb(null, realN, pkg);
+              }
+            });
+          } else {
+            var moduleError = new Error("Cannot find module '" + x + "' from '" + parent + "'");
+            moduleError.code = "MODULE_NOT_FOUND";
+            cb(moduleError);
+          }
+        });
       }
       function onfile(err2, m, pkg) {
-        if (err2)
-          cb(err2);
-        else if (m)
-          cb(null, m, pkg);
-        else
-          loadAsDirectory(res, function(err3, d, pkg2) {
-            if (err3)
-              cb(err3);
-            else if (d) {
-              maybeRealpath(realpath, d, opts, function(err4, realD) {
-                if (err4) {
-                  cb(err4);
-                } else {
-                  cb(null, realD, pkg2);
-                }
-              });
-            } else {
-              var moduleError = new Error("Cannot find module '" + x + "' from '" + parent + "'");
-              moduleError.code = "MODULE_NOT_FOUND";
-              cb(moduleError);
-            }
-          });
+        if (err2) cb(err2);
+        else if (m) cb(null, m, pkg);
+        else loadAsDirectory(res, function(err3, d, pkg2) {
+          if (err3) cb(err3);
+          else if (d) {
+            maybeRealpath(realpath, d, opts, function(err4, realD) {
+              if (err4) {
+                cb(err4);
+              } else {
+                cb(null, realD, pkg2);
+              }
+            });
+          } else {
+            var moduleError = new Error("Cannot find module '" + x + "' from '" + parent + "'");
+            moduleError.code = "MODULE_NOT_FOUND";
+            cb(moduleError);
+          }
+        });
       }
       function loadAsFile(x2, thePackage, callback2) {
         var loadAsFilePackage = thePackage;
@@ -734,58 +716,46 @@ var require_async = __commonJS({
         var exts = [""].concat(extensions);
         load(exts, x2, loadAsFilePackage);
         function load(exts2, x3, loadPackage) {
-          if (exts2.length === 0)
-            return cb2(null, void 0, loadPackage);
+          if (exts2.length === 0) return cb2(null, void 0, loadPackage);
           var file = x3 + exts2[0];
           var pkg = loadPackage;
-          if (pkg)
-            onpkg(null, pkg);
-          else
-            loadpkg(path4.dirname(file), onpkg);
+          if (pkg) onpkg(null, pkg);
+          else loadpkg(path4.dirname(file), onpkg);
           function onpkg(err2, pkg_, dir) {
             pkg = pkg_;
-            if (err2)
-              return cb2(err2);
+            if (err2) return cb2(err2);
             if (dir && pkg && opts.pathFilter) {
               var rfile = path4.relative(dir, file);
               var rel = rfile.slice(0, rfile.length - exts2[0].length);
               var r = opts.pathFilter(pkg, x3, rel);
-              if (r)
-                return load(
-                  [""].concat(extensions.slice()),
-                  path4.resolve(dir, r),
-                  pkg
-                );
+              if (r) return load(
+                [""].concat(extensions.slice()),
+                path4.resolve(dir, r),
+                pkg
+              );
             }
             isFile(file, onex);
           }
           function onex(err2, ex) {
-            if (err2)
-              return cb2(err2);
-            if (ex)
-              return cb2(null, file, pkg);
+            if (err2) return cb2(err2);
+            if (ex) return cb2(null, file, pkg);
             load(exts2.slice(1), x3, pkg);
           }
         }
       }
       function loadpkg(dir, cb2) {
-        if (dir === "" || dir === "/")
-          return cb2(null);
+        if (dir === "" || dir === "/") return cb2(null);
         if (process.platform === "win32" && /^\w:[/\\]*$/.test(dir)) {
           return cb2(null);
         }
-        if (/[/\\]node_modules[/\\]*$/.test(dir))
-          return cb2(null);
+        if (/[/\\]node_modules[/\\]*$/.test(dir)) return cb2(null);
         maybeRealpath(realpath, dir, opts, function(unwrapErr, pkgdir) {
-          if (unwrapErr)
-            return loadpkg(path4.dirname(dir), cb2);
+          if (unwrapErr) return loadpkg(path4.dirname(dir), cb2);
           var pkgfile = path4.join(pkgdir, "package.json");
           isFile(pkgfile, function(err2, ex) {
-            if (!ex)
-              return loadpkg(path4.dirname(dir), cb2);
+            if (!ex) return loadpkg(path4.dirname(dir), cb2);
             readPackage(readFile, pkgfile, function(err3, pkgParam) {
-              if (err3)
-                cb2(err3);
+              if (err3) cb2(err3);
               var pkg = pkgParam;
               if (pkg && opts.packageFilter) {
                 pkg = opts.packageFilter(pkg, pkgfile);
@@ -803,17 +773,13 @@ var require_async = __commonJS({
           fpkg = opts.package;
         }
         maybeRealpath(realpath, x2, opts, function(unwrapErr, pkgdir) {
-          if (unwrapErr)
-            return cb2(unwrapErr);
+          if (unwrapErr) return cb2(unwrapErr);
           var pkgfile = path4.join(pkgdir, "package.json");
           isFile(pkgfile, function(err2, ex) {
-            if (err2)
-              return cb2(err2);
-            if (!ex)
-              return loadAsFile(path4.join(x2, "index"), fpkg, cb2);
+            if (err2) return cb2(err2);
+            if (!ex) return loadAsFile(path4.join(x2, "index"), fpkg, cb2);
             readPackage(readFile, pkgfile, function(err3, pkgParam) {
-              if (err3)
-                return cb2(err3);
+              if (err3) return cb2(err3);
               var pkg = pkgParam;
               if (pkg && opts.packageFilter) {
                 pkg = opts.packageFilter(pkg, pkgfile);
@@ -828,18 +794,13 @@ var require_async = __commonJS({
                   pkg.main = "index";
                 }
                 loadAsFile(path4.resolve(x2, pkg.main), pkg, function(err4, m, pkg2) {
-                  if (err4)
-                    return cb2(err4);
-                  if (m)
-                    return cb2(null, m, pkg2);
-                  if (!pkg2)
-                    return loadAsFile(path4.join(x2, "index"), pkg2, cb2);
+                  if (err4) return cb2(err4);
+                  if (m) return cb2(null, m, pkg2);
+                  if (!pkg2) return loadAsFile(path4.join(x2, "index"), pkg2, cb2);
                   var dir = path4.resolve(x2, pkg2.main);
                   loadAsDirectory(dir, pkg2, function(err5, n, pkg3) {
-                    if (err5)
-                      return cb2(err5);
-                    if (n)
-                      return cb2(null, n, pkg3);
+                    if (err5) return cb2(err5);
+                    if (n) return cb2(null, n, pkg3);
                     loadAsFile(path4.join(x2, "index"), pkg3, cb2);
                   });
                 });
@@ -851,29 +812,22 @@ var require_async = __commonJS({
         });
       }
       function processDirs(cb2, dirs) {
-        if (dirs.length === 0)
-          return cb2(null, void 0);
+        if (dirs.length === 0) return cb2(null, void 0);
         var dir = dirs[0];
         isDirectory(path4.dirname(dir), isdir);
         function isdir(err2, isdir2) {
-          if (err2)
-            return cb2(err2);
-          if (!isdir2)
-            return processDirs(cb2, dirs.slice(1));
+          if (err2) return cb2(err2);
+          if (!isdir2) return processDirs(cb2, dirs.slice(1));
           loadAsFile(dir, opts.package, onfile2);
         }
         function onfile2(err2, m, pkg) {
-          if (err2)
-            return cb2(err2);
-          if (m)
-            return cb2(null, m, pkg);
+          if (err2) return cb2(err2);
+          if (m) return cb2(null, m, pkg);
           loadAsDirectory(dir, opts.package, ondir);
         }
         function ondir(err2, n, pkg) {
-          if (err2)
-            return cb2(err2);
-          if (n)
-            return cb2(null, n, pkg);
+          if (err2) return cb2(err2);
+          if (n) return cb2(null, n, pkg);
           processDirs(cb2, dirs.slice(1));
         }
       }
@@ -1105,8 +1059,7 @@ var require_sync = __commonJS({
       try {
         var stat = fs3.statSync(file, { throwIfNoEntry: false });
       } catch (e) {
-        if (e && (e.code === "ENOENT" || e.code === "ENOTDIR"))
-          return false;
+        if (e && (e.code === "ENOENT" || e.code === "ENOTDIR")) return false;
         throw e;
       }
       return !!stat && (stat.isFile() || stat.isFIFO());
@@ -1115,8 +1068,7 @@ var require_sync = __commonJS({
       try {
         var stat = fs3.statSync(dir, { throwIfNoEntry: false });
       } catch (e) {
-        if (e && (e.code === "ENOENT" || e.code === "ENOTDIR"))
-          return false;
+        if (e && (e.code === "ENOENT" || e.code === "ENOTDIR")) return false;
         throw e;
       }
       return !!stat && stat.isDirectory();
@@ -1174,17 +1126,14 @@ var require_sync = __commonJS({
       var absoluteStart = maybeRealpathSync(realpathSync, path4.resolve(basedir), opts);
       if (/^(?:\.\.?(?:\/|$)|\/|([A-Za-z]:)?[/\\])/.test(x)) {
         var res = path4.resolve(absoluteStart, x);
-        if (x === "." || x === ".." || x.slice(-1) === "/")
-          res += "/";
+        if (x === "." || x === ".." || x.slice(-1) === "/") res += "/";
         var m = loadAsFileSync(res) || loadAsDirectorySync(res);
-        if (m)
-          return maybeRealpathSync(realpathSync, m, opts);
+        if (m) return maybeRealpathSync(realpathSync, m, opts);
       } else if (includeCoreModules && isCore(x)) {
         return x;
       } else {
         var n = loadNodeModulesSync(x, absoluteStart);
-        if (n)
-          return maybeRealpathSync(realpathSync, n, opts);
+        if (n) return maybeRealpathSync(realpathSync, n, opts);
       }
       var err = new Error("Cannot find module '" + x + "' from '" + parent + "'");
       err.code = "MODULE_NOT_FOUND";
@@ -1209,13 +1158,11 @@ var require_sync = __commonJS({
         }
       }
       function loadpkg(dir) {
-        if (dir === "" || dir === "/")
-          return;
+        if (dir === "" || dir === "/") return;
         if (process.platform === "win32" && /^\w:[/\\]*$/.test(dir)) {
           return;
         }
-        if (/[/\\]node_modules[/\\]*$/.test(dir))
-          return;
+        if (/[/\\]node_modules[/\\]*$/.test(dir)) return;
         var pkgfile = path4.join(maybeRealpathSync(realpathSync, dir, opts), "package.json");
         if (!isFile(pkgfile)) {
           return loadpkg(path4.dirname(dir));
@@ -1255,11 +1202,9 @@ var require_sync = __commonJS({
             }
             try {
               var m2 = loadAsFileSync(path4.resolve(x2, pkg.main));
-              if (m2)
-                return m2;
+              if (m2) return m2;
               var n2 = loadAsDirectorySync(path4.resolve(x2, pkg.main));
-              if (n2)
-                return n2;
+              if (n2) return n2;
             } catch (e) {
             }
           }
@@ -1275,11 +1220,9 @@ var require_sync = __commonJS({
           var dir = dirs[i];
           if (isDirectory(path4.dirname(dir))) {
             var m2 = loadAsFileSync(dir);
-            if (m2)
-              return m2;
+            if (m2) return m2;
             var n2 = loadAsDirectorySync(dir);
-            if (n2)
-              return n2;
+            if (n2) return n2;
           }
         }
       }
@@ -1318,17 +1261,14 @@ var require_resolve_id = __commonJS({
         paths,
         extensions: [".css"],
         packageFilter: function processPackage(pkg) {
-          if (pkg.style)
-            pkg.main = pkg.style;
-          else if (!pkg.main || !/\.css$/.test(pkg.main))
-            pkg.main = "index.css";
+          if (pkg.style) pkg.main = pkg.style;
+          else if (!pkg.main || !/\.css$/.test(pkg.main)) pkg.main = "index.css";
           return pkg;
         },
         preserveSymlinks: false
       };
       return resolveModule(`./${id}`, resolveOpts).catch(() => resolveModule(id, resolveOpts)).catch(() => {
-        if (paths.indexOf(base) === -1)
-          paths.unshift(base);
+        if (paths.indexOf(base) === -1) paths.unshift(base);
         throw new Error(
           `Failed to find '${id}'
   in [
@@ -1340,9 +1280,9 @@ var require_resolve_id = __commonJS({
   }
 });
 
-// node_modules/pify/index.js
+// node_modules/postcss-import/node_modules/pify/index.js
 var require_pify = __commonJS({
-  "node_modules/pify/index.js"(exports2, module2) {
+  "node_modules/postcss-import/node_modules/pify/index.js"(exports2, module2) {
     "use strict";
     var processFn = function(fn, P, opts) {
       return function() {
@@ -1398,9 +1338,9 @@ var require_pify = __commonJS({
   }
 });
 
-// node_modules/read-cache/index.js
+// node_modules/postcss-import/node_modules/read-cache/index.js
 var require_read_cache = __commonJS({
-  "node_modules/read-cache/index.js"(exports2, module2) {
+  "node_modules/postcss-import/node_modules/read-cache/index.js"(exports2, module2) {
     "use strict";
     var fs3 = require("fs");
     var path4 = require("path");
@@ -1518,14 +1458,12 @@ var require_stringifier = __commonJS({
       }
       root(node) {
         this.body(node);
-        if (node.raws.after)
-          this.builder(node.raws.after);
+        if (node.raws.after) this.builder(node.raws.after);
       }
       comment(node) {
         let left = DEFAULT_RAWS.commentLeft;
         let right = DEFAULT_RAWS.commentRight;
-        if (this.has(node.raws.left))
-          left = node.raws.left;
+        if (this.has(node.raws.left)) left = node.raws.left;
         if (node.raws.inline) {
           if (this.has(node.raws.inlineRight)) {
             right = node.raws.inlineRight;
@@ -1537,8 +1475,7 @@ var require_stringifier = __commonJS({
           }
           this.builder("//" + left + node.text + right, node);
         } else {
-          if (this.has(node.raws.right))
-            right = node.raws.right;
+          if (this.has(node.raws.right)) right = node.raws.right;
           this.builder("/*" + left + node.text + right + "*/", node);
         }
       }
@@ -1571,16 +1508,14 @@ var require_stringifier = __commonJS({
           if (child.type === "comment" && !child.raws.before.includes("\n")) {
             before = child.raws.before;
           }
-          if (before)
-            this.builder(before);
+          if (before) this.builder(before);
           this.stringify(child);
         }
       }
       block(node, start) {
         let between = node.raws.sssBetween || "";
         this.builder(start + between, node, "start");
-        if (this.has(node.nodes))
-          this.body(node);
+        if (this.has(node.nodes)) this.body(node);
       }
       indent(node, step) {
         let result = "";
@@ -1688,8 +1623,7 @@ var require_preprocess = __commonJS({
             }
           }
           let last = tokens[tokens.length - 1];
-          if (last && last[0] === "newline")
-            prevNumber = last[2];
+          if (last && last[0] === "newline") prevNumber = last[2];
         }
         return {
           number,
@@ -1716,8 +1650,7 @@ var require_preprocess = __commonJS({
         [{ end: true, before: "" }]
       );
       parts.forEach((part, i) => {
-        if (i === 0)
-          return;
+        if (i === 0) return;
         let prev = parts[i - 1];
         let last = prev.tokens[prev.tokens.length - 1];
         if (last && last[0] === "newline") {
@@ -1821,8 +1754,7 @@ var require_tokenize = __commonJS({
               do {
                 escaped = false;
                 next = css.indexOf(")", next + 1);
-                if (next === -1)
-                  unclosed("bracket");
+                if (next === -1) unclosed("bracket");
                 escapePos = next;
                 while (css.charCodeAt(escapePos - 1) === BACKSLASH) {
                   escapePos -= 1;
@@ -1866,8 +1798,7 @@ var require_tokenize = __commonJS({
             do {
               escaped = false;
               next = css.indexOf(quote, next + 1);
-              if (next === -1)
-                unclosed("quote");
+              if (next === -1) unclosed("quote");
               escapePos = next;
               while (css.charCodeAt(escapePos - 1) === BACKSLASH) {
                 escapePos -= 1;
@@ -1954,8 +1885,7 @@ var require_tokenize = __commonJS({
             n = css.charCodeAt(pos + 1);
             if (code === SLASH && n === ASTERICK) {
               next = css.indexOf("*/", pos + 2) + 1;
-              if (next === 0)
-                unclosed("comment");
+              if (next === 0) unclosed("comment");
               content = css.slice(pos, next + 1);
               lines = content.split("\n");
               last = lines.length - 1;
@@ -2093,8 +2023,7 @@ var require_parser = __commonJS({
         let node = new AtRule();
         node.name = atword[1].slice(1);
         this.init(node, part);
-        if (node.name === "")
-          this.unnamedAtrule(atword);
+        if (node.name === "") this.unnamedAtrule(atword);
         while (!part.end && part.lastComma) {
           this.pos += 1;
           part = this.parts[this.pos];
@@ -2129,8 +2058,7 @@ var require_parser = __commonJS({
             prop += token[1];
           }
         }
-        if (prop === "")
-          this.unnamedDecl(part.tokens[0]);
+        if (prop === "") this.unnamedDecl(part.tokens[0]);
         node.prop = prop;
         let next = this.parts[this.pos + 1];
         while (!next.end && !next.atrule && !next.colon && next.indent.length > part.indent.length) {
@@ -2195,8 +2123,7 @@ var require_parser = __commonJS({
       indent(part) {
         let indent = part.indent.length;
         let isPrev = typeof this.prevIndent !== "undefined";
-        if (!isPrev && indent)
-          this.indentedFirstLine(part);
+        if (!isPrev && indent) this.indentedFirstLine(part);
         if (!this.step && indent) {
           this.step = indent;
           this.root.raws.indent = part.indent;
@@ -2227,8 +2154,7 @@ var require_parser = __commonJS({
       }
       init(node, part) {
         this.indent(part);
-        if (!this.current.nodes)
-          this.current.nodes = [];
+        if (!this.current.nodes) this.current.nodes = [];
         this.current.push(node);
         node.raws.before = part.before + part.indent;
         if (this.extraIndent) {
@@ -2297,8 +2223,7 @@ var require_parser = __commonJS({
             }
           }, "");
           node.raws[prop] = { value, raw };
-          if (sss !== raw)
-            node.raws[prop].sss = sss;
+          if (sss !== raw) node.raws[prop].sss = sss;
         }
         node[prop] = value;
         let last;
@@ -2308,8 +2233,7 @@ var require_parser = __commonJS({
             break;
           }
         }
-        if (!last)
-          last = altLast;
+        if (!last) last = altLast;
         node.source.end = {
           line: last[4] || last[2],
           column: last[5] || last[3]
@@ -2321,8 +2245,7 @@ var require_parser = __commonJS({
         while (next < this.parts.length) {
           next += 1;
           part = this.parts[next];
-          if (part.end || !part.comment)
-            break;
+          if (part.end || !part.comment) break;
         }
         return part;
       }
@@ -2446,21 +2369,18 @@ var require_process_content = __commonJS({
       if (result.opts.syntax?.parse) {
         parserList.push(result.opts.syntax.parse);
       }
-      if (result.opts.parser)
-        parserList.push(result.opts.parser);
+      if (result.opts.parser) parserList.push(result.opts.parser);
       parserList.push(null);
       return runPostcss(postcss2, content, filename, plugins, parserList);
     };
     function runPostcss(postcss2, content, filename, plugins, parsers, index) {
-      if (!index)
-        index = 0;
+      if (!index) index = 0;
       return postcss2(plugins).process(content, {
         from: filename,
         parser: parsers[index]
       }).catch((err) => {
         index++;
-        if (index === parsers.length)
-          throw err;
+        if (index === parsers.length) throw err;
         return runPostcss(postcss2, content, filename, plugins, parsers, index);
       });
     }
@@ -2909,8 +2829,7 @@ var require_parse_statements = __commonJS({
     function split(params, start) {
       const list = [];
       const last = params.reduce((item, node, index) => {
-        if (index < start)
-          return "";
+        if (index < start) return "";
         if (node.type === "div" && node.value === ",") {
           list.push(item);
           return "";
@@ -2926,12 +2845,9 @@ var require_parse_statements = __commonJS({
       styles.each((node) => {
         let stmt;
         if (node.type === "atrule") {
-          if (node.name === "import")
-            stmt = parseImport(result, node);
-          else if (node.name === "media")
-            stmt = parseMedia(result, node);
-          else if (node.name === "charset")
-            stmt = parseCharset(result, node);
+          if (node.name === "import") stmt = parseImport(result, node);
+          else if (node.name === "media") stmt = parseMedia(result, node);
+          else if (node.name === "charset") stmt = parseCharset(result, node);
         }
         if (stmt) {
           if (nodes.length) {
@@ -2944,8 +2860,7 @@ var require_parse_statements = __commonJS({
             nodes = [];
           }
           statements.push(stmt);
-        } else
-          nodes.push(node);
+        } else nodes.push(node);
       });
       if (nodes.length) {
         statements.push({
@@ -3010,10 +2925,8 @@ var require_parse_statements = __commonJS({
           node: atRule
         });
       }
-      if (params[0].type === "string")
-        stmt.uri = params[0].value;
-      else
-        stmt.uri = params[0].nodes[0].value;
+      if (params[0].type === "string") stmt.uri = params[0].value;
+      else stmt.uri = params[0].nodes[0].value;
       stmt.fullUri = stringify(params[0]);
       let remainder = params;
       if (remainder.length > 2) {
@@ -3086,10 +2999,8 @@ var require_postcss_import = __commonJS({
         ...options
       };
       options.root = path4.resolve(options.root);
-      if (typeof options.path === "string")
-        options.path = [options.path];
-      if (!Array.isArray(options.path))
-        options.path = [];
+      if (typeof options.path === "string") options.path = [options.path];
+      if (!Array.isArray(options.path)) options.path = [];
       options.path = options.path.map((p) => path4.resolve(options.root, p));
       return {
         postcssPlugin: "postcss-import",
@@ -3119,14 +3030,11 @@ var require_postcss_import = __commonJS({
           );
           function applyRaws(bundle) {
             bundle.forEach((stmt, index) => {
-              if (index === 0)
-                return;
+              if (index === 0) return;
               if (stmt.parent) {
                 const { before } = stmt.parent.node.raws;
-                if (stmt.type === "nodes")
-                  stmt.nodes[0].raws.before = before;
-                else
-                  stmt.node.raws.before = before;
+                if (stmt.type === "nodes") stmt.nodes[0].raws.before = before;
+                else stmt.node.raws.before = before;
               } else if (stmt.type === "nodes") {
                 stmt.nodes[0].raws.before = stmt.nodes[0].raws.before || "\n";
               }
@@ -3262,8 +3170,7 @@ var require_postcss_import = __commonJS({
               const imports = [];
               const bundle = [];
               function handleCharset(stmt) {
-                if (!charset)
-                  charset = stmt;
+                if (!charset) charset = stmt;
                 else if (stmt.node.params.toLowerCase() !== charset.node.params.toLowerCase()) {
                   throw new Error(
                     `Incompatable @charset statements:
@@ -3273,22 +3180,16 @@ var require_postcss_import = __commonJS({
                 }
               }
               statements.forEach((stmt) => {
-                if (stmt.type === "charset")
-                  handleCharset(stmt);
+                if (stmt.type === "charset") handleCharset(stmt);
                 else if (stmt.type === "import") {
                   if (stmt.children) {
                     stmt.children.forEach((child, index) => {
-                      if (child.type === "import")
-                        imports.push(child);
-                      else if (child.type === "charset")
-                        handleCharset(child);
-                      else
-                        bundle.push(child);
-                      if (index === 0)
-                        child.parent = stmt;
+                      if (child.type === "import") imports.push(child);
+                      else if (child.type === "charset") handleCharset(child);
+                      else bundle.push(child);
+                      if (index === 0) child.parent = stmt;
                     });
-                  } else
-                    imports.push(stmt);
+                  } else imports.push(stmt);
                 } else if (stmt.type === "media" || stmt.type === "nodes") {
                   bundle.push(stmt);
                 }
@@ -3311,8 +3212,7 @@ var require_postcss_import = __commonJS({
             }
             const base = sourceFile ? path4.dirname(atRule2.source.input.file) : options2.root;
             return Promise.resolve(options2.resolve(stmt.uri, base, options2)).then((paths) => {
-              if (!Array.isArray(paths))
-                paths = [paths];
+              if (!Array.isArray(paths)) paths = [paths];
               return Promise.all(
                 paths.map((file) => {
                   return !path4.isAbsolute(file) ? resolveId(file, base, options2) : file;
@@ -3422,6 +3322,7 @@ var dirname;
 try {
   dirname = __dirname;
 } catch (_) {
+  console.log(import_meta.url);
   const filename = (0, import_node_url.fileURLToPath)(import_meta.url);
   dirname = import_node_path.default.dirname(filename);
 }
@@ -3433,6 +3334,7 @@ var postcss_config_default = {
     "tailwindcss": {
       config: import_node_path.default.resolve(`${dirname}/configs/tailwind.config.ts`)
     },
+    "postcss-inline-svg": {},
     "postcss-hexrgba": {
       colorFunctionNotation: "modern",
       transformToBareValue: true
@@ -3447,7 +3349,9 @@ var postcss_config_default = {
 var import_node_path2 = __toESM(require("path"), 1);
 var import_node_fs = __toESM(require("fs"), 1);
 var import_plugin = __toESM(require("tailwindcss/plugin.js"), 1);
-var COLORS = {
+
+// src/core/configs/colors.ts
+var colors = {
   green: {
     50: "#F2F7F3",
     100: "#DDECDE",
@@ -3510,6 +3414,28 @@ var COLORS = {
     900: "#333333"
   }
 };
+var colors_default = colors;
+
+// src/core/configs/tailwind.config.ts
+var customContent = {
+  "arrow-east": '"\u2192"',
+  "arrow-west": '"\u2190"',
+  "arrow-north-east": '"\u2197"',
+  "arrow-south": '"\u2193"',
+  "underscore-long": '"\uE08A"',
+  cross: '"\u2717"',
+  plus: '"\uE09D"',
+  reload: '"\u21BB"',
+  check: '"\u2713"',
+  "caret-south": '"\u2304"',
+  "caret-north": '"\u2303"',
+  dot: '"\u2022"',
+  empty: '""'
+};
+var zIndex = ["app-top", "alva", "search-input-suggestions"].reduce((acc, key, index) => {
+  acc[key] = (300 + index * 10).toString();
+  return acc;
+}, {});
 var fontSize = {
   "9xl": ["128px", "128px"],
   "8xl": ["96px", "96px"],
@@ -3519,17 +3445,17 @@ var fontSize = {
   "4xl": ["36px", "40px"],
   "3xl": ["30px", "34px"],
   "2xl": ["24px", "32px"],
-  "xl": ["20px", "28px"],
-  "lg": ["18px", "24px"],
-  "base": ["16px", "22px"],
-  "sm": ["14px", "20px"],
-  "xs": ["12px", "18px"]
+  xl: ["20px", "28px"],
+  lg: ["18px", "24px"],
+  base: ["16px", "22px"],
+  sm: ["14px", "20px"],
+  xs: ["12px", "18px"]
 };
-var colors = Object.keys(COLORS).reduce(
+var colors2 = Object.keys(colors_default).reduce(
   (acc, color) => {
-    const shades = COLORS[color];
+    const shades = colors_default[color];
     Object.entries(shades).forEach(([shade, hex]) => {
-      acc[`${color}-${shade}`] = hex;
+      acc[color + "-" + shade] = hex;
     });
     return acc;
   },
@@ -3571,35 +3497,76 @@ function getContentDependencies(path4) {
     ...fileCandidates.map((f) => `${path4}/${f}`).filter((f) => import_node_fs.default.existsSync(f))
   ];
 }
-var tailwind_config_default = {
+var config = {
   content: getContentDependencies(projectRoot),
   safelist: ["h-0", "sbdocs"],
   plugins: [
     /**
      * Various additional variants
      */
-    (0, import_plugin.default)(({ addVariant }) => {
+    (0, import_plugin.default)(function({ addVariant }) {
       addVariant(
         "mobile-only",
         "@media screen and (max-width: theme('screens.md'))"
       );
       addVariant("not-last", "&:not(:last-child)");
       addVariant("not-first", "&:not(:first-child)");
+    }),
+    (0, import_plugin.default)(function({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          "animation-rotation": (value) => ({
+            "--animation-rotation": value
+          })
+        },
+        {
+          values: theme("rotate"),
+          type: "any"
+        }
+      );
+      matchUtilities(
+        {
+          "animation-duration": (value) => ({
+            "--animation-duration": value
+          })
+        },
+        {
+          values: theme("transitionDuration"),
+          type: "any"
+        }
+      );
+      matchUtilities(
+        {
+          content: (content) => {
+            return {
+              // `/ ""` acts as an alt text for the `content`, which is then read by screen readers instead.
+              // If empty, the content will be ignored. See https://developer.mozilla.org/en-US/docs/Web/CSS/content
+              // Defining an array here will create two CSS content properties, where the first one is the fallback
+              // for browsers that don't support the syntax with alt text.
+              content: [content, `${content} / ""`]
+            };
+          }
+        },
+        {
+          values: theme("customContent")
+        }
+      );
     })
   ],
   corePlugins: {
     textOpacity: false,
-    container: false
+    container: false,
+    // Disabled because we have our own implementation that adds a fallback.
+    content: false
   },
   theme: {
+    customContent,
     screens: {
-      mobile_s: "320px",
-      mobile_m: "375px",
-      mobile_l: "425px",
       sm: "480px",
       md: "768px",
       lg: "1024px",
-      xl: "1210px"
+      xl: "1210px",
+      xxl: "1920px"
     },
     spacing: {
       220: "220px",
@@ -3612,17 +3579,20 @@ var tailwind_config_default = {
       60: "60px",
       50: "50px",
       40: "40px",
+      35: "35px",
       30: "30px",
       25: "25px",
       20: "20px",
       15: "15px",
       10: "10px",
       8: "8px",
+      6: "6px",
       5: "5px",
       3: "3px",
       2: "2px",
       1: "1px",
-      0: "0px"
+      0: "0px",
+      "sticky-top": "var(--base-sticky-top)"
     },
     borderWidth: {
       DEFAULT: "1px",
@@ -3635,23 +3605,30 @@ var tailwind_config_default = {
       reduced: "970px",
       // @todo: Consolidate sizing with container, max-width and other layout classes.
       prose: "836px",
-      hero: "560px",
+      box: "610px",
       fit: "fit-content"
     },
     lineHeight: {
-      none: 1,
-      tight: 1.2,
-      snug: 1.3,
-      normal: 1.4
+      none: "1",
+      tight: "1.2",
+      snug: "1.3",
+      normal: "1.4"
     },
     fontSize,
     fontFamily: {
-      sans: ["Inter", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"]
+      sans: [
+        "Inter",
+        "Inter Fallback",
+        "Helvetica Neue",
+        "Helvetica",
+        "Arial",
+        "sans-serif"
+      ]
     },
     fontWeight: {
-      normal: 400,
-      medium: 500,
-      bold: 700
+      normal: "400",
+      medium: "500",
+      bold: "700"
     },
     borderRadius: {
       none: "0px",
@@ -3665,7 +3642,7 @@ var tailwind_config_default = {
       current: "currentColor",
       transparent: "transparent",
       body: "black",
-      ...colors,
+      ...colors2,
       // The dynamic CSS variable based primary color which is overriden by the Bettingen site at runtime.
       primary: {
         50: "rgb(var(--color-primary-50) / <alpha-value>)",
@@ -3681,19 +3658,137 @@ var tailwind_config_default = {
       }
     },
     extend: {
+      zIndex,
       gap: {
         DEFAULT: "20px"
       },
       transitionDuration: {
         250: "250ms"
       },
+      transitionTimingFunction: {
+        swing: "cubic-bezier(0.56, 0.04, 0.25, 1)",
+        momentum: "cubic-bezier(1,-0.76,.46,1.01)"
+      },
       boxShadow: {
         "purple-600": "0 0 10px 0 #9156B4",
-        "none": "0 0 0 0 #000"
+        none: "0 0 0 0 #000"
+      },
+      keyframes: {
+        "jump-x": {
+          "0%": {
+            // eslint-disable-next-line sonarjs/no-duplicate-string
+            transform: "translateX(0)"
+          },
+          "20%": {
+            transform: "translateX(0.15em)"
+          },
+          "60%": {
+            transform: "translateX(-0.15em)"
+          },
+          "100%": {
+            transform: "translateX(0)"
+          }
+        },
+        "jump-y": {
+          "0%": {
+            transform: "translateY(0)"
+          },
+          "20%": {
+            transform: "translateY(0.15em)"
+          },
+          "60%": {
+            transform: "translateY(-0.15em)"
+          },
+          "100%": {
+            transform: "translateY(0)"
+          }
+        },
+        "jump-x-reverse": {
+          "0%": {
+            transform: "translateX(0)"
+          },
+          "20%": {
+            transform: "translateX(-0.15em)"
+          },
+          "60%": {
+            transform: "translateX(0.15em)"
+          },
+          "100%": {
+            transform: "translateX(0)"
+          }
+        },
+        "jump-xy": {
+          "0%": {
+            transform: "translate(0, 0)"
+          },
+          "20%": {
+            transform: "translate(0.15em, -0.15em)"
+          },
+          "60%": {
+            transform: "translate(-0.1em, 0.1em)"
+          },
+          "100%": {
+            transform: "translate(0, 0)"
+          }
+        },
+        "jump-scale": {
+          "0%": {
+            transform: "scale(1)"
+          },
+          "20%": {
+            transform: "scale(1.3)"
+          },
+          "60%": {
+            transform: "scale(0.9)"
+          },
+          "100%": {
+            transform: "scale(1)"
+          }
+        },
+        wiggle: {
+          "0%": {
+            // eslint-disable-next-line sonarjs/no-duplicate-string
+            transform: "rotate(0deg)"
+          },
+          "20%": {
+            transform: "rotate(var(--animation-rotation, 15deg))"
+          },
+          "40%": {
+            transform: "rotate(calc(-1 * var(--animation-rotation, 15deg)))"
+          },
+          "60%": {
+            transform: "rotate(var(--animation-rotation, 15deg))"
+          },
+          "80%": {
+            transform: "rotate(calc(-1 * var(--animation-rotation, 15deg)))"
+          },
+          "100%": {
+            transform: "rotate(0deg)"
+          }
+        },
+        rotate: {
+          from: {
+            transform: "rotate(0deg)"
+          },
+          to: {
+            transform: "rotate(var(--animation-rotation, 360deg))"
+          }
+        }
+      },
+      animation: {
+        "jump-x": `jump-x var(--animation-duration, 0.4s) ease-in-out`,
+        "jump-y": `jump-y var(--animation-duration, 0.5s) ease-in-out`,
+        "jump-scale": `jump-scale var(--animation-duration, 0.5s) ease-in-out`,
+        "jump-x-reverse": "jump-x-reverse var(--animation-duration, 0.5s) ease-in-out",
+        "jump-xy": "jump-xy var(--animation-duration, 0.5s) ease-in-out",
+        wiggle: "wiggle var(--animation-duration, 0.5s) linear",
+        rotate: "rotate var(--animation-duration, 0.5s) ease-in-out",
+        "rotate-infinite": "rotate var(--animation-duration, 0.5s) linear infinite"
       }
     }
   }
 };
+var tailwind_config_default = config;
 
 // src/index.ts
 var import_postcss = __toESM(require("postcss"), 1);
@@ -3748,6 +3843,7 @@ var unpluginFactory = (options, meta) => {
       name: "@kanton-basel-stadt/designsystem/postcss-tailwind",
       esbuild: {
         setup(build) {
+          build.onTransform;
           build.onLoad({ filter: /\.woff2?$/i }, () => {
             return { loader: "copy" };
           });
@@ -3852,10 +3948,22 @@ var unpluginFactory = (options, meta) => {
         }
       },
       vite: {
-        config(config) {
-          if (!config.css)
-            config.css = {};
-          config.css.postcss = CONFIGS_PATH;
+        config(config2) {
+          console.log(config2);
+          if (!config2.css) {
+            config2.css = {};
+          }
+          config2.css.postcss = CONFIGS_PATH;
+          if (!config2.server) {
+            config2.server = {};
+          }
+          if (!config2.server.fs) {
+            config2.server.fs = {};
+          }
+          if (!config2.server.fs.allow) {
+            config2.server.fs.allow = [];
+          }
+          config2.server.fs.allow.push(".");
         }
       }
     }
