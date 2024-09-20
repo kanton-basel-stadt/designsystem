@@ -55,6 +55,11 @@ export default defineConfig({
   plugins: [
     KantonBSDesignsystemPlugin({ /* Options */ }),
   ],
+  server: {
+    fs: {
+      strict: false,
+    }
+  },
 })
 ```
 
@@ -215,7 +220,12 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
+  },
+  server: {
+    fs: {
+      strict: false,
+    }
+  },
 })
 
 ```
