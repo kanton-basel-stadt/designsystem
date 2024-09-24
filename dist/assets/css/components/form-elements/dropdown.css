@@ -1,0 +1,68 @@
+@import './input.css';
+@import './checkbox.css';
+@import './../icons/icon-animations.css';
+
+@tailwind components;
+
+@layer components {
+  /* Many of these nested elements stem from formkit. Once Pro elements can be exported, we'd need to rethink that structure. */
+  /* Related GH issue: https://github.com/formkit/formkit/issues/412 */
+  .dropdown {
+    & .dropdown-wrapper {
+      @apply min-h-[90px] relative h-auto;
+
+      & .dropdown-inner {
+        @apply input h-auto p-0 absolute top-[27px] w-full my-10;
+
+        & .dropdown-trigger {
+          @apply p-10 w-full flex flex-row items-center justify-between h-[42px] text-left;
+
+          & .placeholder {
+            @apply text-gray-500;
+          }
+
+          &:after {
+            @apply content-[""] w-20 h-20 block;
+            @apply transition-all ease-in-out duration-250;
+            @apply has-symbol-caret;
+            @apply rotate-0;
+          }
+        }
+      }
+
+      & .dropdown-list-item {
+        @apply p-10 text-blue-700 hover:text-blue-900;
+
+        & .dropdown-option {
+          @apply flex flex-row items-center relative gap-10;
+        }
+      }
+    }
+
+    &[data-disabled='true'] {
+      & .dropdown-inner {
+        @apply border-gray-300 bg-gray-300;
+
+        & .placeholder {
+          @apply text-gray-800;
+        }
+      }
+    }
+
+    &[data-multiple='true'] {
+      & .dropdown-option {
+        @apply has-checkbox-icon;
+      }
+    }
+
+    &[data-expanded='true'] {
+      & .dropdown-inner {
+        @apply z-10;
+
+        & .dropdown-trigger:after {
+          @apply rotate-180;
+        }
+      }
+    }
+  }
+}

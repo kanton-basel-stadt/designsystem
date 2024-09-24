@@ -1,0 +1,56 @@
+/* TODO: Try to solve this with tailwind OOTB features, such as typography defaults. */
+/* TODO: Add more things, such as h2, h1, etc. */
+
+@layer components {
+  .p {
+    @apply break-words;
+
+    &:not(.is-small) {
+      @apply md:text-lg xl:text-xl;
+    }
+  }
+
+  .pre-heading {
+    @apply font-bold text-xs md:text-sm break-words hyphens-auto;
+  }
+
+  .h1 {
+    @apply text-3xl lg:text-4xl xl:text-5xl font-bold;
+  }
+
+  .h2 {
+    @apply font-bold text-2xl lg:text-3xl xl:text-4xl break-words hyphens-auto print:!text-xl;
+  }
+
+  .h3 {
+    @apply text-lg lg:text-xl xl:text-2xl font-bold;
+  }
+
+  .h4 {
+    @apply text-lg lg:text-xl font-bold;
+  }
+
+  .lead {
+    @apply font-bold text-xl xl:text-2xl;
+  }
+
+  .p {
+    @apply not-first:mt-20 not-last:mb-20 xl:not-first:mt-25 xl:not-last:mb-25;
+  }
+
+  .ol,
+  .ul {
+    @apply not-first:mt-20 ml-25;
+
+    & li {
+      @apply pb-20 ml-30 pl-[8px];
+    }
+  }
+
+  .ol {
+    @apply list-decimal;
+  }
+  .ul {
+    @apply list-disc;
+  }
+}
