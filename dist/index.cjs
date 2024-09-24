@@ -3823,7 +3823,7 @@ var unpluginFactory = (options, meta) => {
   if (options === void 0)
     options = {};
   function transform(code) {
-    return code.replace(ICON_PATH_ALIAS, `$1${ICON_PATH}`).replace(MODULE_ALIAS, `$1${MODULE_PATH}`).replace(/dist\/dist/g, "dist").replace("@@kanton-basel-stadt", "@kanton-basel-stadt");
+    return code.replace(ICON_PATH_ALIAS, `$1${ICON_PATH}`).replace(MODULE_ALIAS, `$1${MODULE_PATH}`).replace(/dist\/dist/g, "dist").replace(/@@kanton-basel-stadt/g, "@kanton-basel-stadt");
   }
   const mergedUnpluginIconsConfig = (0, import_lodash.default)(unpluginIconsConfig, options.iconOptions);
   if (mergedUnpluginIconsConfig.compiler !== "web-components")
