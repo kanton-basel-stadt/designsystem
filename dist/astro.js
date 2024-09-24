@@ -1,6 +1,6 @@
 import {
   src_default
-} from "./chunk-W6MYMIXG.js";
+} from "./chunk-7DVFBKZF.js";
 
 // src/astro.ts
 var astro_default = (options) => ({

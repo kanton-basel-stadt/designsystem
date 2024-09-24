@@ -1,7 +1,7 @@
 import {
   vite_default
-} from "./chunk-MBBK6GWO.js";
-import "./chunk-W6MYMIXG.js";
+} from "./chunk-C2IHLIWC.js";
+import "./chunk-7DVFBKZF.js";
 export {
   vite_default as default
 };

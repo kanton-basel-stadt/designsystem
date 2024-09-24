@@ -3474,7 +3474,8 @@ function getContentDependencies(path4) {
     "tsx",
     "vue",
     "astro",
-    "svelte"
+    "svelte",
+    "mdx"
   ].join(",");
   const dirCandidates = [
     "components",
