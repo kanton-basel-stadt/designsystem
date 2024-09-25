@@ -23,16 +23,15 @@
     @screen lg {
       grid-template: 'L N M';
       grid-template-rows: auto;
-      @apply grid-cols-3;
     }
+
+    @apply lg:grid-cols-3;
   }
 
   .page-header-mobile-enter-active,
   .page-header-mobile-leave-active {
     @apply transition duration-300 ease-swing overflow-hidden;
-    @media (prefers-reduced-motion) {
-      @apply !transition-none;
-    }
+    @apply motion-reduce:!transition-none;
 
     > div,
     > a {

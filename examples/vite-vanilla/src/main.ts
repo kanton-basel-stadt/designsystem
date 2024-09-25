@@ -95,7 +95,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
             </li>
             <li><a class="button is-sm is-link" href="https://kantonsblatt.ch" target="_blank">
               Kantonsblatt</a></li>
-            <li><a class="button is-sm is-link" href="https://webbs-prod.bs.ch/multimedia-datenbank"
+            <li><a class="button is-sm is-link" href="https://www.bs.ch/apps/multimedia-datenbank"
                             target="_blank">Bilddatenbank des Kanton Basel-Stadt</a></li>
           </ul>
         </nav>

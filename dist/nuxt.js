@@ -1,10 +1,11 @@
 import {
   vite_default
-} from "./chunk-C2IHLIWC.js";
+} from "./chunk-Q6BO2PCN.js";
 import {
   webpack_default
-} from "./chunk-RPR5UVT2.js";
-import "./chunk-7DVFBKZF.js";
+} from "./chunk-GL44KQJB.js";
+import "./chunk-2X7LBEQJ.js";
+import "./chunk-3GKKLDEJ.js";
 
 // src/nuxt.ts
 import { addVitePlugin, addWebpackPlugin, defineNuxtModule } from "@nuxt/kit";

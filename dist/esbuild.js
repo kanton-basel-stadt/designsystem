@@ -1,6 +1,7 @@
 import {
   unpluginFactory
-} from "./chunk-7DVFBKZF.js";
+} from "./chunk-2X7LBEQJ.js";
+import "./chunk-3GKKLDEJ.js";
 
 // src/esbuild.ts
 import { createEsbuildPlugin } from "unplugin";

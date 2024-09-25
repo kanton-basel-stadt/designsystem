@@ -1,6 +1,3 @@
-/* TODO: Try to solve this with tailwind OOTB features, such as typography defaults. */
-/* TODO: Add more things, such as h2, h1, etc. */
-
 @layer components {
   .p {
     @apply break-words;

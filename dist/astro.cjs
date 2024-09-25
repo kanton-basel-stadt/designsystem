@@ -3499,7 +3499,7 @@ function getContentDependencies(path4) {
 }
 var config = {
   content: getContentDependencies(projectRoot),
-  safelist: ["h-0", "sbdocs"],
+  safelist: ["h-0"],
   plugins: [
     /**
      * Various additional variants

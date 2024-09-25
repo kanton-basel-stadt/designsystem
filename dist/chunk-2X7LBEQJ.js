@@ -1,13 +1,8 @@
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
-  get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
-}) : x)(function(x) {
-  if (typeof require !== "undefined") return require.apply(this, arguments);
-  throw Error('Dynamic require of "' + x + '" is not supported');
-});
-var __commonJS = (cb, mod) => function __require2() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};
+import {
+  __commonJS,
+  __require,
+  tailwind_config_default
+} from "./chunk-3GKKLDEJ.js";
 
 // node_modules/postcss-import/lib/join-media.js
 var require_join_media = __commonJS({
@@ -152,8 +147,8 @@ var require_path_parse = __commonJS({
 var require_node_modules_paths = __commonJS({
   "node_modules/resolve/lib/node-modules-paths.js"(exports, module) {
     "use strict";
-    var path4 = __require("path");
-    var parse = path4.parse || require_path_parse();
+    var path3 = __require("path");
+    var parse = path3.parse || require_path_parse();
     var getNodeModulesDirs = function getNodeModulesDirs2(absoluteStart, modules) {
       var prefix = "/";
       if (/^([A-Za-z]:)/.test(absoluteStart)) {
@@ -169,7 +164,7 @@ var require_node_modules_paths = __commonJS({
       }
       return paths.reduce(function(dirs, aPath) {
         return dirs.concat(modules.map(function(moduleDir) {
-          return path4.resolve(prefix, aPath, moduleDir);
+          return path3.resolve(prefix, aPath, moduleDir);
         }));
       }, []);
     };
@@ -531,23 +526,23 @@ var require_is_core_module = __commonJS({
 var require_async = __commonJS({
   "node_modules/resolve/lib/async.js"(exports, module) {
     "use strict";
-    var fs3 = __require("fs");
+    var fs2 = __require("fs");
     var getHomedir = require_homedir();
-    var path4 = __require("path");
+    var path3 = __require("path");
     var caller = require_caller();
     var nodeModulesPaths = require_node_modules_paths();
     var normalizeOptions = require_normalize_options();
     var isCore = require_is_core_module();
-    var realpathFS = process.platform !== "win32" && fs3.realpath && typeof fs3.realpath.native === "function" ? fs3.realpath.native : fs3.realpath;
+    var realpathFS = process.platform !== "win32" && fs2.realpath && typeof fs2.realpath.native === "function" ? fs2.realpath.native : fs2.realpath;
     var homedir = getHomedir();
     var defaultPaths = function() {
       return [
-        path4.join(homedir, ".node_modules"),
-        path4.join(homedir, ".node_libraries")
+        path3.join(homedir, ".node_modules"),
+        path3.join(homedir, ".node_libraries")
       ];
     };
     var defaultIsFile = function isFile(file, cb) {
-      fs3.stat(file, function(err, stat) {
+      fs2.stat(file, function(err, stat) {
         if (!err) {
           return cb(null, stat.isFile() || stat.isFIFO());
         }
@@ -556,7 +551,7 @@ var require_async = __commonJS({
       });
     };
     var defaultIsDir = function isDirectory(dir, cb) {
-      fs3.stat(dir, function(err, stat) {
+      fs2.stat(dir, function(err, stat) {
         if (!err) {
           return cb(null, stat.isDirectory());
         }
@@ -593,7 +588,7 @@ var require_async = __commonJS({
     var getPackageCandidates = function getPackageCandidates2(x, start, opts) {
       var dirs = nodeModulesPaths(start, opts, x);
       for (var i = 0; i < dirs.length; i++) {
-        dirs[i] = path4.join(dirs[i], x);
+        dirs[i] = path3.join(dirs[i], x);
       }
       return dirs;
     };
@@ -613,7 +608,7 @@ var require_async = __commonJS({
       opts = normalizeOptions(x, opts);
       var isFile = opts.isFile || defaultIsFile;
       var isDirectory = opts.isDirectory || defaultIsDir;
-      var readFile = opts.readFile || fs3.readFile;
+      var readFile = opts.readFile || fs2.readFile;
       var realpath = opts.realpath || defaultRealpath;
       var readPackage = opts.readPackage || defaultReadPackage;
       if (opts.readFile && opts.readPackage) {
@@ -625,10 +620,10 @@ var require_async = __commonJS({
       var packageIterator = opts.packageIterator;
       var extensions = opts.extensions || [".js"];
       var includeCoreModules = opts.includeCoreModules !== false;
-      var basedir = opts.basedir || path4.dirname(caller());
+      var basedir = opts.basedir || path3.dirname(caller());
       var parent = opts.filename || basedir;
       opts.paths = opts.paths || defaultPaths();
-      var absoluteStart = path4.resolve(basedir);
+      var absoluteStart = path3.resolve(basedir);
       maybeRealpath(
         realpath,
         absoluteStart,
@@ -641,7 +636,7 @@ var require_async = __commonJS({
       var res;
       function init(basedir2) {
         if (/^(?:\.\.?(?:\/|$)|\/|([A-Za-z]:)?[/\\])/.test(x)) {
-          res = path4.resolve(basedir2, x);
+          res = path3.resolve(basedir2, x);
           if (x === "." || x === ".." || x.slice(-1) === "/") res += "/";
           if (/\/$/.test(x) && res === basedir2) {
             loadAsDirectory(res, opts.package, onfile);
@@ -699,17 +694,17 @@ var require_async = __commonJS({
           var file = x3 + exts2[0];
           var pkg = loadPackage;
           if (pkg) onpkg(null, pkg);
-          else loadpkg(path4.dirname(file), onpkg);
+          else loadpkg(path3.dirname(file), onpkg);
           function onpkg(err2, pkg_, dir) {
             pkg = pkg_;
             if (err2) return cb2(err2);
             if (dir && pkg && opts.pathFilter) {
-              var rfile = path4.relative(dir, file);
+              var rfile = path3.relative(dir, file);
               var rel = rfile.slice(0, rfile.length - exts2[0].length);
               var r = opts.pathFilter(pkg, x3, rel);
               if (r) return load(
                 [""].concat(extensions.slice()),
-                path4.resolve(dir, r),
+                path3.resolve(dir, r),
                 pkg
               );
             }
@@ -729,10 +724,10 @@ var require_async = __commonJS({
         }
         if (/[/\\]node_modules[/\\]*$/.test(dir)) return cb2(null);
         maybeRealpath(realpath, dir, opts, function(unwrapErr, pkgdir) {
-          if (unwrapErr) return loadpkg(path4.dirname(dir), cb2);
-          var pkgfile = path4.join(pkgdir, "package.json");
+          if (unwrapErr) return loadpkg(path3.dirname(dir), cb2);
+          var pkgfile = path3.join(pkgdir, "package.json");
           isFile(pkgfile, function(err2, ex) {
-            if (!ex) return loadpkg(path4.dirname(dir), cb2);
+            if (!ex) return loadpkg(path3.dirname(dir), cb2);
             readPackage(readFile, pkgfile, function(err3, pkgParam) {
               if (err3) cb2(err3);
               var pkg = pkgParam;
@@ -753,10 +748,10 @@ var require_async = __commonJS({
         }
         maybeRealpath(realpath, x2, opts, function(unwrapErr, pkgdir) {
           if (unwrapErr) return cb2(unwrapErr);
-          var pkgfile = path4.join(pkgdir, "package.json");
+          var pkgfile = path3.join(pkgdir, "package.json");
           isFile(pkgfile, function(err2, ex) {
             if (err2) return cb2(err2);
-            if (!ex) return loadAsFile(path4.join(x2, "index"), fpkg, cb2);
+            if (!ex) return loadAsFile(path3.join(x2, "index"), fpkg, cb2);
             readPackage(readFile, pkgfile, function(err3, pkgParam) {
               if (err3) return cb2(err3);
               var pkg = pkgParam;
@@ -772,20 +767,20 @@ var require_async = __commonJS({
                 if (pkg.main === "." || pkg.main === "./") {
                   pkg.main = "index";
                 }
-                loadAsFile(path4.resolve(x2, pkg.main), pkg, function(err4, m, pkg2) {
+                loadAsFile(path3.resolve(x2, pkg.main), pkg, function(err4, m, pkg2) {
                   if (err4) return cb2(err4);
                   if (m) return cb2(null, m, pkg2);
-                  if (!pkg2) return loadAsFile(path4.join(x2, "index"), pkg2, cb2);
-                  var dir = path4.resolve(x2, pkg2.main);
+                  if (!pkg2) return loadAsFile(path3.join(x2, "index"), pkg2, cb2);
+                  var dir = path3.resolve(x2, pkg2.main);
                   loadAsDirectory(dir, pkg2, function(err5, n, pkg3) {
                     if (err5) return cb2(err5);
                     if (n) return cb2(null, n, pkg3);
-                    loadAsFile(path4.join(x2, "index"), pkg3, cb2);
+                    loadAsFile(path3.join(x2, "index"), pkg3, cb2);
                   });
                 });
                 return;
               }
-              loadAsFile(path4.join(x2, "/index"), pkg, cb2);
+              loadAsFile(path3.join(x2, "/index"), pkg, cb2);
             });
           });
         });
@@ -793,7 +788,7 @@ var require_async = __commonJS({
       function processDirs(cb2, dirs) {
         if (dirs.length === 0) return cb2(null, void 0);
         var dir = dirs[0];
-        isDirectory(path4.dirname(dir), isdir);
+        isDirectory(path3.dirname(dir), isdir);
         function isdir(err2, isdir2) {
           if (err2) return cb2(err2);
           if (!isdir2) return processDirs(cb2, dirs.slice(1));
@@ -1020,23 +1015,23 @@ var require_sync = __commonJS({
   "node_modules/resolve/lib/sync.js"(exports, module) {
     "use strict";
     var isCore = require_is_core_module();
-    var fs3 = __require("fs");
-    var path4 = __require("path");
+    var fs2 = __require("fs");
+    var path3 = __require("path");
     var getHomedir = require_homedir();
     var caller = require_caller();
     var nodeModulesPaths = require_node_modules_paths();
     var normalizeOptions = require_normalize_options();
-    var realpathFS = process.platform !== "win32" && fs3.realpathSync && typeof fs3.realpathSync.native === "function" ? fs3.realpathSync.native : fs3.realpathSync;
+    var realpathFS = process.platform !== "win32" && fs2.realpathSync && typeof fs2.realpathSync.native === "function" ? fs2.realpathSync.native : fs2.realpathSync;
     var homedir = getHomedir();
     var defaultPaths = function() {
       return [
-        path4.join(homedir, ".node_modules"),
-        path4.join(homedir, ".node_libraries")
+        path3.join(homedir, ".node_modules"),
+        path3.join(homedir, ".node_libraries")
       ];
     };
     var defaultIsFile = function isFile(file) {
       try {
-        var stat = fs3.statSync(file, { throwIfNoEntry: false });
+        var stat = fs2.statSync(file, { throwIfNoEntry: false });
       } catch (e) {
         if (e && (e.code === "ENOENT" || e.code === "ENOTDIR")) return false;
         throw e;
@@ -1045,7 +1040,7 @@ var require_sync = __commonJS({
     };
     var defaultIsDir = function isDirectory(dir) {
       try {
-        var stat = fs3.statSync(dir, { throwIfNoEntry: false });
+        var stat = fs2.statSync(dir, { throwIfNoEntry: false });
       } catch (e) {
         if (e && (e.code === "ENOENT" || e.code === "ENOTDIR")) return false;
         throw e;
@@ -1079,7 +1074,7 @@ var require_sync = __commonJS({
     var getPackageCandidates = function getPackageCandidates2(x, start, opts) {
       var dirs = nodeModulesPaths(start, opts, x);
       for (var i = 0; i < dirs.length; i++) {
-        dirs[i] = path4.join(dirs[i], x);
+        dirs[i] = path3.join(dirs[i], x);
       }
       return dirs;
     };
@@ -1089,7 +1084,7 @@ var require_sync = __commonJS({
       }
       var opts = normalizeOptions(x, options);
       var isFile = opts.isFile || defaultIsFile;
-      var readFileSync = opts.readFileSync || fs3.readFileSync;
+      var readFileSync = opts.readFileSync || fs2.readFileSync;
       var isDirectory = opts.isDirectory || defaultIsDir;
       var realpathSync = opts.realpathSync || defaultRealpathSync;
       var readPackageSync = opts.readPackageSync || defaultReadPackageSync;
@@ -1099,12 +1094,12 @@ var require_sync = __commonJS({
       var packageIterator = opts.packageIterator;
       var extensions = opts.extensions || [".js"];
       var includeCoreModules = opts.includeCoreModules !== false;
-      var basedir = opts.basedir || path4.dirname(caller());
+      var basedir = opts.basedir || path3.dirname(caller());
       var parent = opts.filename || basedir;
       opts.paths = opts.paths || defaultPaths();
-      var absoluteStart = maybeRealpathSync(realpathSync, path4.resolve(basedir), opts);
+      var absoluteStart = maybeRealpathSync(realpathSync, path3.resolve(basedir), opts);
       if (/^(?:\.\.?(?:\/|$)|\/|([A-Za-z]:)?[/\\])/.test(x)) {
-        var res = path4.resolve(absoluteStart, x);
+        var res = path3.resolve(absoluteStart, x);
         if (x === "." || x === ".." || x.slice(-1) === "/") res += "/";
         var m = loadAsFileSync(res) || loadAsDirectorySync(res);
         if (m) return maybeRealpathSync(realpathSync, m, opts);
@@ -1118,12 +1113,12 @@ var require_sync = __commonJS({
       err.code = "MODULE_NOT_FOUND";
       throw err;
       function loadAsFileSync(x2) {
-        var pkg = loadpkg(path4.dirname(x2));
+        var pkg = loadpkg(path3.dirname(x2));
         if (pkg && pkg.dir && pkg.pkg && opts.pathFilter) {
-          var rfile = path4.relative(pkg.dir, x2);
+          var rfile = path3.relative(pkg.dir, x2);
           var r = opts.pathFilter(pkg.pkg, x2, rfile);
           if (r) {
-            x2 = path4.resolve(pkg.dir, r);
+            x2 = path3.resolve(pkg.dir, r);
           }
         }
         if (isFile(x2)) {
@@ -1142,9 +1137,9 @@ var require_sync = __commonJS({
           return;
         }
         if (/[/\\]node_modules[/\\]*$/.test(dir)) return;
-        var pkgfile = path4.join(maybeRealpathSync(realpathSync, dir, opts), "package.json");
+        var pkgfile = path3.join(maybeRealpathSync(realpathSync, dir, opts), "package.json");
         if (!isFile(pkgfile)) {
-          return loadpkg(path4.dirname(dir));
+          return loadpkg(path3.dirname(dir));
         }
         var pkg = readPackageSync(readFileSync, pkgfile);
         if (pkg && opts.packageFilter) {
@@ -1157,7 +1152,7 @@ var require_sync = __commonJS({
         return { pkg, dir };
       }
       function loadAsDirectorySync(x2) {
-        var pkgfile = path4.join(maybeRealpathSync(realpathSync, x2, opts), "/package.json");
+        var pkgfile = path3.join(maybeRealpathSync(realpathSync, x2, opts), "/package.json");
         if (isFile(pkgfile)) {
           try {
             var pkg = readPackageSync(readFileSync, pkgfile);
@@ -1180,15 +1175,15 @@ var require_sync = __commonJS({
               pkg.main = "index";
             }
             try {
-              var m2 = loadAsFileSync(path4.resolve(x2, pkg.main));
+              var m2 = loadAsFileSync(path3.resolve(x2, pkg.main));
               if (m2) return m2;
-              var n2 = loadAsDirectorySync(path4.resolve(x2, pkg.main));
+              var n2 = loadAsDirectorySync(path3.resolve(x2, pkg.main));
               if (n2) return n2;
             } catch (e) {
             }
           }
         }
-        return loadAsFileSync(path4.join(x2, "/index"));
+        return loadAsFileSync(path3.join(x2, "/index"));
       }
       function loadNodeModulesSync(x2, start) {
         var thunk = function() {
@@ -1197,7 +1192,7 @@ var require_sync = __commonJS({
         var dirs = packageIterator ? packageIterator(x2, start, thunk, opts) : thunk();
         for (var i = 0; i < dirs.length; i++) {
           var dir = dirs[i];
-          if (isDirectory(path4.dirname(dir))) {
+          if (isDirectory(path3.dirname(dir))) {
             var m2 = loadAsFileSync(dir);
             if (m2) return m2;
             var n2 = loadAsDirectorySync(dir);
@@ -1229,7 +1224,7 @@ var require_resolve_id = __commonJS({
     var moduleDirectories = ["web_modules", "node_modules"];
     function resolveModule(id, opts) {
       return new Promise((res, rej) => {
-        resolve(id, opts, (err, path4) => err ? rej(err) : res(path4));
+        resolve(id, opts, (err, path3) => err ? rej(err) : res(path3));
       });
     }
     module.exports = function(id, base, options) {
@@ -1321,12 +1316,12 @@ var require_pify = __commonJS({
 var require_read_cache = __commonJS({
   "node_modules/postcss-import/node_modules/read-cache/index.js"(exports, module) {
     "use strict";
-    var fs3 = __require("fs");
-    var path4 = __require("path");
+    var fs2 = __require("fs");
+    var path3 = __require("path");
     var pify = require_pify();
-    var stat = pify(fs3.stat);
-    var readFile = pify(fs3.readFile);
-    var resolve = path4.resolve;
+    var stat = pify(fs2.stat);
+    var readFile = pify(fs2.readFile);
+    var resolve = path3.resolve;
     var cache = /* @__PURE__ */ Object.create(null);
     function convert(content, encoding) {
       if (Buffer.isEncoding(encoding)) {
@@ -1334,48 +1329,48 @@ var require_read_cache = __commonJS({
       }
       return content;
     }
-    module.exports = function(path5, encoding) {
-      path5 = resolve(path5);
-      return stat(path5).then(function(stats) {
-        var item = cache[path5];
+    module.exports = function(path4, encoding) {
+      path4 = resolve(path4);
+      return stat(path4).then(function(stats) {
+        var item = cache[path4];
         if (item && item.mtime.getTime() === stats.mtime.getTime()) {
           return convert(item.content, encoding);
         }
-        return readFile(path5).then(function(data) {
-          cache[path5] = {
+        return readFile(path4).then(function(data) {
+          cache[path4] = {
             mtime: stats.mtime,
             content: data
           };
           return convert(data, encoding);
         });
       }).catch(function(err) {
-        cache[path5] = null;
+        cache[path4] = null;
         return Promise.reject(err);
       });
     };
-    module.exports.sync = function(path5, encoding) {
-      path5 = resolve(path5);
+    module.exports.sync = function(path4, encoding) {
+      path4 = resolve(path4);
       try {
-        var stats = fs3.statSync(path5);
-        var item = cache[path5];
+        var stats = fs2.statSync(path4);
+        var item = cache[path4];
         if (item && item.mtime.getTime() === stats.mtime.getTime()) {
           return convert(item.content, encoding);
         }
-        var data = fs3.readFileSync(path5);
-        cache[path5] = {
+        var data = fs2.readFileSync(path4);
+        cache[path4] = {
           mtime: stats.mtime,
           content: data
         };
         return convert(data, encoding);
       } catch (err) {
-        cache[path5] = null;
+        cache[path4] = null;
         throw err;
       }
     };
-    module.exports.get = function(path5, encoding) {
-      path5 = resolve(path5);
-      if (cache[path5]) {
-        return convert(cache[path5].content, encoding);
+    module.exports.get = function(path4, encoding) {
+      path4 = resolve(path4);
+      if (cache[path4]) {
+        return convert(cache[path4].content, encoding);
       }
       return null;
     };
@@ -2329,11 +2324,11 @@ var require_sugarss = __commonJS({
 var require_process_content = __commonJS({
   "node_modules/postcss-import/lib/process-content.js"(exports, module) {
     "use strict";
-    var path4 = __require("path");
+    var path3 = __require("path");
     var sugarss;
     module.exports = function processContent(result, content, filename, options, postcss2) {
       const { plugins } = options;
-      const ext = path4.extname(filename);
+      const ext = path3.extname(filename);
       const parserList = [];
       if (ext === ".sss") {
         if (!sugarss) {
@@ -2956,7 +2951,7 @@ var require_assign_layer_names = __commonJS({
 var require_postcss_import = __commonJS({
   "node_modules/postcss-import/index.js"(exports, module) {
     "use strict";
-    var path4 = __require("path");
+    var path3 = __require("path");
     var joinMedia = require_join_media();
     var joinLayer = require_join_layer();
     var resolveId = require_resolve_id();
@@ -2977,10 +2972,10 @@ var require_postcss_import = __commonJS({
         nameLayer: null,
         ...options
       };
-      options.root = path4.resolve(options.root);
+      options.root = path3.resolve(options.root);
       if (typeof options.path === "string") options.path = [options.path];
       if (!Array.isArray(options.path)) options.path = [];
-      options.path = options.path.map((p) => path4.resolve(options.root, p));
+      options.path = options.path.map((p) => path3.resolve(options.root, p));
       return {
         postcssPlugin: "postcss-import",
         Once(styles, { result, atRule, postcss: postcss2 }) {
@@ -3189,12 +3184,12 @@ var require_postcss_import = __commonJS({
             if (atRule2.source?.input?.file) {
               sourceFile = atRule2.source.input.file;
             }
-            const base = sourceFile ? path4.dirname(atRule2.source.input.file) : options2.root;
+            const base = sourceFile ? path3.dirname(atRule2.source.input.file) : options2.root;
             return Promise.resolve(options2.resolve(stmt.uri, base, options2)).then((paths) => {
               if (!Array.isArray(paths)) paths = [paths];
               return Promise.all(
                 paths.map((file) => {
-                  return !path4.isAbsolute(file) ? resolveId(file, base, options2) : file;
+                  return !path3.isAbsolute(file) ? resolveId(file, base, options2) : file;
                 })
               );
             }).then((resolved) => {
@@ -3279,8 +3274,8 @@ var require_postcss_import = __commonJS({
 });
 
 // src/index.ts
-import path3 from "node:path";
-import fs2 from "node:fs";
+import path2 from "node:path";
+import fs from "node:fs";
 import { fileURLToPath as fileURLToPath2 } from "node:url";
 import merge from "lodash.merge";
 import { createUnplugin } from "unplugin";
@@ -3315,452 +3310,6 @@ var postcss_config_default = {
   }
 };
 
-// src/core/configs/tailwind.config.ts
-import path2 from "node:path";
-import fs from "node:fs";
-import plugin from "tailwindcss/plugin.js";
-
-// src/core/configs/colors.ts
-var colors = {
-  green: {
-    50: "#F2F7F3",
-    100: "#DDECDE",
-    200: "#B8D6BE",
-    300: "#7BB589",
-    400: "#469A5D",
-    500: "#2A9749",
-    600: "#32834A",
-    700: "#2A713F",
-    800: "#245333",
-    900: "#1F402A"
-  },
-  blue: {
-    50: "#F2FDFF",
-    100: "#DBF9FF",
-    200: "#B6EDFA",
-    300: "#85D4EE",
-    400: "#51b9da",
-    500: "#079BCA",
-    600: "#0E81A7",
-    700: "#146C8B",
-    800: "#1B5268",
-    900: "#1E4557"
-  },
-  purple: {
-    50: "#F9F6FD",
-    100: "#F4EDFA",
-    200: "#E8DAF4",
-    300: "#D7BDEA",
-    400: "#C196DC",
-    500: "#A56CC9",
-    600: "#9156B4",
-    700: "#723D8E",
-    800: "#5F3375",
-    900: "#512E61"
-  },
-  red: {
-    50: "#FFF1EF",
-    100: "#FFE0DC",
-    200: "#FFC7BF",
-    300: "#FF9F92",
-    400: "#FF6854",
-    500: "#FF3A1F",
-    600: "#FF1E00",
-    700: "#DB1A00",
-    800: "#B81600",
-    900: "#941908"
-  },
-  gray: {
-    20: "#F8F8F8",
-    50: "#F2F2F2",
-    100: "#EBEBEB",
-    200: "#E3E3E3",
-    300: "#BABABA",
-    400: "#A5A5A5",
-    500: "#949494",
-    600: "#777777",
-    700: "#535353",
-    800: "#403F3F",
-    900: "#333333"
-  }
-};
-var colors_default = colors;
-
-// src/core/configs/tailwind.config.ts
-var customContent = {
-  "arrow-east": '"\u2192"',
-  "arrow-west": '"\u2190"',
-  "arrow-north-east": '"\u2197"',
-  "arrow-south": '"\u2193"',
-  "underscore-long": '"\uE08A"',
-  cross: '"\u2717"',
-  plus: '"\uE09D"',
-  reload: '"\u21BB"',
-  check: '"\u2713"',
-  "caret-south": '"\u2304"',
-  "caret-north": '"\u2303"',
-  dot: '"\u2022"',
-  empty: '""'
-};
-var zIndex = ["app-top", "alva", "search-input-suggestions"].reduce((acc, key, index) => {
-  acc[key] = (300 + index * 10).toString();
-  return acc;
-}, {});
-var fontSize = {
-  "9xl": ["128px", "128px"],
-  "8xl": ["96px", "96px"],
-  "7xl": ["72px", "72px"],
-  "6xl": ["60px", "60px"],
-  "5xl": ["48px", "48px"],
-  "4xl": ["36px", "40px"],
-  "3xl": ["30px", "34px"],
-  "2xl": ["24px", "32px"],
-  xl: ["20px", "28px"],
-  lg: ["18px", "24px"],
-  base: ["16px", "22px"],
-  sm: ["14px", "20px"],
-  xs: ["12px", "18px"]
-};
-var colors2 = Object.keys(colors_default).reduce(
-  (acc, color) => {
-    const shades = colors_default[color];
-    Object.entries(shades).forEach(([shade, hex]) => {
-      acc[color + "-" + shade] = hex;
-    });
-    return acc;
-  },
-  {}
-);
-var projectRoot = path2.resolve(".");
-function getContentDependencies(path4) {
-  const fileEndings = [
-    "html",
-    "js",
-    "ts",
-    "jsx",
-    "tsx",
-    "vue",
-    "astro",
-    "svelte",
-    "mdx"
-  ].join(",");
-  const dirCandidates = [
-    "components",
-    "pages",
-    "layouts",
-    "helpers",
-    "stories",
-    "dist",
-    "src"
-  ];
-  const fileCandidates = [
-    // We also need to check the Formkit config to not
-    // purge classes away that are only used there.
-    // This _would_ offer Formkit support, if any project
-    // decides to use it. We won't support any other form
-    // framework for the time being, as this is meant to
-    // be otherwise framework-agnostic.
-    "/formkit.config.ts"
-  ];
-  return [
-    `./*.{${fileEndings}`,
-    ...dirCandidates.map((d) => `${path4}/${d}`).filter((d) => fs.existsSync(d)).map((d) => `${d}/**/*.{${fileEndings}}`),
-    ...fileCandidates.map((f) => `${path4}/${f}`).filter((f) => fs.existsSync(f))
-  ];
-}
-var config = {
-  content: getContentDependencies(projectRoot),
-  safelist: ["h-0", "sbdocs"],
-  plugins: [
-    /**
-     * Various additional variants
-     */
-    plugin(function({ addVariant }) {
-      addVariant(
-        "mobile-only",
-        "@media screen and (max-width: theme('screens.md'))"
-      );
-      addVariant("not-last", "&:not(:last-child)");
-      addVariant("not-first", "&:not(:first-child)");
-    }),
-    plugin(function({ matchUtilities, theme }) {
-      matchUtilities(
-        {
-          "animation-rotation": (value) => ({
-            "--animation-rotation": value
-          })
-        },
-        {
-          values: theme("rotate"),
-          type: "any"
-        }
-      );
-      matchUtilities(
-        {
-          "animation-duration": (value) => ({
-            "--animation-duration": value
-          })
-        },
-        {
-          values: theme("transitionDuration"),
-          type: "any"
-        }
-      );
-      matchUtilities(
-        {
-          content: (content) => {
-            return {
-              // `/ ""` acts as an alt text for the `content`, which is then read by screen readers instead.
-              // If empty, the content will be ignored. See https://developer.mozilla.org/en-US/docs/Web/CSS/content
-              // Defining an array here will create two CSS content properties, where the first one is the fallback
-              // for browsers that don't support the syntax with alt text.
-              content: [content, `${content} / ""`]
-            };
-          }
-        },
-        {
-          values: theme("customContent")
-        }
-      );
-    })
-  ],
-  corePlugins: {
-    textOpacity: false,
-    container: false,
-    // Disabled because we have our own implementation that adds a fallback.
-    content: false
-  },
-  theme: {
-    customContent,
-    screens: {
-      sm: "480px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1210px",
-      xxl: "1920px"
-    },
-    spacing: {
-      220: "220px",
-      140: "140px",
-      120: "120px",
-      100: "100px",
-      90: "90px",
-      80: "80px",
-      70: "70px",
-      60: "60px",
-      50: "50px",
-      40: "40px",
-      35: "35px",
-      30: "30px",
-      25: "25px",
-      20: "20px",
-      15: "15px",
-      10: "10px",
-      8: "8px",
-      6: "6px",
-      5: "5px",
-      3: "3px",
-      2: "2px",
-      1: "1px",
-      0: "0px",
-      "sticky-top": "var(--base-sticky-top)"
-    },
-    borderWidth: {
-      DEFAULT: "1px",
-      0: "0",
-      2: "2px",
-      3: "3px",
-      4: "4px"
-    },
-    maxWidth: {
-      reduced: "970px",
-      // @todo: Consolidate sizing with container, max-width and other layout classes.
-      prose: "836px",
-      box: "610px",
-      fit: "fit-content"
-    },
-    lineHeight: {
-      none: "1",
-      tight: "1.2",
-      snug: "1.3",
-      normal: "1.4"
-    },
-    fontSize,
-    fontFamily: {
-      sans: [
-        "Inter",
-        "Inter Fallback",
-        "Helvetica Neue",
-        "Helvetica",
-        "Arial",
-        "sans-serif"
-      ]
-    },
-    fontWeight: {
-      normal: "400",
-      medium: "500",
-      bold: "700"
-    },
-    borderRadius: {
-      none: "0px",
-      full: "9999px",
-      large: "10px",
-      DEFAULT: "4px"
-    },
-    colors: {
-      // Monochrome colors.
-      white: "#ffffff",
-      current: "currentColor",
-      transparent: "transparent",
-      body: "black",
-      ...colors2,
-      // The dynamic CSS variable based primary color which is overriden by the Bettingen site at runtime.
-      primary: {
-        50: "rgb(var(--color-primary-50) / <alpha-value>)",
-        100: "rgb(var(--color-primary-100) / <alpha-value>)",
-        200: "rgb(var(--color-primary-200) / <alpha-value>)",
-        300: "rgb(var(--color-primary-300) / <alpha-value>)",
-        400: "rgb(var(--color-primary-400) / <alpha-value>)",
-        500: "rgb(var(--color-primary-500) / <alpha-value>)",
-        600: "rgb(var(--color-primary-600) / <alpha-value>)",
-        700: "rgb(var(--color-primary-700) / <alpha-value>)",
-        800: "rgb(var(--color-primary-800) / <alpha-value>)",
-        900: "rgb(var(--color-primary-900) / <alpha-value>)"
-      }
-    },
-    extend: {
-      zIndex,
-      gap: {
-        DEFAULT: "20px"
-      },
-      transitionDuration: {
-        250: "250ms"
-      },
-      transitionTimingFunction: {
-        swing: "cubic-bezier(0.56, 0.04, 0.25, 1)",
-        momentum: "cubic-bezier(1,-0.76,.46,1.01)"
-      },
-      boxShadow: {
-        "purple-600": "0 0 10px 0 #9156B4",
-        none: "0 0 0 0 #000"
-      },
-      keyframes: {
-        "jump-x": {
-          "0%": {
-            // eslint-disable-next-line sonarjs/no-duplicate-string
-            transform: "translateX(0)"
-          },
-          "20%": {
-            transform: "translateX(0.15em)"
-          },
-          "60%": {
-            transform: "translateX(-0.15em)"
-          },
-          "100%": {
-            transform: "translateX(0)"
-          }
-        },
-        "jump-y": {
-          "0%": {
-            transform: "translateY(0)"
-          },
-          "20%": {
-            transform: "translateY(0.15em)"
-          },
-          "60%": {
-            transform: "translateY(-0.15em)"
-          },
-          "100%": {
-            transform: "translateY(0)"
-          }
-        },
-        "jump-x-reverse": {
-          "0%": {
-            transform: "translateX(0)"
-          },
-          "20%": {
-            transform: "translateX(-0.15em)"
-          },
-          "60%": {
-            transform: "translateX(0.15em)"
-          },
-          "100%": {
-            transform: "translateX(0)"
-          }
-        },
-        "jump-xy": {
-          "0%": {
-            transform: "translate(0, 0)"
-          },
-          "20%": {
-            transform: "translate(0.15em, -0.15em)"
-          },
-          "60%": {
-            transform: "translate(-0.1em, 0.1em)"
-          },
-          "100%": {
-            transform: "translate(0, 0)"
-          }
-        },
-        "jump-scale": {
-          "0%": {
-            transform: "scale(1)"
-          },
-          "20%": {
-            transform: "scale(1.3)"
-          },
-          "60%": {
-            transform: "scale(0.9)"
-          },
-          "100%": {
-            transform: "scale(1)"
-          }
-        },
-        wiggle: {
-          "0%": {
-            // eslint-disable-next-line sonarjs/no-duplicate-string
-            transform: "rotate(0deg)"
-          },
-          "20%": {
-            transform: "rotate(var(--animation-rotation, 15deg))"
-          },
-          "40%": {
-            transform: "rotate(calc(-1 * var(--animation-rotation, 15deg)))"
-          },
-          "60%": {
-            transform: "rotate(var(--animation-rotation, 15deg))"
-          },
-          "80%": {
-            transform: "rotate(calc(-1 * var(--animation-rotation, 15deg)))"
-          },
-          "100%": {
-            transform: "rotate(0deg)"
-          }
-        },
-        rotate: {
-          from: {
-            transform: "rotate(0deg)"
-          },
-          to: {
-            transform: "rotate(var(--animation-rotation, 360deg))"
-          }
-        }
-      },
-      animation: {
-        "jump-x": `jump-x var(--animation-duration, 0.4s) ease-in-out`,
-        "jump-y": `jump-y var(--animation-duration, 0.5s) ease-in-out`,
-        "jump-scale": `jump-scale var(--animation-duration, 0.5s) ease-in-out`,
-        "jump-x-reverse": "jump-x-reverse var(--animation-duration, 0.5s) ease-in-out",
-        "jump-xy": "jump-xy var(--animation-duration, 0.5s) ease-in-out",
-        wiggle: "wiggle var(--animation-duration, 0.5s) linear",
-        rotate: "rotate var(--animation-duration, 0.5s) ease-in-out",
-        "rotate-infinite": "rotate var(--animation-duration, 0.5s) linear infinite"
-      }
-    }
-  }
-};
-var tailwind_config_default = config;
-
 // src/index.ts
 import postcss from "postcss";
 import unpluginIcons from "unplugin-icons";
@@ -3770,14 +3319,14 @@ try {
   dirname2 = __dirname;
 } catch (_) {
   const filename = fileURLToPath2(import.meta.url);
-  dirname2 = path3.dirname(filename);
+  dirname2 = path2.dirname(filename);
 }
 var MODULE_PATH = dirname2;
 var MODULE_ALIAS = /(['"(])@kanton-basel-stadt\/designsystem/g;
 var ICON_PATH_ALIAS = /(['"(])@kanton-basel-stadt\/designsystem\/icons\/symbol/g;
 var ICON_PATH = "~icons/symbol";
-var ASSETS_PATH = path3.resolve(`${dirname2}/assets/`);
-var CONFIGS_PATH = path3.resolve(`${dirname2}/configs/`);
+var ASSETS_PATH = path2.resolve(`${dirname2}/assets/`);
+var CONFIGS_PATH = path2.resolve(`${dirname2}/configs/`);
 var unpluginIconsConfig = {
   customCollections: {
     symbol: FileSystemIconLoader(`${ASSETS_PATH}/symbols`)
@@ -3818,7 +3367,7 @@ var unpluginFactory = (options, meta) => {
             return { loader: "copy" };
           });
           build.onLoad({ filter: /\.css$/i }, async (args) => {
-            const contents = transform(fs2.readFileSync(args.path, "utf-8"));
+            const contents = transform(fs.readFileSync(args.path, "utf-8"));
             const postcssImport = require_postcss_import();
             const postcssMixins = __require("postcss-mixins");
             const tailwindNesting = __require("tailwindcss/nesting");
@@ -3902,7 +3451,7 @@ var unpluginFactory = (options, meta) => {
             }),
             url({
               url: "copy",
-              basePath: path3.resolve(`${ASSETS_PATH}/../../../../`),
+              basePath: path2.resolve(`${ASSETS_PATH}/../../../../`),
               assetsPath: options.tailwindOptions?.targetDir || "dist",
               useHash: true,
               maxSize: Number.POSITIVE_INFINITY
@@ -3918,11 +3467,11 @@ var unpluginFactory = (options, meta) => {
         }
       },
       vite: {
-        config(config2) {
-          if (!config2.css) {
-            config2.css = {};
+        config(config) {
+          if (!config.css) {
+            config.css = {};
           }
-          config2.css.postcss = CONFIGS_PATH;
+          config.css.postcss = CONFIGS_PATH;
         }
       }
     }
