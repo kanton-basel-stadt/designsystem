@@ -2,7 +2,7 @@ import {
   __commonJS,
   __require,
   tailwind_config_default
-} from "./chunk-3GKKLDEJ.js";
+} from "./chunk-VI5LTKKI.js";
 
 // node_modules/postcss-import/lib/join-media.js
 var require_join_media = __commonJS({

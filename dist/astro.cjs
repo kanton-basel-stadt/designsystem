@@ -3500,6 +3500,7 @@ function getContentDependencies(path4) {
 var config = {
   content: getContentDependencies(projectRoot),
   safelist: ["h-0"],
+  blocklist: [],
   plugins: [
     /**
      * Various additional variants

@@ -109,6 +109,7 @@ function getContentDependencies(path: string) {
 const config: Config = {
   content: getContentDependencies(projectRoot),
   safelist: ['h-0'],
+  blocklist: [],
   plugins: [
     /**
      * Various additional variants
