@@ -45,6 +45,27 @@ For ESBuild, install
 
 ### Setup depending on your build tool of choice
 
+#### TypeScript support
+
+To add proper type support for your framework of choice, you may also need to add TypeScript types to your tsconfig:
+
+For example, to add types to React, you need to add the following:
+
+```
+// tsconfig.json
+{
+  "compilerOptions": {
+    "types": [
+      "@kanton-basel-stadt/designsystem/types/react",
+    ]
+  }
+}
+```
+
+There are types for Astro, Preact, Qwik, React, Svelte, Svelte3, Svelte4, Vue 2.7, Vue3+ and Web components.
+
+####
+
 <details>
 <summary>Vite</summary><br>
 
