@@ -4,6 +4,6 @@
   }
 
   .fieldset-legend {
-    @apply text-2xl font-bold mb-20;
+    @apply text-2xl font-bold mb-20 float-left w-full;
   }
 }
