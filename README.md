@@ -64,7 +64,7 @@ For example, to add types to React, you need to add the following:
 
 There are types for Astro, Preact, Qwik, React, Svelte, Svelte3, Svelte4, Vue 2.7, Vue3+ and Web components.
 
-####
+#### Adding the plugin to your build tool
 
 <details>
 <summary>Vite</summary><br>
