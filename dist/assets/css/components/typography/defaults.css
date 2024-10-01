@@ -37,17 +37,51 @@
 
   .ol,
   .ul {
-    @apply not-first:mt-20 ml-25;
+    @apply ml-0 not-first:mt-20;
 
-    & li {
-      @apply pb-20 ml-30 pl-[8px];
+    li {
+      @apply marker:text-gray-800 ml-25 mb-20;
+
+      .ul,
+      .ol {
+        @apply mt-10;
+      }
+    }
+  }
+
+  .is-small {
+    .ol,
+    .ul {
+      li {
+        @apply mb-5;
+      }
     }
   }
 
   .ol {
     @apply list-decimal;
+    li {
+      &:has(ol), &:has(ul) {
+        &::marker {
+          @apply text-[transparent];
+        }
+      }
+    }
   }
+
   .ul {
-    @apply list-disc;
+    li {
+      @apply list-none;
+
+      &:before {
+        @apply float-left ml-[-1em] content-dot;
+      }
+
+      &:has(ul), &:has(ol) {
+        &:before {
+          @apply content-[""];
+        }
+      }
+    }
   }
 }
