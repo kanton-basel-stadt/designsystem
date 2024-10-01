@@ -9,6 +9,7 @@
 
 /* Sections */
 @import './components/sections/table.css';
+@import './components/sections/pagination.css';
 
 /* Typography-related things. */
 @import './components/typography/defaults.css';

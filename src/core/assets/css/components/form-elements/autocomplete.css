@@ -1,4 +1,3 @@
-@import './input.css';
 @import './../icons/icon-animations.css';
 
 @tailwind components;
@@ -13,7 +12,31 @@
 
       /* Inner */
       & .autocomplete-inner {
-        @apply input h-auto p-0 absolute top-[26px] w-full my-10;
+        /* Manually setting the height ensures consistent look&feel for all browsers. */
+        @apply border border-blue-900 bg-white rounded p-10 text-base text-gray-900 transition-all ease-in-out duration-250 h-[46px];
+        @apply hover:border-blue-500;
+        @apply focus:outline-none focus:shadow-purple-600 focus:border-purple-600;
+        @apply focus-within:outline-none focus-within:shadow-purple-600 focus-within:border-purple-600;
+
+        @apply disabled:border-gray-300 disabled:bg-gray-300 disabled:text-gray-800 disabled:cursor-default;
+
+        &::placeholder {
+          @apply text-gray-500;
+        }
+
+        &:disabled::placeholder {
+          @apply text-gray-800;
+        }
+
+        &[type='date'] {
+          /* Fix issues on iOS Safari. */
+          @apply appearance-none;
+          &::-webkit-date-and-time-value {
+            @apply text-left;
+          }
+        }
+
+        @apply h-auto p-0 absolute top-[26px] w-full my-10;
 
         & .autocomplete-input {
           @apply w-full p-10 outline-0 bg-transparent;
