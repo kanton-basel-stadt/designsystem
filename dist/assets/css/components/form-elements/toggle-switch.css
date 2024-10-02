@@ -1,10 +1,18 @@
 .toggle-switch {
-  @apply relative flex gap-5 items-center cursor-pointer select-none;
+  @apply relative inline-flex gap-5 items-center cursor-pointer select-none;
   &:before {
     @apply block content-[''] border border-blue-900 bg-white w-[36px] h-20 relative rounded-large transition-all ease-in-out duration-250;
   }
   &:after {
     @apply block content-[''] bg-blue-900 w-[14px] h-[14px] absolute left-[3px] rounded-full transition-all ease-in-out duration-250;
+  }
+
+  &.is-reversed {
+    @apply flex-row-reverse;
+
+    &:after {
+      @apply left-auto right-[19px];
+    }
   }
 
   &:hover {
@@ -90,6 +98,12 @@
       @apply bg-white left-[19px];
     }
 
+    &.is-reversed {
+      &:after {
+        @apply left-auto right-[3px];
+      }
+    }
+
     &:hover {
       &:before {
         @apply border-blue-300;
@@ -172,6 +186,12 @@ input[role='switch'] {
 
     &:after {
       @apply bg-white left-[19px];
+    }
+
+    &.is-reversed {
+      &:after {
+        @apply left-auto right-[3px];
+      }
     }
 
     &:hover {
