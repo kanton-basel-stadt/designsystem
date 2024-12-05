@@ -17,15 +17,14 @@ import { createUnplugin } from 'unplugin'
 import type { Options } from './types'
 
 // PostCSS's dependencies
-// @ts-expect-error Because this _has_ to be a mjs file.
-import postcssConfig from './core/configs/postcss.config.mjs'
-import tailwindConfig from './core/configs/tailwind.config'
-import postcss from 'postcss'
+import postcssrc from 'postcss-load-config'
+import postcss, { Processor } from 'postcss'
 
 // Unplugin-icons dependencies
 import unpluginIcons from 'unplugin-icons'
 import type { Options as UnpluginIconsOptions } from 'unplugin-icons'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 // CJS vs TS stuff
 let dirname
@@ -61,6 +60,8 @@ let builtUnpluginIcons: UnpluginInstance<UnpluginIconsOptions | undefined, boole
 if ('default' in unpluginIcons)
   builtUnpluginIcons = unpluginIcons.default as UnpluginInstance<UnpluginIconsOptions | undefined, boolean> & { raw: { name: string } }
 
+const postcssConfig = postcssrc({}, CONFIGS_PATH)
+
 export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<UnpluginOptions> => {
   if (options === undefined)
     options = {}
@@ -92,9 +93,7 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
     {
       name: '@kanton-basel-stadt/designsystem/postcss-tailwind',
       esbuild: {
-        setup(build) {
-          build.onTransform
-
+        async setup(build) {
           build.onLoad({ filter: /\.woff2?$/i }, () => {
             return { loader: 'copy' }
           })
@@ -102,28 +101,9 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
           build.onLoad({ filter: /\.css$/i }, async (args) => {
             const contents = transform(fs.readFileSync(args.path, 'utf-8'))
 
-            const postcssImport = require('postcss-import')
-            const postcssMixins = require('postcss-mixins')
-            const tailwindNesting = require('tailwindcss/nesting')
-            const tailwindcss = require('tailwindcss')
-            const postcssHexRgba = require('postcss-hexrgba')
-            const cssnano = require('cssnano')
-
-            const postcssInstance = postcss([
-              postcssImport(),
-              postcssMixins(),
-              tailwindNesting(),
-              tailwindcss({
-                config: tailwindConfig,
-              }),
-              postcssHexRgba({
-                colorFunctionNotation: 'modern',
-                transformToBareValue: true,
-              }),
-              cssnano({
-                preset: 'default',
-              }),
-            ])
+            const postcss = require('postcss')
+            const loadedPostcss = (await postcssConfig)
+            const postcssInstance = postcss(loadedPostcss.plugins)
 
             const transformed = await postcssInstance.process(contents, {
               from: args.path,
@@ -139,30 +119,41 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
       },
 
       webpack(compiler) {
-        // Using `require` to avoid having the plugin as a hard dependency of this unplugin.
-        const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+        compiler.hooks.beforeRun.tapPromise('@kanton-basel-stadt/designsystem', async (params) => {
+          // Using `require` to avoid having the plugin as a hard dependency of this unplugin.
+          const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-        // For webpack, we only need to register the appropriate loaders.
-        if (compiler.options.mode === 'production') {
-          new MiniCssExtractPlugin({
-            filename: 'app.css',
-          }).apply(compiler)
-        }
+          // For webpack, we only need to register the appropriate loaders.
+          if (compiler.options.mode === 'production') {
+            new MiniCssExtractPlugin({
+              filename: 'app.css',
+            }).apply(params)
+          }
 
-        compiler.options.module.rules.unshift({
-          test(value) {
-            return value.endsWith('.css')
-          },
-          use: [
-            compiler.options.mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
-            'css-loader',
-            {
-              loader: 'postcss-loader',
-              options: {
-                postcssOptions: postcssConfig,
-              },
+          const postcssConfigLoaded = await postcssConfig
+
+          params.options.module.rules.unshift({
+            test(value) {
+              return value.endsWith('.css')
             },
-          ],
+            use: [
+              params.options.mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+              {
+                loader: 'css-loader',
+                options: {
+                  url: true,
+                }
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  postcssOptions: {
+                    plugins: postcssConfigLoaded.plugins
+                  }
+                },
+              },
+            ],
+          })
         })
       },
 
@@ -174,39 +165,21 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
           if (!rollupOptions.plugins)
             rollupOptions.plugins = []
 
-          const postcssImport = require('postcss-import')
-          const postcssMixins = require('postcss-mixins')
-          const tailwindNesting = require('tailwindcss/nesting')
-          const tailwindcss = require('tailwindcss')
-          const postcssHexRgba = require('postcss-hexrgba')
-          const cssnano = require('cssnano')
           const url = require('postcss-url')
 
           const plugins = [
-            postcssImport(),
-            postcssMixins(),
-            tailwindNesting(),
-            tailwindcss({
-              config: tailwindConfig,
-            }),
-            postcssHexRgba({
-              colorFunctionNotation: 'modern',
-              transformToBareValue: true,
-            }),
-            cssnano({
-              preset: 'default',
-            }),
+            ...(await postcssConfig).plugins,
             url({
-              url: 'copy',
-              basePath: path.resolve(`${ASSETS_PATH}/../../../../`),
-              assetsPath: options.tailwindOptions?.targetDir || 'dist',
-              useHash: true,
-              maxSize: Number.POSITIVE_INFINITY,
+              targets: [
+                { src: ASSETS_PATH, dest: options.tailwindOptions?.targetDir || 'dist' }
+              ]
             }),
           ]
 
           if (Array.isArray(rollupOptions.plugins)) {
             rollupOptions.plugins.unshift(postcss({
+              extract: true,
+              modules: false,
               to: options.tailwindOptions?.targetDir || 'dist',
               plugins,
             }))

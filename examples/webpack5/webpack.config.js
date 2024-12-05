@@ -1,5 +1,7 @@
 const path = require('node:path')
 
+const kantonbs = require('@kanton-basel-stadt/designsystem/webpack').default({ /* options */ })
+
 module.exports = {
   mode: 'production',
   entry: [
@@ -10,6 +12,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
-    require('@kanton-basel-stadt/designsystem/webpack').default({ /* options */ }),
+    kantonbs,
   ],
 }

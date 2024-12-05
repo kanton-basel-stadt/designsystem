@@ -1,8 +1,17 @@
 # @kanton-basel-stadt/designsystem
 
-## Purpose
+## Purpose and idea
 
-This unplugin (based on unplugin-starter) installs both icons and CSS for the WebBS design system.
+This Unplugin aims to get developers started quickly with developing frontend components and installs both icons and 
+CSS for the WebBS design system..
+
+Since the Unplugin only offers all the CSS, the markup needs to be built separately. **This is intentional.** Since 
+frameworks such as Vue, Svelte, React, Twig, or Blade differ wildly in terms of template syntax, providing a standardised 
+way of including components is next to impossible. We, therefore, settled on providing the CSS code and all assets 
+necessary to create components but not the components themselves. The markup for the components can be found in Storybook.
+
+The Unplugin provides all the necessary code to create a website with the look and feel of www.bs.ch. It's based 
+on [Tailwind](https://tailwindcss.com).
 
 ## Installation and setup
 
@@ -49,14 +58,13 @@ For ESBuild, install
 
 To add proper type support for your framework of choice, you may also need to add TypeScript types to your tsconfig:
 
-For example, to add types to React, you need to add the following:
+For example, to add types to React, you need to add the following to your `tsconfig.json`:
 
-```
-// tsconfig.json
+```json
 {
   "compilerOptions": {
     "types": [
-      "@kanton-basel-stadt/designsystem/types/react",
+      "@kanton-basel-stadt/designsystem/types/react"
     ]
   }
 }
@@ -265,7 +273,7 @@ this plugin apply, but they are set to sensible defaults in order to work correc
 Use the following code snippets to include the icon `pen`. All other icons can be found in `src/core/assets/symbols/`
 of this repository.
 
-> TODO #01: A full list of icons will be published in Storybook, so people don't have to dig into the source code of this repo.
+Please see [Storybook](https://kanton-basel-stadt.github.io/storybook/?path=/story/6-components-icons-icon--default) for a detailed list of all icons.
 
 The following examples are what is implemented in the current examples. Since unplugin-icons also offers support for
 various frontend frameworks, the `compiler` option may need to be different from the default configuration. For that,
@@ -479,10 +487,6 @@ HTML elements. For that, please consult the official [Tailwind documentation](ht
 Storybook and the Tailwind config of this repository. Please keep in mind that Storybook is currently not up to date with 
 the latest implementations, especially when it comes to icons. They may need some adjustment.
 
-
-
-> TODO #02: A Tailwind config viewer will be implemented in Storybook, so people don't have to dig into the source code of this repo.
-
 ## Development
 
 To create a new release (i.e. after you added changes) execute the following:
@@ -505,7 +509,6 @@ Please feel free to also submit pull requests and/or issues.
 > TODO #03: Add a sensible build/test suite to work with GitHub actions, and define release management.
 > TODO #04: Add issue/PR templates.
 > TODO #05: Add contributors wiki.
-> TODO #06: Update Storybook to be up-to-date and exhaustive.
 
 ## Contributing
 

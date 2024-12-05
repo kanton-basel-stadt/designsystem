@@ -10,5 +10,8 @@
     "@kanton-basel-stadt/designsystem": "github:kanton-basel-stadt/designsystem",
     "rollup": "^4.14.1",
     "rollup-plugin-postcss": "^4.0.2"
+  },
+  "dependencies": {
+    "rollup-plugin-copy": "^3.5.0"
   }
 }

@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Inter';
   src:
-    url(./../../../assets/fonts/common-characters/Inter-Regular.woff2)
+    url(@kanton-basel-stadt/designsystem/assets/fonts/common-characters/Inter-Regular.woff2)
       format('woff2'),
-    url(./../../../assets/fonts/common-characters/Inter-Regular.woff)
+    url(@kanton-basel-stadt/designsystem/assets/fonts/common-characters/Inter-Regular.woff)
       format('woff');
   font-weight: 400;
   font-style: normal;
@@ -13,9 +13,9 @@
 @font-face {
   font-family: 'Inter';
   src:
-    url(./../../../assets/fonts/common-characters/Inter-Medium.woff2)
+    url(@kanton-basel-stadt/designsystem/assets/fonts/common-characters/Inter-Medium.woff2)
       format('woff2'),
-    url(./../../../assets/fonts/common-characters/Inter-Medium.woff)
+    url(@kanton-basel-stadt/designsystem/assets/fonts/common-characters/Inter-Medium.woff)
       format('woff');
   font-weight: 500;
   font-style: normal;
@@ -25,9 +25,9 @@
 @font-face {
   font-family: 'Inter';
   src:
-    url(./../../../assets/fonts/common-characters/Inter-Bold.woff2)
+    url(@kanton-basel-stadt/designsystem/assets/fonts/common-characters/Inter-Bold.woff2)
       format('woff2'),
-    url(./../../../assets/fonts/common-characters/Inter-Bold.woff)
+    url(@kanton-basel-stadt/designsystem/assets/fonts/common-characters/Inter-Bold.woff)
       format('woff');
   font-weight: 700;
   font-style: normal;
@@ -37,9 +37,9 @@
 @font-face {
   font-family: 'Inter Fallback';
   src:
-    url(./../../../assets/fonts/fallback-characters/Inter-Regular-Fallback.woff2)
+    url(@kanton-basel-stadt/designsystem/assets/fonts/fallback-characters/Inter-Regular-Fallback.woff2)
       format('woff2'),
-    url(./../../../assets/fonts/fallback-characters/Inter-Regular-Fallback.woff)
+    url(@kanton-basel-stadt/designsystem/assets/fonts/fallback-characters/Inter-Regular-Fallback.woff)
       format('woff');
   font-weight: 400;
   font-style: normal;
@@ -48,9 +48,9 @@
 @font-face {
   font-family: 'Inter Fallback';
   src:
-    url(./../../../assets/fonts/fallback-characters/Inter-Medium-Fallback.woff2)
+    url(@kanton-basel-stadt/designsystem/assets/fonts/fallback-characters/Inter-Medium-Fallback.woff2)
       format('woff2'),
-    url(./../../../assets/fonts/fallback-characters/Inter-Medium-Fallback.woff)
+    url(@kanton-basel-stadt/designsystem/assets/fonts/fallback-characters/Inter-Medium-Fallback.woff)
       format('woff');
   font-weight: 500;
   font-style: normal;
@@ -59,9 +59,9 @@
 @font-face {
   font-family: 'Inter Fallback';
   src:
-    url(./../../../assets/fonts/fallback-characters/Inter-Bold-Fallback.woff2)
+    url(@kanton-basel-stadt/designsystem/assets/fonts/fallback-characters/Inter-Bold-Fallback.woff2)
       format('woff2'),
-    url(./../../../assets/fonts/fallback-characters/Inter-Bold-Fallback.woff)
+    url(@kanton-basel-stadt/designsystem/assets/fonts/fallback-characters/Inter-Bold-Fallback.woff)
       format('woff');
   font-weight: 700;
   font-style: normal;

@@ -1,5 +1,5 @@
 @layer components {
-  /* There are several button types: weak, strong, action, and super. For the sake of simplicity, "weak" is the default. */
+  /* There are several button types: weak, strong, action, super, success and failure. For the sake of simplicity, "weak" is the default. */
   /* For each button type (except "action" and "super"), there are two size variations: base and sm. base is the default. */
   /* For each button type and each size, there are different states. Each state is implemented with pseudo classes. */
   /* Buttons may have icons on their left, right, be icon only or have no icon at all. These icons are placed both in the DOM via markup and with classes. */
@@ -87,6 +87,18 @@
     }
   }
 
+  .button.is-success {
+    --button-text: theme(colors.green-600);
+    --button-bg: white;
+    --button-border: theme(colors.green-600);
+  }
+
+  .button.is-failure {
+    --button-text: theme(colors.red-700);
+    --button-bg: white;
+    --button-border: theme(colors.red-700);
+  }
+
   .button.is-inverted {
     --button-text: theme(colors.blue-900);
     --button-bg: white;
@@ -128,7 +140,7 @@
       @apply absolute text-center left-0 w-full h-full flex items-center justify-center text-[1.5em] content-empty;
       background-color: var(--button-text);
       /* Use the loading spinner as a mask. */
-      mask: url('./../../../icons/loader.svg') no-repeat 50% 50%;
+      mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><style>@keyframes spinner_xe7Q{100%{r:3px}93.75%{r:3px}46.875%{r:.2px}}.spinner_b2T7{animation:spinner_xe7Q .8s linear infinite}</style><circle cx="4" cy="12" r="3" fill="currentColor" class="spinner_b2T7"/><circle cx="12" cy="12" r="3" fill="currentColor" class="spinner_b2T7" style="animation-delay:-.65s"/><circle cx="20" cy="12" r="3" fill="currentColor" class="spinner_b2T7" style="animation-delay:-.5s"/></svg>') no-repeat 50% 50%;
     }
   }
 

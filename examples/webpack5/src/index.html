@@ -2,11 +2,142 @@
 <html>
 <head>
     <title>@kantonbs/designsystem Webpack5 example</title>
-    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="index.css">
     <script src="main.js"></script>
 </head>
 <body>
-    <h1 class="font-bold text-4xl">Hello, World!</h1>
-    <icon-symbol-pen />
+<div class="min-h-screen flex flex-col">
+    <!-- HEADER -->
+
+    <div
+        class="border-b border-b-gray-400 bg-white transition ease-in-out duration-250 z-app-top will-change-transform top-0 sticky">
+        <div>
+            <header class="page-header grid items-center relative container is-wide"><h1 class="sr-only">Hauptnavigation</h1>
+                <div class="flex items-center grid-area-l relative z-30"><a
+                    class="nuxt-link-exact-active inline-block hover:opacity-80" href="/">
+                    <div class="flex whitespace-nowrap leading-none relative text-base lg:text-lg xl:text-2xl">
+                        <icon-symbol-baselstab aria-hidden="true" class="[&>svg]:mt-[0.18em] [&>svg]:text-[0.59em] [&>svg]:w-[1em] [&>svg]:h-[1.7em]"></icon-symbol-baselstab>
+                        <span class="h-[1.2083em] ml-[0.3em] pl-[0.25em] leading-[1.2em] border-l border-gray-900 font-bold"><span
+                            class="sr-only">Herausgeber: </span> Kanton Basel-Stadt </span></div>
+                    <span class="sr-only"> (Dieser Link führt zur Startseite) </span></a></div>
+                <div class="grid-area-m flex gap-10 justify-end">
+                    <div class="flex flex-row gap-10 justify-end items-center absolute top-0 bg-white pt-60 pb-[14px] inset-x-0 md:!flex w-auto px-15 z-20 md:static md:size-auto md:p-0 md:overflow-visible"
+                         style="display:none;">
+                        <div class="md:relative">
+                            <button aria-controls="language-switcher-list" aria-expanded="false"
+                                    aria-label="Verfügbare Sprachen anzeigen. Aktuelle Sprache ist Deutsch" class="button is-sm is-dropdown"
+                                    id="language-switcher-button" type="button"><span
+                                class="uppercase inline-block min-w-20 text-left" title="Deutsch">de</span></button>
+                        </div>
+                        <div><a class="button is-sm is-link" href="https://ekonto.egov.bs.ch" target="_blank">ePortal <span
+                            class="sr-only">Externer Link, wird in einem neuen Tab oder Fenster geöffnet</span></a></div>
+                    </div>
+                    <a class="button is-icon-only is-sm relative z-30" href="/suche">
+                        <span class="sr-only">Öffnet die Suchseite und fokussiert automatisch das Suchfeld</span>
+                        <icon-symbol-search aria-hidden="true" class="[&>svg]:translate-y-1"/>
+                    </a>
+                    <button class="button is-sm md:!hidden relative z-20 !px-5 py-0 !items-center flex justify-center !gap-0">
+                        <icon-symbol-dots aria-hidden="true" class="[&>svg]:translate-y-1"/>
+                    </button>
+                </div>
+                <div class="grid-area-n flex justify-center relative z-10">
+                    <div
+                        class="text-toggle-switch text-lg lg:text-sm xl:text-xl transition md:transition-none duration-300 ease-swing will-change-transform">
+                        <nav aria-label="Hauptnavigation" class="text-toggle-switch-inner">
+                            <a href="/themen"><span>Themen</span></a>
+                            <a href="/organisation"><span>Organisation</span></a>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </div>
+
+    <!-- END HEADER -->
+
+    <main class="flex-1">
+        <h1 class="font-bold text-4xl">Hello, World!</h1>
+
+        <icon-symbol-pen></icon-symbol-pen>
+    </main>
+
+    <!-- FOOTER -->
+
+    <div>
+        <footer class="bg-gray-200 py-20 lg:py-40 print:hidden">
+            <h1 class="sr-only">Fusszeile</h1>
+            <div class="container flex flex-col gap-25">
+                <nav aria-label="Schnellzugriffs-Navigationsmenü">
+                    <ul class="flex flex-wrap gap-5 font-medium">
+                        <li><a class="button is-sm is-link"
+                               href="/themen/arbeit-steuern/stellenbesetzung-arbeitslosigkeit/offene-stellen/offene-stellen-beim-kanton">
+                            Kanton Basel-Stadt als Arbeitgeber</a></li>
+                        <li><a class="button is-sm is-link" href="https://map.geo.bs.ch/" target="_blank">Stadtplan
+                            &amp; Karte</a></li>
+                        <li><a class="button is-sm is-link" href="https://staatskalender.bs.ch" target="_blank">
+                            Kontakte &amp; Adressen</a></li>
+                        <li><a class="button is-sm is-link" href="https://www.gesetzessammlung.bs.ch/" target="_blank">
+                            Gesetzessammlung</a></li>
+                        <li><a class="button is-sm is-link" href="https://statistik.bs.ch" target="_blank">
+                            Statistiken</a></li>
+                        <li><a class="button is-sm is-link" href="https://www.basel.com/de" target="_blank">
+                            Tourismus</a></li>
+                        <li><a class="button is-sm is-link" href="/veranstaltungen">Veranstaltungen</a>
+                        </li>
+                        <li><a class="button is-sm is-link" href="/publikationen">Publikationen</a></li>
+                        <li><a class="button is-sm is-link" href="/medien/medienmitteilungen">Medien</a>
+                        </li>
+                        <li><a class="button is-sm is-link" href="https://kantonsblatt.ch" target="_blank">
+                            Kantonsblatt</a></li>
+                        <li><a class="button is-sm is-link" href="https://www.bs.ch/apps/multimedia-datenbank"
+                               target="_blank">Bilddatenbank des Kanton Basel-Stadt</a></li>
+                    </ul>
+                </nav>
+                <nav aria-label="Menü für Soziale Medien">
+                    <ul class="flex flex-wrap gap-5 font-medium">
+                        <li><a class="button is-sm is-icon-only" href="https://twitter.com/baselstadt" target="_blank">
+                            <icon-symbol-x-formerly-twitter aria-hidden="true"/>
+                            <span class="sr-only">Twitter <span class="sr-only">Externer Link, wird in einem neuen Tab oder Fenster geöffnet</span></span>
+                        </a></li>
+                        <li><a class="button is-sm is-icon-only" href="https://www.facebook.com/Rathaus.Basel" target="_blank">
+                            <icon-symbol-facebook aria-hidden="true"/>
+                            <span class="sr-only">Facebook <span class="sr-only">Externer Link, wird in einem neuen Tab oder Fenster geöffnet</span></span>
+                        </a></li>
+                        <li><a class="button is-sm is-icon-only" href="https://www.instagram.com/kantonbaselstadt/" target="_blank">
+                            <icon-symbol-instagram aria-hidden="true"/>
+                            <span class="sr-only">Instagram <span class="sr-only">Externer Link, wird in einem neuen Tab oder Fenster geöffnet</span></span>
+                        </a></li>
+                        <li><a class="button is-sm is-icon-only" href="https://www.youtube.com/user/kantonbaselstadt/videos"
+                               target="_blank">
+                            <icon-symbol-youtube aria-hidden="true"/>
+                            <span class="sr-only">Youtube <span class="sr-only">Externer Link, wird in einem neuen Tab oder Fenster geöffnet</span></span>
+                        </a></li>
+                        <li><a class="button is-sm is-icon-only" href="https://www.linkedin.com/company/kanton-basel-stadt/"
+                               target="_blank">
+                            <icon-symbol-linkedin aria-hidden="true"/>
+                            <span class="sr-only">Linkedin <span class="sr-only">Externer Link, wird in einem neuen Tab oder Fenster geöffnet</span></span>
+                        </a></li>
+                    </ul>
+                </nav>
+                <nav aria-label="Metadatenmenü">
+                    <ul class="flex flex-wrap font-medium gap-x-15 gap-y-10">
+                        <li><a
+                            class="nuxt-link-exact-active link text-sm underline decoration-white underline-offset-4 hover:decoration-blue-700"
+                            href="/">Startseite</a></li>
+                        <li><a class="link text-sm underline decoration-white underline-offset-4 hover:decoration-blue-700"
+                               href="/datenschutzerklaerung">Datenschutz</a></li>
+                        <li><a class="link text-sm underline decoration-white underline-offset-4 hover:decoration-blue-700"
+                               href="/impressum">Impressum</a></li>
+                        <li><a class="link text-sm underline decoration-white underline-offset-4 hover:decoration-blue-700"
+                               href="/taxonomy/term/1797">Ombudsstelle</a></li>
+                    </ul>
+                </nav>
+                <div class="font-bold text-blue-900 text-sm">© 2024 Basel-Stadt</div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- END FOOTER -->
+</div>
 </body>
 </html>

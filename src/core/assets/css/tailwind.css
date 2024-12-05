@@ -6,10 +6,12 @@
 /* Page frame */
 @import './components/frame/container.css';
 @import './components/frame/page-header.css';
+@import './components/frame/breadcrumbs.css';
 
 /* Sections */
 @import './components/sections/table.css';
 @import './components/sections/pagination.css';
+@import './components/sections/gallery.css';
 
 /* Typography-related things. */
 @import './components/typography/defaults.css';
@@ -36,6 +38,9 @@
 @import './components/form-elements/text-toggle-switch.css';
 @import './components/form-elements/toggle-switch.css';
 @import './components/form-elements/weekday-percentage-input.css';
+
+/* Search */
+@import './components/search/search-results.css';
 
 @tailwind base;
 @tailwind components;

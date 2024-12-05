@@ -41,6 +41,7 @@ import IconSymbolPin from '@kanton-basel-stadt/designsystem/icons/symbol/pin'
 import IconSymbolPlay from '@kanton-basel-stadt/designsystem/icons/symbol/play'
 import IconSymbolPrint from '@kanton-basel-stadt/designsystem/icons/symbol/print'
 import IconSymbolReload from '@kanton-basel-stadt/designsystem/icons/symbol/reload'
+import IconSymbolRemove from '@kanton-basel-stadt/designsystem/icons/symbol/remove'
 import IconSymbolSearch from '@kanton-basel-stadt/designsystem/icons/symbol/search'
 import IconSymbolSendMail from '@kanton-basel-stadt/designsystem/icons/symbol/send-mail'
 import IconSymbolShare from '@kanton-basel-stadt/designsystem/icons/symbol/share'
@@ -93,6 +94,7 @@ export default {
   IconSymbolPlay,
   IconSymbolPrint,
   IconSymbolReload,
+  IconSymbolRemove,
   IconSymbolSearch,
   IconSymbolSendMail,
   IconSymbolShare,
@@ -100,5 +102,5 @@ export default {
   IconSymbolTrash,
   IconSymbolXFormerlyTwitter,
   IconSymbolYoutube,
-  iconNames: ["add","alva","arrow-east-thin","arrow-east","arrow-north-east","arrow-south","arrow-west","attachment","baselstab","bettingenkelch","breadcrumb","calendar","card","caret","cart","check","circle-check","circle-error","circle-ko","circle-ok","circle-person","circle-warning","close","dots","download","easy-to-read","facebook","file","hands","hinweise_no_rounded","hinweise_rounded","instagram","linkedin","loader","location","mail","map-pin-coloured","pen","phone","pin","play","print","reload","search","send-mail","share","threads","trash","x_formerly_twitter","youtube"]
+  iconNames: ["add","alva","arrow-east-thin","arrow-east","arrow-north-east","arrow-south","arrow-west","attachment","baselstab","bettingenkelch","breadcrumb","calendar","card","caret","cart","check","circle-check","circle-error","circle-ko","circle-ok","circle-person","circle-warning","close","dots","download","easy-to-read","facebook","file","hands","hinweise_no_rounded","hinweise_rounded","instagram","linkedin","loader","location","mail","map-pin-coloured","pen","phone","pin","play","print","reload","remove","search","send-mail","share","threads","trash","x_formerly_twitter","youtube"]
 }
