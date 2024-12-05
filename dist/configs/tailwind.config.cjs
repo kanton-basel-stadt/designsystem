@@ -174,7 +174,7 @@ var fontSize = {
   sm: ["14px", "20px"],
   xs: ["12px", "18px"]
 };
-var colors2 = Object.keys(colors_default).reduce(
+var colorsShaded = Object.keys(colors_default).reduce(
   (acc, color) => {
     const shades = colors_default[color];
     Object.entries(shades).forEach(([shade, hex]) => {
@@ -367,7 +367,7 @@ var config = {
       current: "currentColor",
       transparent: "transparent",
       body: "black",
-      ...colors2,
+      ...colorsShaded,
       // The dynamic CSS variable based primary color which is overriden by the Bettingen site at runtime.
       primary: {
         50: "rgb(var(--color-primary-50) / <alpha-value>)",

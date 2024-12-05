@@ -20,7 +20,6 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/core/configs/colors.ts
 var colors_exports = {};
 __export(colors_exports, {
-  colors: () => colors,
   default: () => colors_default
 });
 module.exports = __toCommonJS(colors_exports);
@@ -124,7 +123,3 @@ var colors = {
   }
 };
 var colors_default = colors;
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
-  colors
-});

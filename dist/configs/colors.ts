@@ -105,8 +105,4 @@ const colors: Record<string, Record<number, string>> = {
   },
 }
 
-export {
-  colors
-}
-
 export default colors

@@ -101,6 +101,5 @@ var colors = {
 var colors_default = colors;
 
 export {
-  colors,
   colors_default
 };

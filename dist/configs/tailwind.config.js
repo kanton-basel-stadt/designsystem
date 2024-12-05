@@ -1,6 +1,6 @@
 import {
   colors_default
-} from "../chunk-GSDZ27FW.js";
+} from "../chunk-BDIIS5N2.js";
 import "../chunk-3RG5ZIWI.js";
 
 // src/core/configs/tailwind.config.ts
@@ -41,7 +41,7 @@ var fontSize = {
   sm: ["14px", "20px"],
   xs: ["12px", "18px"]
 };
-var colors = Object.keys(colors_default).reduce(
+var colorsShaded = Object.keys(colors_default).reduce(
   (acc, color) => {
     const shades = colors_default[color];
     Object.entries(shades).forEach(([shade, hex]) => {
@@ -234,7 +234,7 @@ var config = {
       current: "currentColor",
       transparent: "transparent",
       body: "black",
-      ...colors,
+      ...colorsShaded,
       // The dynamic CSS variable based primary color which is overriden by the Bettingen site at runtime.
       primary: {
         50: "rgb(var(--color-primary-50) / <alpha-value>)",

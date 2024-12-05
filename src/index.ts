@@ -18,13 +18,11 @@ import type { Options } from './types'
 
 // PostCSS's dependencies
 import postcssrc from 'postcss-load-config'
-import postcss, { Processor } from 'postcss'
 
 // Unplugin-icons dependencies
 import unpluginIcons from 'unplugin-icons'
 import type { Options as UnpluginIconsOptions } from 'unplugin-icons'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 // CJS vs TS stuff
 let dirname

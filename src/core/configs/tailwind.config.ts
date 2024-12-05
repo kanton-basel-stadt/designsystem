@@ -3,7 +3,7 @@ import { type Config } from 'tailwindcss'
 import path from 'node:path'
 import fs from 'node:fs'
 import plugin from 'tailwindcss/plugin.js'
-import COLORS from './colors'
+import colors from './colors.ts'
 
 const customContent: Record<string, string> = {
   'arrow-east': '"→"',
@@ -47,9 +47,9 @@ const fontSize: Record<string, [string, string]> = {
   xs: ['12px', '18px'],
 }
 
-const colors = Object.keys(COLORS).reduce<Record<string, string>>(
+const colorsShaded = Object.keys(colors).reduce<Record<string, string>>(
   (acc, color) => {
-    const shades = COLORS[color]
+    const shades = colors[color]
     Object.entries(shades).forEach(([shade, hex]) => {
       acc[color + '-' + shade] = hex
     })
@@ -257,7 +257,7 @@ const config: Config = {
       current: 'currentColor',
       transparent: 'transparent',
       body: 'black',
-      ...colors,
+      ...colorsShaded,
 
       // The dynamic CSS variable based primary color which is overriden by the Bettingen site at runtime.
       primary: {

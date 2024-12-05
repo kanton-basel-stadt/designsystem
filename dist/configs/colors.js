@@ -1,9 +1,7 @@
 import {
-  colors,
   colors_default
-} from "../chunk-GSDZ27FW.js";
+} from "../chunk-BDIIS5N2.js";
 import "../chunk-3RG5ZIWI.js";
 export {
-  colors,
   colors_default as default
 };
