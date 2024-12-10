@@ -1,6 +1,6 @@
 import {
   unpluginFactory
-} from "./chunk-XQRHIOLJ.js";
+} from "./chunk-KHGBD2EX.js";
 
 // src/webpack.ts
 import { createWebpackPlugin } from "unplugin";

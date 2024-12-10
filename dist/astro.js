@@ -1,6 +1,6 @@
 import {
   src_default
-} from "./chunk-XQRHIOLJ.js";
+} from "./chunk-KHGBD2EX.js";
 import "./chunk-3RG5ZIWI.js";
 
 // src/astro.ts

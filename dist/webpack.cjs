@@ -53,6 +53,7 @@ try {
   dirname = import_node_path.default.dirname(filename);
 }
 var ICON_PATH_ALIAS = "@kanton-basel-stadt/designsystem/icons/symbol";
+var ICON_PATH = "~icons/symbol";
 var ASSETS_PATH = import_node_path.default.resolve(`${dirname}/assets/`);
 var CONFIGS_PATH = import_node_path.default.resolve(`${dirname}/configs/`);
 var unpluginIconsConfig = {
@@ -78,6 +79,7 @@ var unpluginFactory = (options, meta) => {
   if (mergedUnpluginIconsConfig.compiler !== "web-components") {
     delete mergedUnpluginIconsConfig.webComponents;
   }
+  const unpluginIconsUsable = builtUnpluginIcons.raw(mergedUnpluginIconsConfig, meta);
   return [
     {
       name: "@kanton-basel-stadt/designsystem/transform-ids",
@@ -85,16 +87,23 @@ var unpluginFactory = (options, meta) => {
       transform,
       esbuild: {
         onLoadFilter: /\.(?!woff2?$)[^.]+$/i
-      },
-      // Necessary for Vite to pick up the alias during dep optimization.
-      resolveId(source) {
-        if (source.startsWith(ICON_PATH_ALIAS)) {
-          return source.replace(ICON_PATH_ALIAS, "~icons/symbol");
-        }
-        return null;
       }
     },
-    builtUnpluginIcons.raw(mergedUnpluginIconsConfig, meta),
+    {
+      ...unpluginIconsUsable,
+      resolveId(id) {
+        if (id.startsWith(ICON_PATH_ALIAS)) {
+          id = id.replace(ICON_PATH_ALIAS, ICON_PATH);
+        }
+        return unpluginIconsUsable.resolveId(id);
+      },
+      loadInclude(id) {
+        if (id.startsWith(ICON_PATH_ALIAS)) {
+          id = id.replace(ICON_PATH_ALIAS, ICON_PATH);
+        }
+        return unpluginIconsUsable.loadInclude(id);
+      }
+    },
     {
       name: "@kanton-basel-stadt/designsystem/postcss-tailwind",
       esbuild: {

@@ -10,7 +10,7 @@ function toPascalCase(input: string) {
   return input
     .replace(/_/g, ' ')
     .replace(/-/g, ' ')
-    .split(/\s+/)
+    .split(/[\s]+/)
     .filter(Boolean)
     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join('')

@@ -32,6 +32,7 @@ catch (_) {
 
 // All kinds of constants
 const ICON_PATH_ALIAS = '@kanton-basel-stadt/designsystem/icons/symbol'
+const ICON_PATH = '~icons/symbol'
 const ASSETS_PATH = path.resolve(`${dirname}/assets/`)
 const CONFIGS_PATH = path.resolve(`${dirname}/configs/`)
 
@@ -69,6 +70,8 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
     delete mergedUnpluginIconsConfig.webComponents
   }
 
+  const unpluginIconsUsable = builtUnpluginIcons.raw(mergedUnpluginIconsConfig, meta) as UnpluginOptions
+
   return [
     {
       name: '@kanton-basel-stadt/designsystem/transform-ids',
@@ -77,16 +80,26 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
       esbuild: {
         onLoadFilter: /\.(?!woff2?$)[^.]+$/i,
       },
-      // Necessary for Vite to pick up the alias during dep optimization.
-      resolveId(source) {
-        if (source.startsWith(ICON_PATH_ALIAS)) {
-          return source.replace(ICON_PATH_ALIAS, '~icons/symbol') // Will be picked up by unplugin-icons.
+    },
+    {
+      ...unpluginIconsUsable,
+      resolveId(id) {
+        if (id.startsWith(ICON_PATH_ALIAS)) {
+          id = id.replace(ICON_PATH_ALIAS, ICON_PATH)
         }
 
-        return null
+        // @ts-ignore
+        return unpluginIconsUsable.resolveId(id)
+      },
+      loadInclude(id) {
+        if (id.startsWith(ICON_PATH_ALIAS)) {
+          id = id.replace(ICON_PATH_ALIAS, ICON_PATH)
+        }
+
+        // @ts-ignore
+        return unpluginIconsUsable.loadInclude(id)
       }
     },
-    builtUnpluginIcons.raw(mergedUnpluginIconsConfig, meta) as UnpluginOptions,
     {
       name: '@kanton-basel-stadt/designsystem/postcss-tailwind',
       esbuild: {
