@@ -69,6 +69,9 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
     return code
       .replace(ICON_PATH_ALIAS_RE, `$1${ICON_PATH}`)
       .replace(MODULE_ALIAS, `$1${MODULE_PATH}`)
+      .replace(/dist\/dist/g, 'dist')
+      // This is purely for the docs, otherwise Storybook has the actual file paths in the code examples, which we don't want.
+      .replace(/@@kanton-basel-stadt/g, '@kanton-basel-stadt')
   }
 
   // If the selected icon compiler _isn't_ web-components, there's no need to specify config for it.
