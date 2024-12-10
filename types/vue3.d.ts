@@ -1,4 +1,4 @@
-declare module 'virtual:icons/*' {
+declare module 'virtual:@kanton-basel-stadt/designsystem/icons/symbol/*' {
   import type { FunctionalComponent, SVGAttributes } from 'vue'
 
   const component: FunctionalComponent<SVGAttributes>

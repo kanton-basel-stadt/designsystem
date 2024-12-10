@@ -1,4 +1,4 @@
-declare module 'virtual:icons/*' {
+declare module 'virtual:@kanton-basel-stadt/designsystem/icons/symbol/*' {
   import type { FunctionComponent, QwikIntrinsicElements } from '@builder.io/qwik'
 
   const Component: FunctionComponent<QwikIntrinsicElements['svg']>

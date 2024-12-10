@@ -1,7 +1,7 @@
-import { type Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss'
 
-import path from 'node:path'
 import fs from 'node:fs'
+import path from 'node:path'
 import plugin from 'tailwindcss/plugin.js'
 import colors from './colors.ts'
 
@@ -11,14 +11,14 @@ const customContent: Record<string, string> = {
   'arrow-north-east': '"↗"',
   'arrow-south': '"↓"',
   'underscore-long': '""',
-  cross: '"✗"',
-  plus: '""',
-  reload: '"↻"',
-  check: '"✓"',
+  'cross': '"✗"',
+  'plus': '""',
+  'reload': '"↻"',
+  'check': '"✓"',
   'caret-south': '"⌄"',
   'caret-north': '"⌃"',
-  dot: '"•"',
-  empty: '""',
+  'dot': '"•"',
+  'empty': '""',
 }
 
 // Automatically define z-index for global components.
@@ -40,18 +40,18 @@ const fontSize: Record<string, [string, string]> = {
   '4xl': ['36px', '40px'],
   '3xl': ['30px', '34px'],
   '2xl': ['24px', '32px'],
-  xl: ['20px', '28px'],
-  lg: ['18px', '24px'],
-  base: ['16px', '22px'],
-  sm: ['14px', '20px'],
-  xs: ['12px', '18px'],
+  'xl': ['20px', '28px'],
+  'lg': ['18px', '24px'],
+  'base': ['16px', '22px'],
+  'sm': ['14px', '20px'],
+  'xs': ['12px', '18px'],
 }
 
 const colorsShaded = Object.keys(colors).reduce<Record<string, string>>(
   (acc, color) => {
     const shades = colors[color]
     Object.entries(shades).forEach(([shade, hex]) => {
-      acc[color + '-' + shade] = hex
+      acc[`${color}-${shade}`] = hex
     })
     return acc
   },
@@ -114,16 +114,16 @@ const config: Config = {
     /**
      * Various additional variants
      */
-    plugin(function ({ addVariant }) {
+    plugin(({ addVariant }) => {
       addVariant(
         'mobile-only',
-        "@media screen and (max-width: theme('screens.md'))",
+        '@media screen and (max-width: theme(\'screens.md\'))',
       )
       addVariant('not-last', '&:not(:last-child)')
       addVariant('not-first', '&:not(:first-child)')
     }),
 
-    plugin(function ({ matchUtilities, theme }) {
+    plugin(({ matchUtilities, theme }) => {
       matchUtilities(
         {
           'animation-rotation': (value: string) => ({
@@ -184,29 +184,29 @@ const config: Config = {
       xxl: '1920px',
     },
     spacing: {
-      220: '220px',
-      140: '140px',
-      120: '120px',
-      100: '100px',
-      90: '90px',
-      80: '80px',
-      70: '70px',
-      60: '60px',
-      50: '50px',
-      40: '40px',
-      35: '35px',
-      30: '30px',
-      25: '25px',
-      20: '20px',
-      15: '15px',
-      10: '10px',
-      8: '8px',
-      6: '6px',
-      5: '5px',
-      3: '3px',
-      2: '2px',
-      1: '1px',
-      0: '0px',
+      '220': '220px',
+      '140': '140px',
+      '120': '120px',
+      '100': '100px',
+      '90': '90px',
+      '80': '80px',
+      '70': '70px',
+      '60': '60px',
+      '50': '50px',
+      '40': '40px',
+      '35': '35px',
+      '30': '30px',
+      '25': '25px',
+      '20': '20px',
+      '15': '15px',
+      '10': '10px',
+      '8': '8px',
+      '6': '6px',
+      '5': '5px',
+      '3': '3px',
+      '2': '2px',
+      '1': '1px',
+      '0': '0px',
       'sticky-top': 'var(--base-sticky-top)',
     },
     borderWidth: {
@@ -287,13 +287,12 @@ const config: Config = {
       },
       boxShadow: {
         'purple-600': '0 0 10px 0 #9156B4',
-        none: '0 0 0 0 #000',
+        'none': '0 0 0 0 #000',
       },
 
       keyframes: {
         'jump-x': {
           '0%': {
-            // eslint-disable-next-line sonarjs/no-duplicate-string
             transform: 'translateX(0)',
           },
           '20%': {
@@ -364,9 +363,8 @@ const config: Config = {
           },
         },
 
-        wiggle: {
+        'wiggle': {
           '0%': {
-            // eslint-disable-next-line sonarjs/no-duplicate-string
             transform: 'rotate(0deg)',
           },
           '20%': {
@@ -386,7 +384,7 @@ const config: Config = {
           },
         },
 
-        rotate: {
+        'rotate': {
           from: {
             transform: 'rotate(0deg)',
           },
@@ -403,8 +401,8 @@ const config: Config = {
         'jump-x-reverse':
           'jump-x-reverse var(--animation-duration, 0.5s) ease-in-out',
         'jump-xy': 'jump-xy var(--animation-duration, 0.5s) ease-in-out',
-        wiggle: 'wiggle var(--animation-duration, 0.5s) linear',
-        rotate: 'rotate var(--animation-duration, 0.5s) ease-in-out',
+        'wiggle': 'wiggle var(--animation-duration, 0.5s) linear',
+        'rotate': 'rotate var(--animation-duration, 0.5s) ease-in-out',
         'rotate-infinite':
           'rotate var(--animation-duration, 0.5s) linear infinite',
       },

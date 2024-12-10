@@ -36,12 +36,12 @@ module.exports = __toCommonJS(rollup_exports);
 var import_unplugin2 = require("unplugin");
 
 // src/index.ts
-var import_node_path = __toESM(require("path"), 1);
 var import_node_fs = __toESM(require("fs"), 1);
+var import_node_path = __toESM(require("path"), 1);
 var import_node_url = require("url");
 var import_lodash = __toESM(require("lodash.merge"), 1);
-var import_unplugin = require("unplugin");
 var import_postcss_load_config = __toESM(require("postcss-load-config"), 1);
+var import_unplugin = require("unplugin");
 var import_unplugin_icons = __toESM(require("unplugin-icons"), 1);
 var import_loaders = require("unplugin-icons/loaders");
 var import_meta = {};
@@ -54,7 +54,8 @@ try {
 }
 var MODULE_PATH = dirname;
 var MODULE_ALIAS = /(['"(])@kanton-basel-stadt\/designsystem/g;
-var ICON_PATH_ALIAS = /(['"(])@kanton-basel-stadt\/designsystem\/icons\/symbol/g;
+var ICON_PATH_ALIAS_RE = /(['"(])@kanton-basel-stadt\/designsystem\/icons\/symbol/g;
+var ICON_PATH_ALIAS = "@kanton-basel-stadt/designsystem/icons/symbol";
 var ICON_PATH = "~icons/symbol";
 var ASSETS_PATH = import_node_path.default.resolve(`${dirname}/assets/`);
 var CONFIGS_PATH = import_node_path.default.resolve(`${dirname}/configs/`);
@@ -75,11 +76,12 @@ var unpluginFactory = (options, meta) => {
   if (options === void 0)
     options = {};
   function transform(code) {
-    return code.replace(ICON_PATH_ALIAS, `$1${ICON_PATH}`).replace(MODULE_ALIAS, `$1${MODULE_PATH}`).replace(/dist\/dist/g, "dist").replace(/@@kanton-basel-stadt/g, "@kanton-basel-stadt");
+    return code.replace(ICON_PATH_ALIAS_RE, `$1${ICON_PATH}`).replace(MODULE_ALIAS, `$1${MODULE_PATH}`);
   }
   const mergedUnpluginIconsConfig = (0, import_lodash.default)(unpluginIconsConfig, options.iconOptions);
-  if (mergedUnpluginIconsConfig.compiler !== "web-components")
+  if (mergedUnpluginIconsConfig.compiler !== "web-components") {
     delete mergedUnpluginIconsConfig.webComponents;
+  }
   return [
     builtUnpluginIcons.raw(mergedUnpluginIconsConfig, meta),
     {
@@ -87,7 +89,19 @@ var unpluginFactory = (options, meta) => {
       enforce: "pre",
       transform,
       esbuild: {
-        onLoadFilter: /\.(?!woff|woff2$)[^.]+$/i
+        onLoadFilter: /\.(?!woff2?$)[^.]+$/i
+      },
+      // Necessary for Vite to pick up the alias during dep optimization.
+      vite: {
+        config() {
+          return {
+            resolve: {
+              alias: {
+                [ICON_PATH_ALIAS]: ICON_PATH
+              }
+            }
+          };
+        }
       }
     },
     {
@@ -172,11 +186,12 @@ var unpluginFactory = (options, meta) => {
         }
       },
       vite: {
-        config(config) {
-          if (!config.css) {
-            config.css = {};
-          }
-          config.css.postcss = CONFIGS_PATH;
+        config() {
+          return {
+            css: {
+              postcss: CONFIGS_PATH
+            }
+          };
         }
       }
     }

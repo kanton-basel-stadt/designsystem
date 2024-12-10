@@ -1,4 +1,4 @@
-declare module 'virtual:icons/*' {
+declare module 'virtual:@kanton-basel-stadt/designsystem/icons/symbol/*' {
   import type { JSX } from 'preact'
 
   const component: (props: JSX.SVGAttributes<SVGSVGElement>) => JSX.Element

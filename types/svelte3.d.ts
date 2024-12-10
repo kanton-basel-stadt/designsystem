@@ -1,4 +1,4 @@
-declare module 'virtual:icons/*' {
+declare module 'virtual:@kanton-basel-stadt/designsystem/icons/symbol/*' {
   export { SvelteComponentDev as default } from 'svelte/internal'
 }
 

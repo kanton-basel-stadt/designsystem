@@ -2,15 +2,15 @@
 
 ## Purpose and idea
 
-This Unplugin aims to get developers started quickly with developing frontend components and installs both icons and 
+This Unplugin aims to get developers started quickly with developing frontend components and installs both icons and
 CSS for the WebBS design system..
 
-Since the Unplugin only offers all the CSS, the markup needs to be built separately. **This is intentional.** Since 
-frameworks such as Vue, Svelte, React, Twig, or Blade differ wildly in terms of template syntax, providing a standardised 
-way of including components is next to impossible. We, therefore, settled on providing the CSS code and all assets 
+Since the Unplugin only offers all the CSS, the markup needs to be built separately. **This is intentional.** Since
+frameworks such as Vue, Svelte, React, Twig, or Blade differ wildly in terms of template syntax, providing a standardised
+way of including components is next to impossible. We, therefore, settled on providing the CSS code and all assets
 necessary to create components but not the components themselves. The markup for the components can be found in Storybook.
 
-The Unplugin provides all the necessary code to create a website with the look and feel of www.bs.ch. It's based 
+The Unplugin provides all the necessary code to create a website with the look and feel of www.bs.ch. It's based
 on [Tailwind](https://tailwindcss.com).
 
 ## Installation and setup
@@ -183,9 +183,9 @@ module.exports = {
 <summary>esbuild</summary><br>
 
 ```ts
+import Starter from '@kanton-basel-stadt/designsystem/esbuild'
 // esbuild.config.js
 import { build } from 'esbuild'
-import Starter from '@kanton-basel-stadt/designsystem/esbuild'
 
 build({
   plugins: [KantonBSDesignsystemPlugin()],
@@ -231,9 +231,9 @@ Example: Can be found in `examples/astro`.
 // vite.config.ts
 import { fileURLToPath, URL } from 'node:url'
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
 import KantonBSDesignsystemPlugin from '@kanton-basel-stadt/designsystem/vite'
+import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -256,7 +256,6 @@ export default defineConfig({
     }
   },
 })
-
 ```
 
 Example: Can be found in `examples/vue-vite`.
@@ -333,9 +332,9 @@ Example: Can be found in `examples/nuxt`.
 
 ### List of compilers
 
-To use icons with your framework of choice, you may need to specify a compiler. The unplugin defaults to web components, 
-which work with most non-framework related build tools, such as standalone Webpack or standalone Vite. However, if 
-you're using one of the following frameworks, you need to specify the compiler in the unplugin options with the following 
+To use icons with your framework of choice, you may need to specify a compiler. The unplugin defaults to web components,
+which work with most non-framework related build tools, such as standalone Webpack or standalone Vite. However, if
+you're using one of the following frameworks, you need to specify the compiler in the unplugin options with the following
 patterns:
 
 <details>
@@ -459,12 +458,12 @@ KantonBSDesignsystemPlugin({
 ```
 <br/></details>
 
-**Please consult the [documentation of unplugin-icons](https://github.com/unplugin/unplugin-icons) for further 
+**Please consult the [documentation of unplugin-icons](https://github.com/unplugin/unplugin-icons) for further
 information on types, etc.**
 
 ### I receive warnings that Vite cannot find a specific package. What should I do?
 
-Since the library rewrites imported icon paths to work with unplugin-icons, you may ignore these warnings. This is a 
+Since the library rewrites imported icon paths to work with unplugin-icons, you may ignore these warnings. This is a
 known issue, and we're working on a fix for that.
 
 ## How to use the CSS
@@ -484,7 +483,7 @@ what to do with it.
 
 If you want to simply use Tailwind as is with no additional CSS, you can do so by applying the desired classes to your
 HTML elements. For that, please consult the official [Tailwind documentation](https://tailwindcss.com/docs/installation),
-Storybook and the Tailwind config of this repository. Please keep in mind that Storybook is currently not up to date with 
+Storybook and the Tailwind config of this repository. Please keep in mind that Storybook is currently not up to date with
 the latest implementations, especially when it comes to icons. They may need some adjustment.
 
 ## Development
@@ -499,7 +498,7 @@ git commit -m "YOUR COMMIT MESSAGE HERE"
 git push -u origin main
 ```
 
-Adding the dist folder is currently necessary, since we don't yet have a 
+Adding the dist folder is currently necessary, since we don't yet have a
 strategy for either building and/or releasing to npmjs.org.
 
 Now, please tell users to update the package.

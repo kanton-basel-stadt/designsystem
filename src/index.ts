@@ -1,27 +1,26 @@
 /* We want to group them semantically. */
-/* eslint-disable import/order */
 
 /* We need to be able to use `require()` */
-/* eslint-disable ts/no-var-requires */
-/* eslint-disable ts/no-require-imports */
 
-// System dependencies
-import path from 'node:path'
-import fs from 'node:fs'
-import { fileURLToPath } from 'node:url'
-import merge from 'lodash.merge'
+/* eslint-disable ts/no-require-imports */
 
 // unplugin dependencies
 import type { UnpluginFactory, UnpluginInstance, UnpluginOptions } from 'unplugin'
-import { createUnplugin } from 'unplugin'
+import type { Options as UnpluginIconsOptions } from 'unplugin-icons'
 import type { Options } from './types'
+import fs from 'node:fs'
+
+// System dependencies
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import merge from 'lodash.merge'
 
 // PostCSS's dependencies
 import postcssrc from 'postcss-load-config'
 
+import { createUnplugin } from 'unplugin'
 // Unplugin-icons dependencies
 import unpluginIcons from 'unplugin-icons'
-import type { Options as UnpluginIconsOptions } from 'unplugin-icons'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 
 // CJS vs TS stuff
@@ -29,6 +28,7 @@ let dirname
 try {
   dirname = __dirname
 }
+// eslint-disable-next-line unused-imports/no-unused-vars
 catch (_) {
   const filename = fileURLToPath(import.meta.url)
   dirname = path.dirname(filename)
@@ -38,7 +38,8 @@ catch (_) {
 const MODULE_PATH = dirname
 const MODULE_ALIAS = /(['"(])@kanton-basel-stadt\/designsystem/g
 
-const ICON_PATH_ALIAS = /(['"(])@kanton-basel-stadt\/designsystem\/icons\/symbol/g
+const ICON_PATH_ALIAS_RE = /(['"(])@kanton-basel-stadt\/designsystem\/icons\/symbol/g
+const ICON_PATH_ALIAS = '@kanton-basel-stadt/designsystem/icons/symbol'
 const ICON_PATH = '~icons/symbol'
 
 const ASSETS_PATH = path.resolve(`${dirname}/assets/`)
@@ -66,17 +67,15 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
 
   function transform(code: string) {
     return code
-      .replace(ICON_PATH_ALIAS, `$1${ICON_PATH}`)
+      .replace(ICON_PATH_ALIAS_RE, `$1${ICON_PATH}`)
       .replace(MODULE_ALIAS, `$1${MODULE_PATH}`)
-      .replace(/dist\/dist/g, 'dist')
-      // This is purely for the docs, otherwise Storybook has the actual file paths in the code examples, which we don't want.
-      .replace(/@@kanton-basel-stadt/g, '@kanton-basel-stadt')
   }
 
   // If the selected icon compiler _isn't_ web-components, there's no need to specify config for it.
   const mergedUnpluginIconsConfig = merge(unpluginIconsConfig, options.iconOptions)
-  if (mergedUnpluginIconsConfig.compiler !== 'web-components')
+  if (mergedUnpluginIconsConfig.compiler !== 'web-components') {
     delete mergedUnpluginIconsConfig.webComponents
+  }
 
   return [
     builtUnpluginIcons.raw(mergedUnpluginIconsConfig, meta) as UnpluginOptions,
@@ -85,7 +84,19 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
       enforce: 'pre',
       transform,
       esbuild: {
-        onLoadFilter: /\.(?!woff|woff2$)[^.]+$/i,
+        onLoadFilter: /\.(?!woff2?$)[^.]+$/i,
+      },
+      // Necessary for Vite to pick up the alias during dep optimization.
+      vite: {
+        config() {
+          return {
+            resolve: {
+              alias: {
+                [ICON_PATH_ALIAS]: ICON_PATH,
+              },
+            },
+          }
+        },
       },
     },
     {
@@ -140,14 +151,14 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
                 loader: 'css-loader',
                 options: {
                   url: true,
-                }
+                },
               },
               {
                 loader: 'postcss-loader',
                 options: {
                   postcssOptions: {
-                    plugins: postcssConfigLoaded.plugins
-                  }
+                    plugins: postcssConfigLoaded.plugins,
+                  },
                 },
               },
             ],
@@ -169,8 +180,8 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
             ...(await postcssConfig).plugins,
             url({
               targets: [
-                { src: ASSETS_PATH, dest: options.tailwindOptions?.targetDir || 'dist' }
-              ]
+                { src: ASSETS_PATH, dest: options.tailwindOptions?.targetDir || 'dist' },
+              ],
             }),
           ]
 
@@ -188,12 +199,12 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
       },
 
       vite: {
-        config(config) {
-          if (!config.css) {
-            config.css = {}
+        config() {
+          return {
+            css: {
+              postcss: CONFIGS_PATH,
+            },
           }
-
-          config.css.postcss = CONFIGS_PATH
         },
       },
     },

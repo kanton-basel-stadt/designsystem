@@ -8,10 +8,10 @@
       "*": ["./types/*"]
     },
     "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
     "strict": true,
     "strictNullChecks": true,
-    "esModuleInterop": true,
-    "allowImportingTsExtensions": true
+    "esModuleInterop": true
   },
   "exclude": ["dist", "eslint.config.js"]
 }

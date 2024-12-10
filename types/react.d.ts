@@ -1,4 +1,4 @@
-declare module 'virtual:icons/*' {
+declare module 'virtual:@kanton-basel-stadt/designsystem/icons/symbol/*' {
   import type { SVGProps } from 'react'
   import type React from 'react'
 

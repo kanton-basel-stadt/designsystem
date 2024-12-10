@@ -5,13 +5,10 @@
   "packageManager": "npm@6.7.0",
   "description": "",
   "license": "GPL-v3",
-  "homepage": "https://github.com/antfu/@kanton-basel-stadt/designsystem#readme",
+  "homepage": "https://kanton-basel-stadt.github.io/storybook",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/antfu/@kanton-basel-stadt/designsystem.git"
-  },
-  "bugs": {
-    "url": "https://github.com/antfu/@kanton-basel-stadt/designsystem/issues"
+    "url": "git+https://github.com/@kanton-basel-stadt/designsystem.git"
   },
   "keywords": [
     "unplugin",

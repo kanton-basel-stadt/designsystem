@@ -1,8 +1,8 @@
 {
   "name": "vue-vite",
+  "type": "module",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
@@ -11,8 +11,8 @@
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
-    "vue": "^3.4.21",
-    "@kanton-basel-stadt/designsystem": "github:kanton-basel-stadt/designsystem"
+    "@kanton-basel-stadt/designsystem": "github:kanton-basel-stadt/designsystem",
+    "vue": "^3.4.21"
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
