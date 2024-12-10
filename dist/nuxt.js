@@ -1,10 +1,10 @@
 import {
   webpack_default
-} from "./chunk-IYABRSKA.js";
+} from "./chunk-SVKPRJP3.js";
 import {
   vite_default
-} from "./chunk-UHDC67VR.js";
-import "./chunk-5GSXQTHB.js";
+} from "./chunk-OKPSECMW.js";
+import "./chunk-XQRHIOLJ.js";
 import "./chunk-3RG5ZIWI.js";
 
 // src/nuxt.ts

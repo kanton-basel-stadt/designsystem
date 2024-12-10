@@ -1,6 +1,6 @@
 import {
   unpluginFactory
-} from "./chunk-5GSXQTHB.js";
+} from "./chunk-XQRHIOLJ.js";
 
 // src/vite.ts
 import { createVitePlugin } from "unplugin";

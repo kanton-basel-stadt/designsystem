@@ -1,7 +1,3 @@
-/* We want to group them semantically. */
-
-/* We need to be able to use `require()` */
-
 /* eslint-disable ts/no-require-imports */
 
 // unplugin dependencies
@@ -24,7 +20,7 @@ import unpluginIcons from 'unplugin-icons'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 
 // CJS vs TS stuff
-let dirname
+let dirname: string
 try {
   dirname = __dirname
 }
@@ -35,13 +31,7 @@ catch (_) {
 }
 
 // All kinds of constants
-const MODULE_PATH = dirname
-const MODULE_ALIAS = /(['"(])@kanton-basel-stadt\/designsystem/g
-
-const ICON_PATH_ALIAS_RE = /(['"(])@kanton-basel-stadt\/designsystem\/icons\/symbol/g
 const ICON_PATH_ALIAS = '@kanton-basel-stadt/designsystem/icons/symbol'
-const ICON_PATH = '~icons/symbol'
-
 const ASSETS_PATH = path.resolve(`${dirname}/assets/`)
 const CONFIGS_PATH = path.resolve(`${dirname}/configs/`)
 
@@ -67,8 +57,7 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
 
   function transform(code: string) {
     return code
-      .replace(ICON_PATH_ALIAS_RE, `$1${ICON_PATH}`)
-      .replace(MODULE_ALIAS, `$1${MODULE_PATH}`)
+      .replace(/(['"(])@kanton-basel-stadt\/designsystem(?!\/icons\/symbol)((?:\/[\w\-.]*)*)(['")])/g, `$1${dirname}$2$3`)
       .replace(/dist\/dist/g, 'dist')
       // This is purely for the docs, otherwise Storybook has the actual file paths in the code examples, which we don't want.
       .replace(/@@kanton-basel-stadt/g, '@kanton-basel-stadt')
@@ -81,7 +70,6 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
   }
 
   return [
-    builtUnpluginIcons.raw(mergedUnpluginIconsConfig, meta) as UnpluginOptions,
     {
       name: '@kanton-basel-stadt/designsystem/transform-ids',
       enforce: 'pre',
@@ -90,18 +78,15 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
         onLoadFilter: /\.(?!woff2?$)[^.]+$/i,
       },
       // Necessary for Vite to pick up the alias during dep optimization.
-      vite: {
-        config() {
-          return {
-            resolve: {
-              alias: {
-                [ICON_PATH_ALIAS]: ICON_PATH,
-              },
-            },
-          }
-        },
-      },
+      resolveId(source) {
+        if (source.startsWith(ICON_PATH_ALIAS)) {
+          return source.replace(ICON_PATH_ALIAS, '~icons/symbol') // Will be picked up by unplugin-icons.
+        }
+
+        return null
+      }
     },
+    builtUnpluginIcons.raw(mergedUnpluginIconsConfig, meta) as UnpluginOptions,
     {
       name: '@kanton-basel-stadt/designsystem/postcss-tailwind',
       esbuild: {

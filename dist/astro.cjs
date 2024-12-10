@@ -51,11 +51,7 @@ try {
   const filename = (0, import_node_url.fileURLToPath)(import_meta.url);
   dirname = import_node_path.default.dirname(filename);
 }
-var MODULE_PATH = dirname;
-var MODULE_ALIAS = /(['"(])@kanton-basel-stadt\/designsystem/g;
-var ICON_PATH_ALIAS_RE = /(['"(])@kanton-basel-stadt\/designsystem\/icons\/symbol/g;
 var ICON_PATH_ALIAS = "@kanton-basel-stadt/designsystem/icons/symbol";
-var ICON_PATH = "~icons/symbol";
 var ASSETS_PATH = import_node_path.default.resolve(`${dirname}/assets/`);
 var CONFIGS_PATH = import_node_path.default.resolve(`${dirname}/configs/`);
 var unpluginIconsConfig = {
@@ -75,14 +71,13 @@ var unpluginFactory = (options, meta) => {
   if (options === void 0)
     options = {};
   function transform(code) {
-    return code.replace(ICON_PATH_ALIAS_RE, `$1${ICON_PATH}`).replace(MODULE_ALIAS, `$1${MODULE_PATH}`).replace(/dist\/dist/g, "dist").replace(/@@kanton-basel-stadt/g, "@kanton-basel-stadt");
+    return code.replace(/(['"(])@kanton-basel-stadt\/designsystem(?!\/icons\/symbol)((?:\/[\w\-.]*)*)(['")])/g, `$1${dirname}$2$3`).replace(/dist\/dist/g, "dist").replace(/@@kanton-basel-stadt/g, "@kanton-basel-stadt");
   }
   const mergedUnpluginIconsConfig = (0, import_lodash.default)(unpluginIconsConfig, options.iconOptions);
   if (mergedUnpluginIconsConfig.compiler !== "web-components") {
     delete mergedUnpluginIconsConfig.webComponents;
   }
   return [
-    builtUnpluginIcons.raw(mergedUnpluginIconsConfig, meta),
     {
       name: "@kanton-basel-stadt/designsystem/transform-ids",
       enforce: "pre",
@@ -91,18 +86,14 @@ var unpluginFactory = (options, meta) => {
         onLoadFilter: /\.(?!woff2?$)[^.]+$/i
       },
       // Necessary for Vite to pick up the alias during dep optimization.
-      vite: {
-        config() {
-          return {
-            resolve: {
-              alias: {
-                [ICON_PATH_ALIAS]: ICON_PATH
-              }
-            }
-          };
+      resolveId(source) {
+        if (source.startsWith(ICON_PATH_ALIAS)) {
+          return source.replace(ICON_PATH_ALIAS, "~icons/symbol");
         }
+        return null;
       }
     },
+    builtUnpluginIcons.raw(mergedUnpluginIconsConfig, meta),
     {
       name: "@kanton-basel-stadt/designsystem/postcss-tailwind",
       esbuild: {
