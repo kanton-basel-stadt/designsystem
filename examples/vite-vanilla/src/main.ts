@@ -10,6 +10,7 @@ import '@kanton-basel-stadt/designsystem/icons/symbol/facebook'
 import '@kanton-basel-stadt/designsystem/icons/symbol/instagram'
 import '@kanton-basel-stadt/designsystem/icons/symbol/youtube'
 import '@kanton-basel-stadt/designsystem/icons/symbol/linkedin'
+import '@kanton-basel-stadt/designsystem/icons/symbol/loader'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 <div class="min-h-screen flex flex-col">
@@ -65,6 +66,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <h1 class="font-bold text-4xl">Hello, World!</h1>
   
     <icon-symbol-pen></icon-symbol-pen>
+    
+    <icon-symbol-loader></icon-symbol-loader>
   </main>
 
   <!-- FOOTER -->

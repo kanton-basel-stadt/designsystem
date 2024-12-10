@@ -73,13 +73,16 @@ var unpluginFactory = (options, meta) => {
   if (options === void 0)
     options = {};
   function transform(code) {
-    return code.replace(/(['"(])@kanton-basel-stadt\/designsystem(?!\/icons\/symbol)((?:\/[\w\-.]*)*)(['")])/g, `$1${dirname}$2$3`).replace(/dist\/dist/g, "dist").replace(/@@kanton-basel-stadt/g, "@kanton-basel-stadt");
+    return code.replace(new RegExp(ICON_PATH_ALIAS, "g"), ICON_PATH).replace(/(['"(])@kanton-basel-stadt\/designsystem(?!\/icons\/symbol)((?:\/[\w\-.]*)*)(['")])/g, `$1${dirname}$2$3`).replace(/dist\/dist/g, "dist").replace(/@@kanton-basel-stadt/g, "@kanton-basel-stadt");
+  }
+  function transformPotentialIconId(id) {
+    return id.replace(ICON_PATH_ALIAS, ICON_PATH);
   }
   const mergedUnpluginIconsConfig = (0, import_lodash.default)(unpluginIconsConfig, options.iconOptions);
   if (mergedUnpluginIconsConfig.compiler !== "web-components") {
     delete mergedUnpluginIconsConfig.webComponents;
   }
-  const unpluginIconsUsable = builtUnpluginIcons.raw(mergedUnpluginIconsConfig, meta);
+  const usableUnpluginIcons = builtUnpluginIcons.raw(mergedUnpluginIconsConfig, meta);
   return [
     {
       name: "@kanton-basel-stadt/designsystem/transform-ids",
@@ -87,21 +90,28 @@ var unpluginFactory = (options, meta) => {
       transform,
       esbuild: {
         onLoadFilter: /\.(?!woff2?$)[^.]+$/i
+      },
+      vite: {
+        config(config) {
+          return {
+            optimizeDeps: {
+              exclude: ["@kanton-basel-stadt/designsystem/dist/configs/icons-index"]
+            }
+          };
+        }
       }
     },
     {
-      ...unpluginIconsUsable,
+      ...usableUnpluginIcons,
       resolveId(id) {
-        if (id.startsWith(ICON_PATH_ALIAS)) {
-          id = id.replace(ICON_PATH_ALIAS, ICON_PATH);
-        }
-        return unpluginIconsUsable.resolveId(id);
+        return usableUnpluginIcons.resolveId(transformPotentialIconId(id));
       },
       loadInclude(id) {
-        if (id.startsWith(ICON_PATH_ALIAS)) {
-          id = id.replace(ICON_PATH_ALIAS, ICON_PATH);
-        }
-        return unpluginIconsUsable.loadInclude(id);
+        return usableUnpluginIcons.loadInclude(transformPotentialIconId(id));
+      },
+      // @ts-ignore
+      async load(id) {
+        return await usableUnpluginIcons.load(transformPotentialIconId(id));
       }
     },
     {

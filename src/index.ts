@@ -1,7 +1,7 @@
 /* eslint-disable ts/no-require-imports */
 
 // unplugin dependencies
-import type { UnpluginFactory, UnpluginInstance, UnpluginOptions } from 'unplugin'
+import type { Thenable, UnpluginFactory, UnpluginInstance, UnpluginOptions } from 'unplugin'
 import type { Options as UnpluginIconsOptions } from 'unplugin-icons'
 import type { Options } from './types'
 import fs from 'node:fs'
@@ -14,8 +14,8 @@ import merge from 'lodash.merge'
 // PostCSS's dependencies
 import postcssrc from 'postcss-load-config'
 
-import { createUnplugin } from 'unplugin'
 // Unplugin-icons dependencies
+import { createUnplugin } from 'unplugin'
 import unpluginIcons from 'unplugin-icons'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 
@@ -58,10 +58,15 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
 
   function transform(code: string) {
     return code
+      .replace(new RegExp(ICON_PATH_ALIAS, 'g'), ICON_PATH)
       .replace(/(['"(])@kanton-basel-stadt\/designsystem(?!\/icons\/symbol)((?:\/[\w\-.]*)*)(['")])/g, `$1${dirname}$2$3`)
       .replace(/dist\/dist/g, 'dist')
       // This is purely for the docs, otherwise Storybook has the actual file paths in the code examples, which we don't want.
       .replace(/@@kanton-basel-stadt/g, '@kanton-basel-stadt')
+  }
+
+  function transformPotentialIconId(id: string) {
+    return id.replace(ICON_PATH_ALIAS, ICON_PATH)
   }
 
   // If the selected icon compiler _isn't_ web-components, there's no need to specify config for it.
@@ -70,7 +75,7 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
     delete mergedUnpluginIconsConfig.webComponents
   }
 
-  const unpluginIconsUsable = builtUnpluginIcons.raw(mergedUnpluginIconsConfig, meta) as UnpluginOptions
+  const usableUnpluginIcons = builtUnpluginIcons.raw(mergedUnpluginIconsConfig, meta) as UnpluginOptions
 
   return [
     {
@@ -80,25 +85,31 @@ export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<
       esbuild: {
         onLoadFilter: /\.(?!woff2?$)[^.]+$/i,
       },
+      vite: {
+        config(config) {
+          return {
+            optimizeDeps: {
+              exclude: ['@kanton-basel-stadt/designsystem/dist/configs/icons-index']
+            }
+          }
+        }
+      }
     },
     {
-      ...unpluginIconsUsable,
+      ...usableUnpluginIcons,
       resolveId(id) {
-        if (id.startsWith(ICON_PATH_ALIAS)) {
-          id = id.replace(ICON_PATH_ALIAS, ICON_PATH)
-        }
-
-        // @ts-ignore
-        return unpluginIconsUsable.resolveId(id)
+        // @ts-ignore We know it's there.
+        return usableUnpluginIcons.resolveId(transformPotentialIconId(id))
       },
-      loadInclude(id) {
-        if (id.startsWith(ICON_PATH_ALIAS)) {
-          id = id.replace(ICON_PATH_ALIAS, ICON_PATH)
-        }
-
-        // @ts-ignore
-        return unpluginIconsUsable.loadInclude(id)
-      }
+      loadInclude(id: string) {
+        // @ts-ignore We know it's there.
+        return usableUnpluginIcons.loadInclude(transformPotentialIconId(id))
+      },
+      // @ts-ignore
+      async load(id: string) {
+        // @ts-ignore We know it's there.
+        return await usableUnpluginIcons.load(transformPotentialIconId(id))
+      },
     },
     {
       name: '@kanton-basel-stadt/designsystem/postcss-tailwind',
