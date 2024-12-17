@@ -29,7 +29,7 @@ it('sets up a correct unplugin with configs based on unplugin-icons', () => {
   expect(transformIdsUnplugin.enforce).toBe('pre')
 
   expect(FileSystemIconLoader).toHaveBeenCalledOnce()
-  expect(FileSystemIconLoader).toHaveBeenCalledWith('/foo/bar/assets/symbols')
+  expect(FileSystemIconLoader).toHaveBeenCalledWith(process.platform === 'win32' ? 'D:\\foo\\bar\\assets/symbols' : '/foo/bar/assets/symbols')
   expect(rawSpy).toHaveBeenCalledWith({
     compiler: 'web-components',
     customCollections: {

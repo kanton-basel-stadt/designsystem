@@ -532,7 +532,7 @@ If you want to test it in a specific framework, you first need to build the Unpl
 npm run build
 ```
 
-Next, head to the `examples/` folder and chose the framework you would like to test with. First  You can install all 
+Next, head to the `examples/` folder and chose the framework you would like to test with. First  You can install all
 dependencies by running:
 
 ```

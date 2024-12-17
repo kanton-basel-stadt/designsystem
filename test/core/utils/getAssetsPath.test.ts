@@ -9,7 +9,7 @@ beforeEach(() => {
 
 it('returns the correct path', () => {
   const gottenAssetsPath = getAssetsPath()
-  const srcDirName = '/foo/bar/assets'
+  const srcDirName = process.platform === 'win32' ? 'D:\\foo\\bar\\assets' : '/foo/bar/assets'
 
   expect(gottenAssetsPath).toBe(srcDirName)
 })

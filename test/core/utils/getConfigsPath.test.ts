@@ -9,7 +9,7 @@ beforeEach(() => {
 
 it('returns the correct path', () => {
   const gottenConfigsPath = getConfigsPath()
-  const srcDirName = '/foo/bar/configs'
+  const srcDirName = process.platform === 'win32' ? 'D:\\foo\\bar\\configs' : '/foo/bar/configs'
 
   expect(gottenConfigsPath).toBe(srcDirName)
 })
