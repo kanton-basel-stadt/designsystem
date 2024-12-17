@@ -1,5 +1,0 @@
-@layer components {
-  .info {
-    @apply bg-blue-900 w-[16px] h-[16px] align-middle rounded-full text-center text-white ml-10 cursor-pointer inline-flex items-center justify-center font-normal;
-  }
-}

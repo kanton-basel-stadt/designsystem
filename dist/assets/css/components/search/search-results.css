@@ -1,5 +1,0 @@
-@layer components {
-  .search-result em {
-    @apply not-italic font-bold;
-  }
-}
