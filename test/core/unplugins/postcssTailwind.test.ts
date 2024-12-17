@@ -57,7 +57,7 @@ it('sets up the correct config for Vite', () => {
 
   expect(viteConfig).toStrictEqual({
     css: {
-      postcss: process.platform === 'win32' ? 'D:\\foo\\bar\\assets' : '/foo/bar/configs',
+      postcss: process.platform === 'win32' ? 'D:\\foo\\bar\\configs' : '/foo/bar/configs',
     },
   },
   )
@@ -299,7 +299,7 @@ it('sets up the correct config for rollup', async () => {
 
   expect(url).toHaveBeenCalledWith({
     assetsPath: 'dist',
-    basePath: process.platform === 'win32' ? 'D:\\foo\\bar\\assets' : '/foo/bar/configs',
+    basePath: process.platform === 'win32' ? 'D:\\foo\\bar\\assets' : '/foo/bar/assets',
     url: 'copy',
   })
 
