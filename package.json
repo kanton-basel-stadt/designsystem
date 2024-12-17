@@ -9,7 +9,7 @@
   "homepage": "https://kanton-basel-stadt.github.io/storybook",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/@kanton-basel-stadt/designsystem.git"
+    "url": "git+https://github.com/kanton-basel-stadt/designsystem.git"
   },
   "keywords": [
     "unplugin",
@@ -125,7 +125,7 @@
     "build:generate-icons-index": "esno scripts/generateIconsIndex.ts",
     "lint": "node ./node_modules/.bin/eslint .",
     "prepublishOnly": "npm run build",
-    "release": "bumpp && npm publish",
+    "release": "bumpp && npm publish --access public",
     "start": "esno src/index.ts",
     "test": "vitest"
   },
