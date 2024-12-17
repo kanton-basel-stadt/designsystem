@@ -1,7 +1,7 @@
 import IconSymbolAdd from '@kanton-basel-stadt/designsystem/icons/symbol/add'
 import IconSymbolAlva from '@kanton-basel-stadt/designsystem/icons/symbol/alva'
-import IconSymbolArrowEastThin from '@kanton-basel-stadt/designsystem/icons/symbol/arrow-east-thin'
 import IconSymbolArrowEast from '@kanton-basel-stadt/designsystem/icons/symbol/arrow-east'
+import IconSymbolArrowEastThin from '@kanton-basel-stadt/designsystem/icons/symbol/arrow-east-thin'
 import IconSymbolArrowNorthEast from '@kanton-basel-stadt/designsystem/icons/symbol/arrow-north-east'
 import IconSymbolArrowSouth from '@kanton-basel-stadt/designsystem/icons/symbol/arrow-south'
 import IconSymbolArrowWest from '@kanton-basel-stadt/designsystem/icons/symbol/arrow-west'
@@ -53,8 +53,8 @@ import IconSymbolYoutube from '@kanton-basel-stadt/designsystem/icons/symbol/you
 export default {
   IconSymbolAdd,
   IconSymbolAlva,
-  IconSymbolArrowEastThin,
   IconSymbolArrowEast,
+  IconSymbolArrowEastThin,
   IconSymbolArrowNorthEast,
   IconSymbolArrowSouth,
   IconSymbolArrowWest,
@@ -102,5 +102,5 @@ export default {
   IconSymbolTrash,
   IconSymbolXFormerlyTwitter,
   IconSymbolYoutube,
-  iconNames: ["add","alva","arrow-east-thin","arrow-east","arrow-north-east","arrow-south","arrow-west","attachment","baselstab","bettingenkelch","breadcrumb","calendar","card","caret","cart","check","circle-check","circle-error","circle-ko","circle-ok","circle-person","circle-warning","close","dots","download","easy-to-read","facebook","file","hands","hinweise_no_rounded","hinweise_rounded","instagram","linkedin","loader","location","mail","map-pin-coloured","pen","phone","pin","play","print","reload","remove","search","send-mail","share","threads","trash","x_formerly_twitter","youtube"]
+  iconNames: ['add', 'alva', 'arrow-east', 'arrow-east-thin', 'arrow-north-east', 'arrow-south', 'arrow-west', 'attachment', 'baselstab', 'bettingenkelch', 'breadcrumb', 'calendar', 'card', 'caret', 'cart', 'check', 'circle-check', 'circle-error', 'circle-ko', 'circle-ok', 'circle-person', 'circle-warning', 'close', 'dots', 'download', 'easy-to-read', 'facebook', 'file', 'hands', 'hinweise_no_rounded', 'hinweise_rounded', 'instagram', 'linkedin', 'loader', 'location', 'mail', 'map-pin-coloured', 'pen', 'phone', 'pin', 'play', 'print', 'reload', 'remove', 'search', 'send-mail', 'share', 'threads', 'trash', 'x_formerly_twitter', 'youtube'],
 }

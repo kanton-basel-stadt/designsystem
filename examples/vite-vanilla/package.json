@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@kanton-basel-stadt/designsystem": "github:kanton-basel-stadt/designsystem",
+    "@kanton-basel-stadt/designsystem": "../../",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   }

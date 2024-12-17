@@ -11,7 +11,8 @@ way of including components is next to impossible. We, therefore, settled on pro
 necessary to create components but not the components themselves. The markup for the components can be found in Storybook.
 
 The Unplugin provides all the necessary code to create a website with the look and feel of www.bs.ch. It's based
-on [Tailwind](https://tailwindcss.com).
+on [Tailwind](https://tailwindcss.com). To get afull picture of the Digital Design System, please refer to the [Storybook
+instance](https://kanton-basel-stadt.github.io/storybook).
 
 ## Installation and setup
 
@@ -20,7 +21,7 @@ This package has several dependencies and peer dependencies.
 ### Package installation
 
 ```bash
-npm i git+https://github.com/kanton-basel-stadt/designsystem.git
+npm i @kanton-basel-stadt/designsystem
 ```
 
 Also, you need to install all peer dependencies for your framework:
@@ -262,6 +263,23 @@ Example: Can be found in `examples/vue-vite`.
 
 <br></details>
 
+### Options
+
+The options of the plugin are as follows:
+
+```typescript
+export interface Options {
+  iconOptions?: UnpluginIconsOptions
+  tailwindOptions?: {
+    targetDir?: string
+  }
+}
+```
+
+With `iconOptions` being the options described in the [unplugin-icons docs](https://github.com/unplugin/unplugin-icons) and
+`tailwindOptions` being used to configure some Tailwind behaviour. Please note that the `targetDir` option only works for
+ESBuild, Webpack and Rollup.
+
 ## How to use icons
 
 This unplugin uses [unplugin-icons](https://www.npmjs.com/package/unplugin-icons) as a nested plugin. All options of
@@ -461,11 +479,6 @@ KantonBSDesignsystemPlugin({
 **Please consult the [documentation of unplugin-icons](https://github.com/unplugin/unplugin-icons) for further
 information on types, etc.**
 
-### I receive warnings that Vite cannot find a specific package. What should I do?
-
-Since the library rewrites imported icon paths to work with unplugin-icons, you may ignore these warnings. This is a
-known issue, and we're working on a fix for that.
-
 ## How to use the CSS
 
 This unplugin uses PostCSS and Tailwind, both preconfigured. So, any tree-shaking of any Tailwind classes will be handled.
@@ -473,7 +486,7 @@ This unplugin uses PostCSS and Tailwind, both preconfigured. So, any tree-shakin
 To include the framework in your CSS, apply the top of your CSS:
 
 ```css
-@import '@kanton-basel-stadt/designsystem/assets/css/tailwind.css'
+@import '@kanton-basel-stadt/designsystem/assets/css/tailwind.css';
 
 /* Apply custom CSS here */
 ```
@@ -505,10 +518,30 @@ Now, please tell users to update the package.
 
 Please feel free to also submit pull requests and/or issues.
 
-> TODO #03: Add a sensible build/test suite to work with GitHub actions, and define release management.
-> TODO #04: Add issue/PR templates.
-> TODO #05: Add contributors wiki.
+### Testing
+
+To test the Unplugin's various parts, you can execute the tests:
+
+```
+npm run test
+```
+
+If you want to test it in a specific framework, you first need to build the Unplugin by running:
+
+```
+npm run build
+```
+
+Next, head to the `examples/` folder and chose the framework you would like to test with. First  You can install all 
+dependencies by running:
+
+```
+npm install
+```
+
+**Note:** Please keep in mind that the Unplugin is installed via symlink for ease of development, so each change you do,
+once built with `npm run build` executed in the project root, is directly reflected in the installed package in the example.
 
 ## Contributing
 
-If you'd like to contribute, please open an issue on GitHub. The core team can then help you get started.
+If you'd like to contribute, please open an issue or merge request on GitHub. The core team can then help you get started.

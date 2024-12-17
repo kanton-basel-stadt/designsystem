@@ -10,7 +10,7 @@ function toPascalCase(input: string) {
   return input
     .replace(/_/g, ' ')
     .replace(/-/g, ' ')
-    .split(/[\s]+/)
+    .split(/\s+/)
     .filter(Boolean)
     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join('')
@@ -20,12 +20,13 @@ const icons = fs.readdirSync(
   path.resolve(import.meta.dirname, '..', 'src', 'core', 'assets', 'symbols'),
 ).map(i => i.replace(/\.svg/g, ''))
 
-const tsCode = `${icons.map(i => `import IconSymbol${toPascalCase(i)} from '@kanton-basel-stadt/designsystem/icons/symbol/${i}'`).join('\n')}
+const tsCode = `${icons.sort().map(i => `import IconSymbol${toPascalCase(i)} from '@kanton-basel-stadt/designsystem/icons/symbol/${i}'`).join('\n')}
 
 export default {
   ${icons.map(i => `IconSymbol${toPascalCase(i)}`).join(',\n  ')},
-  iconNames: ${JSON.stringify(icons)}
-}`
+  iconNames: [${icons.map(i => `'${i}'`).join(', ')}],
+}
+`
 
 const filePath = path.resolve(import.meta.dirname, '..', 'src', 'core', 'configs', 'icons-index.ts')
 try {

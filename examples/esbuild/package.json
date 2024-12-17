@@ -8,7 +8,7 @@
     "build": "node ./build.cjs"
   },
   "devDependencies": {
-    "@kanton-basel-stadt/designsystem": "github:kanton-basel-stadt/designsystem",
+    "@kanton-basel-stadt/designsystem": "../../",
     "esbuild": "0.20.2"
   }
 }

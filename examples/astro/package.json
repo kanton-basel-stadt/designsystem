@@ -16,6 +16,6 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "@kanton-basel-stadt/designsystem": "github:kanton-basel-stadt/designsystem"
+    "@kanton-basel-stadt/designsystem": "../../"
   }
 }

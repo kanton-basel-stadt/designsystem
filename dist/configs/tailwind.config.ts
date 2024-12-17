@@ -71,6 +71,7 @@ function getContentDependencies(path: string) {
     'astro',
     'svelte',
     'mdx',
+    'twig',
   ].join(',')
 
   const dirCandidates = [

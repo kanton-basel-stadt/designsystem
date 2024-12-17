@@ -195,7 +195,8 @@ function getContentDependencies(path2) {
     "vue",
     "astro",
     "svelte",
-    "mdx"
+    "mdx",
+    "twig"
   ].join(",");
   const dirCandidates = [
     "components",

@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@kanton-basel-stadt/designsystem": "github:kanton-basel-stadt/designsystem",
+    "@kanton-basel-stadt/designsystem": "../../",
     "nuxt": "^3.11.2",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
