@@ -3,13 +3,13 @@
 import type { UnpluginOptions } from 'unplugin'
 import type { Options } from '../../types.ts'
 import fs from 'node:fs'
-import postcssrc from 'postcss-load-config'
 import { getAssetsPath } from '../utils/getAssetsPath.ts'
 import { getConfigsPath } from '../utils/getConfigsPath.ts'
+import { getPostcssConfig } from '../utils/getPostcssConfig.ts'
 import { transformIdsInCode } from '../utils/transformIdsInCode.ts'
 
 export function getPostcssTailwindUnplugin(options: Options): UnpluginOptions {
-  const postcssConfig = postcssrc({}, getConfigsPath())
+  const postcssConfig = getPostcssConfig(getConfigsPath(), options.tailwindOptions?.config)
 
   return {
     name: '@kanton-basel-stadt/designsystem/postcss-tailwind',
@@ -99,8 +99,6 @@ export function getPostcssTailwindUnplugin(options: Options): UnpluginOptions {
         if (!rollupOptions.plugins)
           rollupOptions.plugins = []
 
-        // const url = require('postcss-url')
-
         const plugins = [
           ...(await postcssConfig).plugins,
           url({
@@ -124,10 +122,10 @@ export function getPostcssTailwindUnplugin(options: Options): UnpluginOptions {
     },
 
     vite: {
-      config() {
+      async config() {
         return {
           css: {
-            postcss: getConfigsPath(),
+            postcss: await postcssConfig,
           },
         }
       },

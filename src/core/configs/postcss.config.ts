@@ -1,12 +1,12 @@
-const path = require('node:path')
+import tailwindConfig from './tailwind.config.ts'
 
-module.exports = {
+export default {
   plugins: {
     'postcss-import': {},
     'postcss-mixins': {},
     'tailwindcss/nesting': {},
     'tailwindcss': {
-      config: path.resolve(path.join(__dirname, '/tailwind.config.ts')),
+      config: tailwindConfig,
     },
     'postcss-inline-svg': {},
     'postcss-hexrgba': {

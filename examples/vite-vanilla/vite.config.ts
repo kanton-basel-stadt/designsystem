@@ -4,7 +4,15 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
-    KantonBSDesignsystemPlugin({ /* Options */ }),
+    KantonBSDesignsystemPlugin({
+      tailwindOptions: {
+        config: {
+          content: [
+            './some-path/**/*.html',
+          ],
+        },
+      },
+    }),
   ],
   server: {
     fs: {

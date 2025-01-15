@@ -10,8 +10,8 @@ beforeEach(() => {
     getDirName: () => '/foo/bar',
   }))
 
-  vi.mock('postcss-load-config', () => ({
-    default: vi.fn(() => ({
+  vi.mock('../../../src/core/utils/getPostcssConfig.ts', () => ({
+    getPostcssConfig: vi.fn(() => ({
       plugins: ['a', 'b', 'c'],
     })),
   }))
@@ -19,6 +19,7 @@ beforeEach(() => {
   vi.mock('node:fs', () => ({
     default: {
       readFileSync: vi.fn(() => 'some mocked code'),
+      existsSync: vi.fn(() => false),
     },
   }))
 
@@ -47,20 +48,21 @@ it('sets up a correct unplugin with configs for all build tools and nothing more
   expect(keys).not.toContain('transform')
 })
 
-it('sets up the correct config for Vite', () => {
+it('sets up the correct config for Vite', async () => {
   const postcssTailwindUnplugin = getPostcssTailwindUnplugin({})
 
   expect(postcssTailwindUnplugin.vite?.config).toBeDefined()
 
   // @ts-expect-error Previous assert guarantees that it's defined.
-  const viteConfig = postcssTailwindUnplugin.vite.config({})
+  const viteConfig = await postcssTailwindUnplugin.vite.config({})
 
   expect(viteConfig).toStrictEqual({
     css: {
-      postcss: process.platform === 'win32' ? 'D:\\foo\\bar\\configs' : '/foo/bar/configs',
+      postcss: {
+        plugins: ['a', 'b', 'c'],
+      },
     },
-  },
-  )
+  })
 })
 
 it('sets up the correct config for Webpack 5 for production mode', async () => {

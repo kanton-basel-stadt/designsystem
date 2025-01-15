@@ -3,7 +3,7 @@
 ## Purpose and idea
 
 This Unplugin aims to get developers started quickly with developing frontend components and installs both icons and
-CSS for the WebBS design system..
+CSS for the WebBS design system.
 
 Since the Unplugin only offers all the CSS, the markup needs to be built separately. **This is intentional.** Since
 frameworks such as Vue, Svelte, React, Twig, or Blade differ wildly in terms of template syntax, providing a standardised
@@ -268,10 +268,14 @@ Example: Can be found in `examples/vue-vite`.
 The options of the plugin are as follows:
 
 ```typescript
+import type { Config as TailwindConfig } from 'tailwindcss'
+import type { Options as UnpluginIconsOptions } from 'unplugin-icons'
+
 export interface Options {
   iconOptions?: UnpluginIconsOptions
   tailwindOptions?: {
     targetDir?: string
+    config?: Partial<TailwindConfig>
   }
 }
 ```
@@ -279,6 +283,38 @@ export interface Options {
 With `iconOptions` being the options described in the [unplugin-icons docs](https://github.com/unplugin/unplugin-icons) and
 `tailwindOptions` being used to configure some Tailwind behaviour. Please note that the `targetDir` option only works for
 ESBuild, Webpack and Rollup.
+
+### How to overwrite parts of the Tailwind config, such as `content` paths or theme
+
+To overwrite parts of the Tailwind config, specify the keys in the plugin options.
+
+For example, if your templates are located elsewhere than your build tool configuration, you may specify their path as follows:
+
+```typescript
+// ...
+KantonBSDesignsystemPlugin({
+  // ...
+  tailwindOptions: {
+    config: {
+      content: [
+        // Change path and file endings
+        '/path/to/your/template/folder/**/*.{html,js}',
+      ],
+    }
+  }
+})
+```
+
+In the above example, Tailwind will look for any HTML and JS file in `'"/path/to/your/template/folder/` and its
+subdirectories to find Tailwind classes to include in the built CSS.
+
+You may also overwrite any other part of the config, such as the theme (to add things, such as additional colours, font
+sizes, etc.), the safelist (to guarantee certain classes to be present in the built CSS), to add plugins, etc.
+
+The entire config is deep-merged with the standard config.
+
+**Please keep in mind, that any change to the theme should adhere to the design sepcifications. Use custom components
+over theme changes, and, if the value is only used once or twice, use arbitrary value syntax (i.e. `bg-[#ff0000]`).**
 
 ## How to use icons
 

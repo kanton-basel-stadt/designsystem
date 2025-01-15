@@ -17,7 +17,7 @@
       @apply text-left align-top break-words;
     }
     thead {
-      @apply border-b-[1.5px] border-b-body text-primary-500;
+      @apply border-b-[1.5px] border-b-body text-primary-600;
       th {
         @apply pb-5;
       }

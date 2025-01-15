@@ -4,7 +4,7 @@
   .help-box {
     @apply bg-gray-50 border-t border-b border-gray-300 px-20 py-10 mb-10 -mx-20;
     h4 {
-      @apply mb-10 font-bold text-purple-600;
+      @apply mb-10 font-bold text-purple-700;
     }
   }
 }
