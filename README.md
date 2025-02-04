@@ -305,7 +305,7 @@ KantonBSDesignsystemPlugin({
 })
 ```
 
-In the above example, Tailwind will look for any HTML and JS file in `'"/path/to/your/template/folder/` and its
+In the above example, Tailwind will look for any HTML and JS file in `/path/to/your/template/folder/` and its
 subdirectories to find Tailwind classes to include in the built CSS.
 
 You may also overwrite any other part of the config, such as the theme (to add things, such as additional colours, font
@@ -313,7 +313,7 @@ sizes, etc.), the safelist (to guarantee certain classes to be present in the bu
 
 The entire config is deep-merged with the standard config.
 
-**Please keep in mind, that any change to the theme should adhere to the design sepcifications. Use custom components
+**Please keep in mind, that any change to the theme should adhere to the design specifications. Use custom components
 over theme changes, and, if the value is only used once or twice, use arbitrary value syntax (i.e. `bg-[#ff0000]`).**
 
 ## How to use icons
