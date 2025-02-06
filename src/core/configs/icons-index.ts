@@ -40,6 +40,7 @@ import IconSymbolPhone from '@kanton-basel-stadt/designsystem/icons/symbol/phone
 import IconSymbolPin from '@kanton-basel-stadt/designsystem/icons/symbol/pin'
 import IconSymbolPlay from '@kanton-basel-stadt/designsystem/icons/symbol/play'
 import IconSymbolPrint from '@kanton-basel-stadt/designsystem/icons/symbol/print'
+import IconSymbolQuestionmark from '@kanton-basel-stadt/designsystem/icons/symbol/questionmark'
 import IconSymbolReload from '@kanton-basel-stadt/designsystem/icons/symbol/reload'
 import IconSymbolRemove from '@kanton-basel-stadt/designsystem/icons/symbol/remove'
 import IconSymbolSearch from '@kanton-basel-stadt/designsystem/icons/symbol/search'
@@ -93,6 +94,7 @@ export default {
   IconSymbolPin,
   IconSymbolPlay,
   IconSymbolPrint,
+  IconSymbolQuestionmark,
   IconSymbolReload,
   IconSymbolRemove,
   IconSymbolSearch,
@@ -102,5 +104,5 @@ export default {
   IconSymbolTrash,
   IconSymbolXFormerlyTwitter,
   IconSymbolYoutube,
-  iconNames: ['add', 'alva', 'arrow-east', 'arrow-east-thin', 'arrow-north-east', 'arrow-south', 'arrow-west', 'attachment', 'baselstab', 'bettingenkelch', 'breadcrumb', 'calendar', 'card', 'caret', 'cart', 'check', 'circle-check', 'circle-error', 'circle-ko', 'circle-ok', 'circle-person', 'circle-warning', 'close', 'dots', 'download', 'easy-to-read', 'facebook', 'file', 'hands', 'hinweise_no_rounded', 'hinweise_rounded', 'instagram', 'linkedin', 'loader', 'location', 'mail', 'map-pin-coloured', 'pen', 'phone', 'pin', 'play', 'print', 'reload', 'remove', 'search', 'send-mail', 'share', 'threads', 'trash', 'x_formerly_twitter', 'youtube'],
+  iconNames: ['add', 'alva', 'arrow-east', 'arrow-east-thin', 'arrow-north-east', 'arrow-south', 'arrow-west', 'attachment', 'baselstab', 'bettingenkelch', 'breadcrumb', 'calendar', 'card', 'caret', 'cart', 'check', 'circle-check', 'circle-error', 'circle-ko', 'circle-ok', 'circle-person', 'circle-warning', 'close', 'dots', 'download', 'easy-to-read', 'facebook', 'file', 'hands', 'hinweise_no_rounded', 'hinweise_rounded', 'instagram', 'linkedin', 'loader', 'location', 'mail', 'map-pin-coloured', 'pen', 'phone', 'pin', 'play', 'print', 'questionmark', 'reload', 'remove', 'search', 'send-mail', 'share', 'threads', 'trash', 'x_formerly_twitter', 'youtube'],
 }

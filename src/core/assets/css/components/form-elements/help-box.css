@@ -6,5 +6,8 @@
     h4 {
       @apply mb-10 font-bold text-purple-700;
     }
+    p {
+      @apply mb-10;
+    }
   }
 }
