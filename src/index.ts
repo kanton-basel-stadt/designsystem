@@ -5,9 +5,10 @@ import { getPostcssTailwindUnplugin } from './core/unplugins/postcssTailwind.ts'
 import { getTransformIdsUnplugin } from './core/unplugins/transformIds.ts'
 import { getUnpluginIconsPatchedUnplugin } from './core/unplugins/unpluginIconsPatched.ts'
 
-export const unpluginFactory: UnpluginFactory<Options> = (options, meta): Array<UnpluginOptions> => {
-  if (options === undefined)
+export const unpluginFactory: UnpluginFactory<Options | undefined> = (options, meta): Array<UnpluginOptions> => {
+  if (options === undefined) {
     options = {}
+  }
 
   return [
     getTransformIdsUnplugin(),

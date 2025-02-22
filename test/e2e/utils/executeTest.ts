@@ -1,0 +1,66 @@
+import type { Server } from 'node:http'
+import { Buffer } from 'node:buffer'
+import fs from 'node:fs'
+import path from 'node:path'
+import pixelmatch from 'pixelmatch'
+import { PNG } from 'pngjs'
+import puppeteer, { type Browser } from 'puppeteer'
+import { afterAll, beforeAll, expect, it } from 'vitest'
+import { buildExample } from './buildExample.ts'
+import { createServer } from './createServer.ts'
+
+export function executeTest(exampleName: string, port: number, buildCommand?: string) {
+  const baseUrl = `http://localhost:${port}`
+
+  let browser: Browser
+  let server: Server
+
+  beforeAll(async () => {
+    buildExample(exampleName, buildCommand)
+    server = createServer(exampleName, port)
+    browser = await puppeteer.launch()
+  }, 50000)
+
+  afterAll(async () => {
+    await browser.close()
+    server.close()
+  })
+
+  it(`should set up the ${exampleName} plugin correctly, process Tailwind and all icons, and match the baseline screenshot`, async () => {
+    const page = await browser.newPage()
+    page.setViewport({
+      width: 1024,
+      height: 768,
+      deviceScaleFactor: 1,
+    })
+
+    await page.goto(baseUrl)
+
+    const screenshotBuffer = await page.screenshot({ fullPage: true })
+    const baselinePath = path.join(__dirname, '../_baseline.png') // baseline image path
+    const baselineImage = PNG.sync.read(fs.readFileSync(baselinePath))
+    const screenshotImage = PNG.sync.read(Buffer.from(screenshotBuffer))
+
+    expect(screenshotImage.width).toBe(baselineImage.width)
+    expect(screenshotImage.height).toBe(baselineImage.height)
+
+    const diff = new PNG({ width: baselineImage.width, height: baselineImage.height })
+
+    const numDiffPixels = pixelmatch(
+      baselineImage.data,
+      screenshotImage.data,
+      diff.data,
+      baselineImage.width,
+      baselineImage.height,
+      { threshold: 0.1 },
+    )
+
+    // eslint-disable-next-line node/prefer-global/process
+    if (process.env.DUMP_DIFFS !== undefined) {
+      // Used to debug
+      fs.writeFileSync(path.join(__dirname, `../diff_${exampleName}.png`), PNG.sync.write(diff))
+    }
+
+    expect(numDiffPixels).toBe(0)
+  })
+}

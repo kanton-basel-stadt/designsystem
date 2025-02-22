@@ -1,20 +1,11 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import toPascalCase from '../src/core/utils/toPascalCase.ts'
 
 /**
  * This script generates a single .ts file that imports and exports all available icons to the config dir.
  * The index can be used by any script requesting access to all icons at once.
  */
-
-function toPascalCase(input: string) {
-  return input
-    .replace(/_/g, ' ')
-    .replace(/-/g, ' ')
-    .split(/\s+/)
-    .filter(Boolean)
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join('')
-}
 
 const icons = fs.readdirSync(
   path.resolve(import.meta.dirname, '..', 'src', 'core', 'assets', 'symbols'),
