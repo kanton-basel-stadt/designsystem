@@ -28,8 +28,13 @@ export function executeTest(exampleName: string, port: number, buildCommand?: st
   }, 50000)
 
   afterAll(async () => {
-    await browser.close()
-    server.close()
+    if (browser) {
+      await browser.close()
+    }
+
+    if (server) {
+      server.close()
+    }
   })
 
   it(`should set up the ${exampleName} plugin correctly, process Tailwind and all icons, and match the baseline screenshot`, async () => {
