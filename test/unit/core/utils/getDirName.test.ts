@@ -3,7 +3,7 @@ import { getDirName } from '../../../../src/core/utils/getDirName.ts'
 
 it('returns the correct path', () => {
   const gottenDirName = getDirName()
-  const srcDirName = __dirname.replace('test/unit', 'src')
+  const srcDirName = __dirname.replace('test/unit', 'src').replace('test\\unit', 'src')
 
   expect(gottenDirName).toBe(srcDirName)
 })

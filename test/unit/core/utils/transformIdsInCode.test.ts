@@ -17,7 +17,7 @@ import {} from "@kanton-basel-stadt/designsystem/icons/symbol/foobar"
 (@kanton-basel-stadt/designsystem/icons/symbol/foobar)
 `
 
-const dirname = __dirname.replace('test/unit', 'src')
+const dirname = __dirname.replace('test/unit', 'src').replace('test\\unit', 'src')
 
 const transformed = `
 import {} from '${dirname}/foo/bar';
