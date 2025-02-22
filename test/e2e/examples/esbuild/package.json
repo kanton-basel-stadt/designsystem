@@ -1,0 +1,14 @@
+{
+  "name": "esbuild-example",
+  "type": "module",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "build": "node build.cjs && cp src/index.html dist/"
+  },
+  "devDependencies": {
+    "@kanton-basel-stadt/designsystem": "../../../../",
+    "esbuild": "0.20.2"
+  }
+}

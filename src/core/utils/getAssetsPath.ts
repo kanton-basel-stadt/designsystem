@@ -4,5 +4,5 @@ import { getDirName } from './getDirName.ts'
 export function getAssetsPath() {
   const dirname = getDirName()
 
-  return path.resolve(`${dirname}/assets/`)
+  return path.resolve(`${dirname}${path.sep}assets${path.sep}`)
 }

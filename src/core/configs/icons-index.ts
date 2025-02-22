@@ -10,7 +10,6 @@ import IconSymbolBaselstab from '@kanton-basel-stadt/designsystem/icons/symbol/b
 import IconSymbolBettingenkelch from '@kanton-basel-stadt/designsystem/icons/symbol/bettingenkelch'
 import IconSymbolBreadcrumb from '@kanton-basel-stadt/designsystem/icons/symbol/breadcrumb'
 import IconSymbolCalendar from '@kanton-basel-stadt/designsystem/icons/symbol/calendar'
-import IconSymbolCard from '@kanton-basel-stadt/designsystem/icons/symbol/card'
 import IconSymbolCaret from '@kanton-basel-stadt/designsystem/icons/symbol/caret'
 import IconSymbolCart from '@kanton-basel-stadt/designsystem/icons/symbol/cart'
 import IconSymbolCheck from '@kanton-basel-stadt/designsystem/icons/symbol/check'
@@ -35,6 +34,7 @@ import IconSymbolLoader from '@kanton-basel-stadt/designsystem/icons/symbol/load
 import IconSymbolLocation from '@kanton-basel-stadt/designsystem/icons/symbol/location'
 import IconSymbolMail from '@kanton-basel-stadt/designsystem/icons/symbol/mail'
 import IconSymbolMapPinColoured from '@kanton-basel-stadt/designsystem/icons/symbol/map-pin-coloured'
+import IconSymbolPause from '@kanton-basel-stadt/designsystem/icons/symbol/pause'
 import IconSymbolPen from '@kanton-basel-stadt/designsystem/icons/symbol/pen'
 import IconSymbolPhone from '@kanton-basel-stadt/designsystem/icons/symbol/phone'
 import IconSymbolPin from '@kanton-basel-stadt/designsystem/icons/symbol/pin'
@@ -64,7 +64,6 @@ export default {
   IconSymbolBettingenkelch,
   IconSymbolBreadcrumb,
   IconSymbolCalendar,
-  IconSymbolCard,
   IconSymbolCaret,
   IconSymbolCart,
   IconSymbolCheck,
@@ -89,6 +88,7 @@ export default {
   IconSymbolLocation,
   IconSymbolMail,
   IconSymbolMapPinColoured,
+  IconSymbolPause,
   IconSymbolPen,
   IconSymbolPhone,
   IconSymbolPin,
@@ -104,5 +104,5 @@ export default {
   IconSymbolTrash,
   IconSymbolXFormerlyTwitter,
   IconSymbolYoutube,
-  iconNames: ['add', 'alva', 'arrow-east', 'arrow-east-thin', 'arrow-north-east', 'arrow-south', 'arrow-west', 'attachment', 'baselstab', 'bettingenkelch', 'breadcrumb', 'calendar', 'card', 'caret', 'cart', 'check', 'circle-check', 'circle-error', 'circle-ko', 'circle-ok', 'circle-person', 'circle-warning', 'close', 'dots', 'download', 'easy-to-read', 'facebook', 'file', 'hands', 'hinweise_no_rounded', 'hinweise_rounded', 'instagram', 'linkedin', 'loader', 'location', 'mail', 'map-pin-coloured', 'pen', 'phone', 'pin', 'play', 'print', 'questionmark', 'reload', 'remove', 'search', 'send-mail', 'share', 'threads', 'trash', 'x_formerly_twitter', 'youtube'],
+  iconNames: ['add', 'alva', 'arrow-east', 'arrow-east-thin', 'arrow-north-east', 'arrow-south', 'arrow-west', 'attachment', 'baselstab', 'bettingenkelch', 'breadcrumb', 'calendar', 'caret', 'cart', 'check', 'circle-check', 'circle-error', 'circle-ko', 'circle-ok', 'circle-person', 'circle-warning', 'close', 'dots', 'download', 'easy-to-read', 'facebook', 'file', 'hands', 'hinweise_no_rounded', 'hinweise_rounded', 'instagram', 'linkedin', 'loader', 'location', 'mail', 'map-pin-coloured', 'pause', 'pen', 'phone', 'pin', 'play', 'print', 'questionmark', 'reload', 'remove', 'search', 'send-mail', 'share', 'threads', 'trash', 'x_formerly_twitter', 'youtube'],
 }

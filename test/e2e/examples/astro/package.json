@@ -1,0 +1,19 @@
+{
+  "name": "astro-example",
+  "type": "module",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node node_modules/astro/astro.js dev",
+    "start": "node node_modules/astro/astro.js dev",
+    "build": "node node_modules/astro/astro.js build"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.5.10",
+    "astro": "^4.6.0",
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "@kanton-basel-stadt/designsystem": "../../../../"
+  }
+}

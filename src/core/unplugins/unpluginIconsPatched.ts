@@ -2,6 +2,7 @@ import type { UnpluginContextMeta, UnpluginInstance, UnpluginOptions } from 'unp
 import type { Options as UnpluginIconsOptions } from 'unplugin-icons'
 import type { Options } from '../../types'
 import merge from 'lodash.merge'
+import { optimize } from 'svgo'
 import unpluginIcons from 'unplugin-icons'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import { getAssetsPath } from '../utils/getAssetsPath.ts'
@@ -10,7 +11,17 @@ import { transformIconId } from '../utils/transformIconId'
 export function getUnpluginIconsPatchedUnplugin(options: Options, meta: UnpluginContextMeta): UnpluginOptions {
   const unpluginIconsConfig: UnpluginIconsOptions = {
     customCollections: {
-      symbol: FileSystemIconLoader(`${getAssetsPath()}/symbols`),
+      symbol: FileSystemIconLoader(`${getAssetsPath()}/symbols`, (svg: string) => {
+        const res = optimize(svg, {
+          plugins: [
+            'removeEmptyAttrs',
+            'removeDimensions', // Width and height can mess with the rendering in some browsers.
+            'removeComments', // Not needed for the final icon.
+          ],
+        })
+
+        return res.data
+      }),
     },
     compiler: 'web-components',
     webComponents: {

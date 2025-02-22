@@ -124,6 +124,7 @@
     "build:fix": "esno scripts/postbuild.ts",
     "build:generate-icons-index": "esno scripts/generateIconsIndex.ts",
     "lint": "node ./node_modules/.bin/eslint .",
+    "lint:fix": "node ./node_modules/.bin/eslint . --fix",
     "prepublishOnly": "npm run build",
     "release": "bumpp && npm publish --access public",
     "start": "esno src/index.ts",
@@ -165,6 +166,9 @@
     "postcss-loader": {
       "optional": true
     },
+    "postcss-url-copy": {
+      "optional": true
+    },
     "rollup": {
       "optional": true
     },
@@ -190,7 +194,8 @@
     "postcss-load-config": "^6.0.1",
     "postcss-mixins": "^10.0.1",
     "postcss-nesting": "^12.1.5",
-    "postcss-url": "^10.1.3",
+    "postcss-url-copy": "github:thormeier/postcss-url-copy",
+    "svgo": "^3.3.2",
     "tailwindcss": "^3.4.7",
     "unplugin": "^1.14.1",
     "unplugin-icons": "^0.19.3"
@@ -199,29 +204,33 @@
     "@antfu/eslint-config": "^3.6.2",
     "@nuxt/kit": "^3.13.2",
     "@nuxt/schema": "^3.13.2",
+    "@types/express": "^5.0.0",
     "@types/lodash": "^4.17.7",
     "@types/lodash.merge": "^4.6.9",
-    "@types/mock-require": "^3.0.0",
     "@types/ms": "^0.7.34",
     "@types/node": "^20.10.3",
-    "@types/postcss-url": "^10.0.4",
+    "@types/pixelmatch": "^5.2.6",
+    "@types/pngjs": "^6.0.5",
     "autoprefixer": "^10.4.20",
     "bumpp": "^9.5.2",
     "chalk": "^5.3.0",
     "esbuild": "^0.23.1",
     "eslint": "^9.10.0",
     "esno": "^4.7.0",
+    "express": "^4.21.2",
     "fast-glob": "^3.3.2",
     "mini-css-extract-plugin": "^2.9.2",
-    "mock-require": "^3.0.3",
     "nodemon": "^3.1.6",
+    "pixelmatch": "^6.0.0",
+    "pngjs": "^7.0.0",
+    "puppeteer": "^24.2.1",
     "rimraf": "^6.0.1",
     "rollup": "^4.22.0",
     "rollup-plugin-postcss": "^4.0.2",
     "tsup": "^8.3.5",
     "typescript": "^5.6.2",
     "vite": "^5.4.6",
-    "vitest": "^2.1.1",
+    "vitest": "^3.0.6",
     "webpack": "^5.94.0"
   }
 }

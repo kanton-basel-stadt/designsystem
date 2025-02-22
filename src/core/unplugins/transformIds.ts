@@ -6,6 +6,9 @@ export function getTransformIdsUnplugin(): UnpluginOptions {
     name: '@kanton-basel-stadt/designsystem/transform-ids',
     enforce: 'pre',
     transform: transformIdsInCode,
+    transformInclude(id) {
+      return !id.endsWith('.woff') && !id.endsWith('.woff2')
+    },
     esbuild: {
       onLoadFilter: /\.(?!woff2?$)[^.]+$/i,
     },

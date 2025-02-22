@@ -72,6 +72,11 @@ function getContentDependencies(path: string) {
     'svelte',
     'mdx',
     'twig',
+    'hbs', // Short form of handlebars
+    'handlebars',
+    'pug',
+    'blade.php', // Laravel Blade
+    'tpl', // Smarty
   ].join(',')
 
   const dirCandidates = [
@@ -79,31 +84,19 @@ function getContentDependencies(path: string) {
     'pages',
     'layouts',
     'helpers',
-    'stories',
+    'stories', // Storybook
     'dist',
     'src',
-  ]
-
-  const fileCandidates = [
-    // We also need to check the Formkit config to not
-    // purge classes away that are only used there.
-    // This _would_ offer Formkit support, if any project
-    // decides to use it. We won't support any other form
-    // framework for the time being, as this is meant to
-    // be otherwise framework-agnostic.
-    '/formkit.config.ts',
   ]
 
   // We need to explicitly filter for existing directories/files,
   // because otherwise esbuild-plugin-postcss2 will try to scan
   // directories that don't exist and will fall flat on its face.
   return [
-    `./*.{${fileEndings}`,
+    `./*.{${fileEndings}}`,
     ...dirCandidates.map(d => `${path}/${d}`)
       .filter(d => fs.existsSync(d))
       .map(d => `${d}/**/*.{${fileEndings}}`),
-    ...fileCandidates.map(f => `${path}/${f}`)
-      .filter(f => fs.existsSync(f)),
   ]
 }
 
@@ -260,7 +253,7 @@ const config: Config = {
       body: 'black',
       ...colorsShaded,
 
-      // The dynamic CSS variable based primary color which is overriden by the Bettingen site at runtime.
+      // The dynamic CSS variable based primary color which is overridden by the Bettingen site at runtime.
       primary: {
         50: 'rgb(var(--color-primary-50) / <alpha-value>)',
         100: 'rgb(var(--color-primary-100) / <alpha-value>)',
@@ -288,9 +281,10 @@ const config: Config = {
       },
       boxShadow: {
         'purple-600': '0 0 10px 0 #9156B4',
+        'purple-600-small': '0 0 5px 0 #9156B4',
+        'white': '0 0 10px 0 #fff',
         'none': '0 0 0 0 #000',
       },
-
       keyframes: {
         'jump-x': {
           '0%': {
@@ -348,7 +342,6 @@ const config: Config = {
             transform: 'translate(0, 0)',
           },
         },
-
         'jump-scale': {
           '0%': {
             transform: 'scale(1)',
@@ -363,7 +356,6 @@ const config: Config = {
             transform: 'scale(1)',
           },
         },
-
         'wiggle': {
           '0%': {
             transform: 'rotate(0deg)',
@@ -384,7 +376,6 @@ const config: Config = {
             transform: 'rotate(0deg)',
           },
         },
-
         'rotate': {
           from: {
             transform: 'rotate(0deg)',
@@ -394,7 +385,6 @@ const config: Config = {
           },
         },
       },
-
       animation: {
         'jump-x': `jump-x var(--animation-duration, 0.4s) ease-in-out`,
         'jump-y': `jump-y var(--animation-duration, 0.5s) ease-in-out`,

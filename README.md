@@ -537,18 +537,32 @@ the latest implementations, especially when it comes to icons. They may need som
 
 ## Development
 
-To create a new release (i.e. after you added changes) execute the following:
+To develop inside the DDS, it is recommended to use Node v20 and NPM.
 
+To get started, install all dependencies. To test your changes manually, you can use various examples in the `examples/`
+folder of the project that use the DDS. You need to install their dependencies as well. However, for your changes to
+take effect, you need to build the DDS using `npm run build`. Since the examples install the DDS via symlink, all changes
+built are available immediately without the need for a release or an additional run of `npm install`.
+
+Before you do a release, make sure your changes...
+ * Work as intended (by testing in `examples/`)
+ * Pass all existing and additional tests (by executing `npm run test` it is recommended to add tests to newly added code)
+ * Adhere to the coding standards (by executing `npm run lint` and `npm run lint:fix`)
+
+### Releasing
+
+To create a new release (i.e. after you added changes) follow these steps:
+
+1. Make sure you have push rights to GitHub and access rights to the project on npmjs.
+2. Make sure you're logged in on npmjs using `npm login`.
+3. Execute the following:
 ```
-npm run build
-git add .
-git add dist/ -f
-git commit -m "YOUR COMMIT MESSAGE HERE"
+git commit -a -m "YOUR COMMIT MESSAGE HERE"
 git push -u origin main
+npm run lint:fix
+npm run build
+npm run release
 ```
-
-Adding the dist folder is currently necessary, since we don't yet have a
-strategy for either building and/or releasing to npmjs.org.
 
 Now, please tell users to update the package.
 
@@ -556,27 +570,88 @@ Please feel free to also submit pull requests and/or issues.
 
 ### Testing
 
-To test the Unplugin's various parts, you can execute the tests:
+#### Unit tests
+
+To execute unit tests, run the following command:
 
 ```
-npm run test
+npm run test unit
 ```
 
-If you want to test it in a specific framework, you first need to build the Unplugin by running:
+#### End-to-end tests
+
+The end-to-end tests set up actual build tools (Astro, esbuild, Nuxt, rollup, Vite and Webpack) with the unplugin,
+build them, serve their output and compare the result to a baseline screenshot to ensure the correct loading of
+icons, CSS, and font files.
+
+To execute the tests, build the unplugin first:
 
 ```
 npm run build
 ```
 
-Next, head to the `examples/` folder and chose the framework you would like to test with. First  You can install all
-dependencies by running:
+Then execute the following command:
+
+```
+npm run test e2e
+```
+
+**Note:** Please keep in mind that installation, building, starting the web server and the Chromium instance might take a while.
+
+If any of the tests fail and want to see how the screenshot taken differs from the baseline, you can execute the tests with
+a flag to dump the diffs:
+
+```
+DUMP_DIFFS=1 npm run test e2e
+```
+
+This will generate PNGs named after the build tools (for example, `diff_astro.png`) in the `test/e2e/` folder. These are
+ignored by Git. When you open these files, every red and yellow pixel is a pixel difference. If there are no red and yellow pixels,
+then the baseline image and the screenshot taken overlap perfectly.
+
+#### Linting
+
+To check if your code adheres to the coding standards, you can execute ESLint by running:
+
+```
+npm run lint
+```
+
+And to automatically fix any automatically fixable errors, run:
+
+```
+npm run lint:fix
+```
+
+#### Testing during development
+
+In the `examples/` folder, you can find playgrounds for various different frameworks. They function much in the same way
+the examples in the end-to-end tests do, with the exception that they may contain differing DOM and extra CSS.
+
+To test the Unplugin's various parts and execute end-to-end tests for various build tools, you can execute the tests:
+
+In order to run them, head to the desired example and install dependencies:
 
 ```
 npm install
 ```
 
 **Note:** Please keep in mind that the Unplugin is installed via symlink for ease of development, so each change you do,
-once built with `npm run build` executed in the project root, is directly reflected in the installed package in the example.
+once built with `npm run build` executed in the unplugin project root, is directly reflected in the installed package in
+the example.
+
+### Adding new icons
+
+If you need to add new icons, you can place them in the folder `src/core/assets/symbols/`. Make sure any fill or stroke
+attributes use `currentColor`. Nothing else is needed, the icon will be available as a component upon the next execution
+of `npm run build`. The newly built `src/core/configs/icons-index.ts` needs to be part of the release, otherwise the new
+icons will not be available to users.
+
+To execute the icon building separately, you can run the following command:
+
+```
+npm run build:generate-icons-index
+```
 
 ## Contributing
 

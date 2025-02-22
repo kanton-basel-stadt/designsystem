@@ -30,6 +30,8 @@ jobs:
 
   test:
     runs-on: ${{ matrix.os }}
+    env:
+      DUMP_DIFFS: 1
 
     strategy:
       matrix:
@@ -55,3 +57,22 @@ jobs:
 
       - name: Test
         run: nr test
+
+      - name: Upload Screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-screenshots-${{ matrix.os }}
+          path: output/test/
+          retention-days: 3
+          overwrite: true
+
+#      # Use this if you need to debug the actual built version. May give good insights on what's going on under the hood.
+#      - name: Upload built examples
+#        if: always()
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: e2e-examples-${{ matrix.os }}
+#          path: test/e2e/examples/
+#          retention-days: 3
+#          overwrite: true

@@ -1,0 +1,17 @@
+{
+  "name": "rollup-example",
+  "type": "module",
+  "version": "1.0.0",
+  "license": "ISC",
+  "scripts": {
+    "build": "node node_modules/rollup/dist/bin/rollup -c rollup.config.mjs"
+  },
+  "dependencies": {
+    "rollup-plugin-copy": "^3.5.0"
+  },
+  "devDependencies": {
+    "@kanton-basel-stadt/designsystem": "../../../../",
+    "rollup": "^4.14.1",
+    "rollup-plugin-postcss": "^4.0.2"
+  }
+}

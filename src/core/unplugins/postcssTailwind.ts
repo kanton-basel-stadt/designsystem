@@ -1,9 +1,7 @@
-/* eslint-disable ts/no-require-imports */
-
 import type { UnpluginOptions } from 'unplugin'
 import type { Options } from '../../types.ts'
 import fs from 'node:fs'
-import { getAssetsPath } from '../utils/getAssetsPath.ts'
+import path from 'node:path'
 import { getConfigsPath } from '../utils/getConfigsPath.ts'
 import { getPostcssConfig } from '../utils/getPostcssConfig.ts'
 import { transformIdsInCode } from '../utils/transformIdsInCode.ts'
@@ -20,21 +18,17 @@ export function getPostcssTailwindUnplugin(options: Options): UnpluginOptions {
           return { loader: 'copy' }
         })
 
-        const postcss = require('postcss')
+        const postcss = (await import('postcss')).default
 
         const loadedPostcss = (await postcssConfig)
-        const postcssInstance = postcss({
-          plugins: loadedPostcss.plugins,
-          to: options.tailwindOptions?.targetDir || 'dist',
-          extract: true,
-          modules: false,
-        })
+        const postcssInstance = postcss(loadedPostcss.plugins)
 
         build.onLoad({ filter: /\.css$/i }, async (args) => {
           const contents = transformIdsInCode(fs.readFileSync(args.path, 'utf-8'))
 
           const transformed = await postcssInstance.process(contents, {
             from: args.path,
+            to: options.tailwindOptions?.targetDir || 'dist',
             map: {
               absolute: true,
               from: args.path,
@@ -48,44 +42,57 @@ export function getPostcssTailwindUnplugin(options: Options): UnpluginOptions {
 
     webpack(compiler) {
       compiler.hooks.beforeRun.tapPromise('@kanton-basel-stadt/designsystem', async (params) => {
-        let MiniCssExtractPlugin
+        let initialLoader: string | { loader: string, options: object } = 'style-loader'
 
         // For webpack, we only need to register the appropriate loaders.
         if (params.options.mode === 'production') {
           // Using `require` to avoid having the plugin as a hard dependency of this unplugin.
-          MiniCssExtractPlugin = require('mini-css-extract-plugin')
+          const MiniCssExtractPlugin = (await import('mini-css-extract-plugin')).default
 
           new MiniCssExtractPlugin({
             filename: 'app.css',
           }).apply(params)
+
+          initialLoader = {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../', // adjust based on where fonts are output relative to your CSS
+            },
+          }
         }
 
         const postcssConfigLoaded = await postcssConfig
 
-        params.options.module.rules.unshift({
-          test(value) {
-            return value.endsWith('.css')
+        const cssLoaders = [
+          initialLoader,
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              modules: false,
+              importLoaders: 1,
+            },
           },
-          use: [
-            params.options.mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
-            {
-              loader: 'css-loader',
-              options: {
-                url: true,
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: postcssConfigLoaded.plugins,
+                to: options.tailwindOptions?.targetDir || 'dist',
+                modules: false,
               },
             },
-            {
-              loader: 'postcss-loader',
-              options: {
-                postcssOptions: {
-                  plugins: postcssConfigLoaded.plugins,
-                  to: options.tailwindOptions?.targetDir || 'dist',
-                  extract: true,
-                  modules: false,
-                },
-              },
-            },
-          ],
+          },
+        ]
+
+        params.options.module.rules.push({
+          test: /\.css$/,
+          use: cssLoaders,
+        })
+
+        params.options.module.rules.unshift({
+          test: /\.(woff2?)$/i,
+          type: 'asset/resource',
         })
       })
     },
@@ -94,17 +101,25 @@ export function getPostcssTailwindUnplugin(options: Options): UnpluginOptions {
       async options(rollupOptions) {
         // Use dynamic import hre to avoid having the plugin as a hard dependency of this unplugin.
         const postcss = (await import('rollup-plugin-postcss')).default
-        const url = (await import('postcss-url')).default
+        const urlCopy = (await import('postcss-url-copy')).default
 
-        if (!rollupOptions.plugins)
+        if (!rollupOptions.plugins) {
           rollupOptions.plugins = []
+        }
+
+        const fullTargetDir = path.resolve(options.tailwindOptions?.targetDir || 'dist')
 
         const plugins = [
           ...(await postcssConfig).plugins,
-          url({
-            url: 'copy',
-            basePath: getAssetsPath(),
-            assetsPath: options.tailwindOptions?.targetDir || 'dist',
+          urlCopy({
+            destPath: fullTargetDir,
+            assetsDestPath: `${fullTargetDir}${path.sep}assets`,
+            transformUrlBeforeLoad(url: string) {
+              return url.replace(/@kanton-basel-stadt\/designsystem\//g, `.${path.sep}node_modules${path.sep}@kanton-basel-stadt${path.sep}designsystem${path.sep}dist${path.sep}`)
+            },
+            transformUrlBeforeWrite(url: string) {
+              return url.replace(fullTargetDir, '.')
+            },
           }),
         ]
 
@@ -112,7 +127,7 @@ export function getPostcssTailwindUnplugin(options: Options): UnpluginOptions {
           rollupOptions.plugins.unshift(postcss({
             extract: true,
             modules: false,
-            to: options.tailwindOptions?.targetDir || 'dist',
+            to: options.tailwindOptions?.targetDir || 'dist/',
             plugins,
           }))
         }
