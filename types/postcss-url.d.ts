@@ -50,6 +50,7 @@ declare namespace url {
       file?: string | undefined
     },
   ) => string | Promise<string>
+  // eslint-disable-next-line node/prefer-global/buffer
   type CustomHashFunction = (file: Buffer) => string
   type CustomFilterFunction = (file: string) => boolean
 

@@ -605,8 +605,8 @@ a flag to dump the diffs:
 DUMP_DIFFS=1 npm run test e2e
 ```
 
-This will generate PNGs named after the build tools (for example, `diff_astro.png`) in the `test/e2e/` folder. These are 
-ignored by Git. When you open these files, every red and yellow pixel is a pixel difference. If there are no red and yellow pixels, 
+This will generate PNGs named after the build tools (for example, `diff_astro.png`) in the `test/e2e/` folder. These are
+ignored by Git. When you open these files, every red and yellow pixel is a pixel difference. If there are no red and yellow pixels,
 then the baseline image and the screenshot taken overlap perfectly.
 
 #### Linting
@@ -637,7 +637,7 @@ npm install
 ```
 
 **Note:** Please keep in mind that the Unplugin is installed via symlink for ease of development, so each change you do,
-once built with `npm run build` executed in the unplugin project root, is directly reflected in the installed package in 
+once built with `npm run build` executed in the unplugin project root, is directly reflected in the installed package in
 the example.
 
 ### Adding new icons
