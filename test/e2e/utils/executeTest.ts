@@ -18,7 +18,13 @@ export function executeTest(exampleName: string, port: number, buildCommand?: st
   beforeAll(async () => {
     buildExample(exampleName, buildCommand)
     server = createServer(exampleName, port)
-    browser = await puppeteer.launch()
+    browser = await puppeteer.launch({
+      headless: true,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+      ],
+    })
   }, 50000)
 
   afterAll(async () => {
