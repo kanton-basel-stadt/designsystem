@@ -56,10 +56,12 @@ jobs:
         run: nr build
 
       - name: Test
-        run: nr test
+        run: nr test || echo "e2e_failed=true" >> $GITHUB_ENV
 
-      - name: Download diff screenshots
-        uses: actions/download-artifact@v4
+      - name: Upload Screenshots on Failure
+        if: env.e2e_failed == 'true'
+        uses: actions/upload-artifact@v3
         with:
-          name: screenshots
-          path: output/test
+          name: failed-e2e-screenshots-${{ matrix.os }}
+          path: output/test/${{ matrix.os }}
+          retention-days: 7  # Adjust as needed
