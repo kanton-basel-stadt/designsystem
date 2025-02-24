@@ -78,6 +78,7 @@ export function executeTest(exampleName: string, port: number, buildCommand?: st
 
       // Used for debugging
       fs.writeFileSync(path.join(outputPath, `diff_${exampleName}.png`), PNG.sync.write(diff))
+      fs.writeFileSync(path.join(outputPath, `data_${exampleName}.png`), PNG.sync.write(screenshotImage))
     }
 
     expect(numDiffPixels).toBe(0)
