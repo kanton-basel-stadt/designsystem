@@ -63,6 +63,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: failed-e2e-screenshots-${{ matrix.os }}
-          path: output/test/${{ matrix.os }}
+          path: output/test/
           retention-days: 3
           overwrite: true
