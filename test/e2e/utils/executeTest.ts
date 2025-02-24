@@ -2,6 +2,7 @@ import type { Server } from 'node:http'
 import { Buffer } from 'node:buffer'
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import pixelmatch from 'pixelmatch'
 import { PNG } from 'pngjs'
 import puppeteer, { type Browser } from 'puppeteer'
@@ -68,8 +69,15 @@ export function executeTest(exampleName: string, port: number, buildCommand?: st
 
     // eslint-disable-next-line node/prefer-global/process
     if (process.env.DUMP_DIFFS !== undefined) {
-      // Used to debug
-      fs.writeFileSync(path.join(__dirname, `../diff_${exampleName}.png`), PNG.sync.write(diff))
+      // eslint-disable-next-line node/prefer-global/process
+      const outputPath = path.resolve(path.join(path.dirname(fileURLToPath(import.meta.url)), '..', '..', '..', 'output', 'test', process.platform))
+
+      if (!fs.existsSync(outputPath)) {
+        fs.mkdirSync(outputPath, { recursive: true })
+      }
+
+      // Used for debugging
+      fs.writeFileSync(path.join(outputPath, `diff_${exampleName}.png`), PNG.sync.write(diff))
     }
 
     expect(numDiffPixels).toBe(0)

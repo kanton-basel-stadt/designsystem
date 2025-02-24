@@ -30,6 +30,8 @@ jobs:
 
   test:
     runs-on: ${{ matrix.os }}
+    env:
+      DUMP_DIFFS: 1
 
     strategy:
       matrix:
@@ -55,3 +57,9 @@ jobs:
 
       - name: Test
         run: nr test
+
+      - name: Download diff screenshots
+        uses: actions/download-artifact@v4
+        with:
+          name: screenshots
+          path: output/test

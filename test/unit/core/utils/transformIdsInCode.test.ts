@@ -1,3 +1,5 @@
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { expect, it } from 'vitest'
 import { transformIdsInCode } from '../../../../src/core/utils/transformIdsInCode.ts'
 
@@ -17,7 +19,7 @@ import {} from "@kanton-basel-stadt/designsystem/icons/symbol/foobar"
 (@kanton-basel-stadt/designsystem/icons/symbol/foobar)
 `
 
-const dirname = __dirname.replace('test/unit', 'src').replace('test\\unit', 'src')
+const dirname = path.dirname(fileURLToPath(import.meta.url)).replace(`test${path.sep}unit`, 'src')
 
 const transformed = `
 import {} from '${dirname}/foo/bar';

@@ -83,7 +83,8 @@ src/core/configs/icons-index.ts
 .idea
 
 test/e2e/examples/**/dist
-test/e2e/diff_*.png
+test/e2e/**/diff_*.png
 test/e2e/**/.output
 test/e2e/**/.astro
 
+output/test/*
