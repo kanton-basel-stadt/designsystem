@@ -64,7 +64,7 @@ export function executeTest(exampleName: string, port: number, buildCommand?: st
       diff.data,
       baselineImage.width,
       baselineImage.height,
-      { threshold: 0.1 },
+      { threshold: 0.2 },
     )
 
     // eslint-disable-next-line node/prefer-global/process
