@@ -56,11 +56,8 @@ jobs:
         run: nr build
 
       - name: Test
-        run: nr test
-        continue-on-error: true
-
-      - name: Upload Screenshots on Failure
         uses: actions/upload-artifact@v4
+        run: nr test
         with:
           name: failed-e2e-screenshots-${{ matrix.os }}
           path: output/test/
