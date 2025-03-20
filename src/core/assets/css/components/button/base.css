@@ -140,7 +140,7 @@
       @apply absolute text-center left-0 w-full h-full flex items-center justify-center text-[1.5em] content-empty;
       background-color: var(--button-text);
       /* Use the loading spinner as a mask. */
-      mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><style>@keyframes spinner_xe7Q{100%{r:3px}93.75%{r:3px}46.875%{r:.2px}}.spinner_b2T7{animation:spinner_xe7Q .8s linear infinite}</style><circle cx="4" cy="12" r="3" fill="currentColor" class="spinner_b2T7"/><circle cx="12" cy="12" r="3" fill="currentColor" class="spinner_b2T7" style="animation-delay:-.65s"/><circle cx="20" cy="12" r="3" fill="currentColor" class="spinner_b2T7" style="animation-delay:-.5s"/></svg>') no-repeat 50% 50%;
+      mask: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiIgdmlld0JveD0iMCAwIDI0IDI0Ij48c3R5bGU+QGtleWZyYW1lcyBzcGlubmVyX3hlN1F7MTAwJXtyOjNweH05My43NSV7cjozcHh9NDYuODc1JXtyOi4ycHh9fS5zcGlubmVyX2IyVDd7YW5pbWF0aW9uOnNwaW5uZXJfeGU3USAuOHMgbGluZWFyIGluZmluaXRlfTwvc3R5bGU+PGNpcmNsZSBjeD0iNCIgY3k9IjEyIiByPSIzIiBmaWxsPSJjdXJyZW50Q29sb3IiIGNsYXNzPSJzcGlubmVyX2IyVDciLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIzIiBmaWxsPSJjdXJyZW50Q29sb3IiIGNsYXNzPSJzcGlubmVyX2IyVDciIHN0eWxlPSJhbmltYXRpb24tZGVsYXk6LS42NXMiLz48Y2lyY2xlIGN4PSIyMCIgY3k9IjEyIiByPSIzIiBmaWxsPSJjdXJyZW50Q29sb3IiIGNsYXNzPSJzcGlubmVyX2IyVDciIHN0eWxlPSJhbmltYXRpb24tZGVsYXk6LS41cyIvPjwvc3ZnPg==') no-repeat 50% 50%;
     }
   }
 
