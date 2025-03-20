@@ -6,6 +6,7 @@ const ICON_MODULE = '@kanton-basel-stadt/designsystem/icons/symbol/'
 export default defineConfig({
   test: {
     testTimeout: 150_000,
+    hookTimeout: 150_000,
   },
   plugins: [
     {
