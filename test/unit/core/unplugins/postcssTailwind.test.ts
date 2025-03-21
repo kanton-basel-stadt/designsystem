@@ -265,6 +265,7 @@ it('sets up the correct config for rollup', async () => {
 
   expect(postcssTailwindUnplugin.rollup).toBeDefined()
 
+  // @ts-expect-error We mocked this exact library.
   urlCopy.mockReturnValue('postcss-url-copy')
 
   // @ts-expect-error If the `options` function doesn't exist, the rollup plugin would be non-functional.

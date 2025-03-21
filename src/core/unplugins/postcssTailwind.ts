@@ -24,9 +24,10 @@ export function getPostcssTailwindUnplugin(options: Options): UnpluginOptions {
         const postcssInstance = postcss(loadedPostcss.plugins)
 
         build.onLoad({ filter: /\.css$/i }, async (args) => {
-          const contents = transformIdsInCode(fs.readFileSync(args.path, 'utf-8'))
+          const code = fs.readFileSync(args.path, 'utf-8')
+          const transformed = transformIdsInCode(code, args.path)
 
-          const transformed = await postcssInstance.process(contents, {
+          const processed = await postcssInstance.process(transformed ? transformed.code : code, {
             from: args.path,
             to: options.tailwindOptions?.targetDir || 'dist',
             map: {
@@ -35,7 +36,7 @@ export function getPostcssTailwindUnplugin(options: Options): UnpluginOptions {
             },
           })
 
-          return { contents: transformed.content, loader: 'css' }
+          return { contents: processed.content, loader: 'css' }
         })
       },
     },

@@ -49,10 +49,12 @@ export function executeTest(exampleName: string, port: number, buildCommand?: st
     await page.goto(baseUrl)
 
     // Esnures that all assets have been loaded, including fonts.
-    await page.waitForNetworkIdle()
+    await page.waitForNetworkIdle({
+      idleTime: 100, // Should be plenty of time for all requests to have finished.
+    })
 
     const screenshotBuffer = await page.screenshot({ fullPage: true })
-    const baselinePath = path.join(__dirname, '../_baseline.png') // baseline image path
+    const baselinePath = path.join(__dirname, '..', '_baseline.png') // baseline image path
     const baselineImage = PNG.sync.read(fs.readFileSync(baselinePath))
     const screenshotImage = PNG.sync.read(Buffer.from(screenshotBuffer))
 
