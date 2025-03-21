@@ -67,12 +67,12 @@ jobs:
           retention-days: 3
           overwrite: true
 
-#      # Use this if you need to debug the actual built version. May give good insights on what's going on under the hood.
-#      - name: Upload built examples
-#        if: always()
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: e2e-examples-${{ matrix.os }}
-#          path: test/e2e/examples/
-#          retention-days: 3
-#          overwrite: true
+      # Use this if you need to debug the actual built version. May give good insights on what's going on under the hood.
+      - name: Upload built examples
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-examples-${{ matrix.os }}
+          path: test/e2e/examples/
+          retention-days: 3
+          overwrite: true
