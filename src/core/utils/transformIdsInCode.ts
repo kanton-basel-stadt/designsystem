@@ -1,6 +1,5 @@
 import path from 'node:path'
 import MagicString from 'magic-string'
-import { ICON_PATH, ICON_PATH_ALIAS } from './consts'
 import { getDirName } from './getDirName'
 
 export function transformIdsInCode(code: string, id: string) {
@@ -16,24 +15,35 @@ export function transformIdsInCode(code: string, id: string) {
 
   const s = new MagicString(code)
 
-  s.replace(new RegExp(ICON_PATH_ALIAS, 'g'), ICON_PATH)
-  s.replace(/(['"(])@kanton-basel-stadt\/designsystem(?!\/icons\/symbol)((?:\/[\w\-.]*)*)(['")])/g, (_, p1, p2, p3) => {
-    // Catches both Windows and Linux/Unix path separators.
-    if (p2.startsWith(path.sep) || p2.startsWith('/')) {
-      p2 = p2.replace(/^[\\/]+/, '')
+  s.replace(/(['"(]+)(@{1,2})kanton-basel-stadt\/designsystem\/(icons\/symbols\/(\w+)|([^"')]+))(['")]+)/g, (_, surroundingStart: string, ats: string, fullPathMatch, _2, iconMatch, surroundingEnd) => {
+    // Purely for Storybook: `@@kanton-basel-stadt/...` gets translated to `@kanton-baselstadt/...`, so we have a way
+    // to display the original ID in code examples. They would otehrwise be transformed as well, which is not what
+    // we want in these cases.
+    if (ats.length === 2) {
+      return `${surroundingStart}@kanton-basel-stadt/designsystem/${fullPathMatch}${surroundingEnd}`
     }
 
-    if (p2.startsWith('dist')) {
-      p2 = p2.replace(/^dist[\\/]+/, '')
+    // Replace any starting `/` or backslashes that might've snug in
+    if (fullPathMatch.startsWith(path.sep) || fullPathMatch.startsWith('/')) {
+      fullPathMatch = fullPathMatch.replace(/^[\\/]+/, '')
     }
 
-    p2 = p2.replace(/\//g, path.sep)
+    // If we're dealing with an icon, return the path that's used by unplugin-icons
+    if (fullPathMatch.startsWith('icons/symbol/')) {
+      return `${surroundingStart}~${iconMatch}${surroundingEnd}`
+    }
 
-    return `${p1}${dirname}${path.sep}dist${path.sep}${p2}${p3}`
+    // Remove any leading `dist/`
+    if (fullPathMatch.startsWith('dist')) {
+      fullPathMatch = fullPathMatch.replace(/^dist[\\/]+/, '')
+    }
+
+    // Fix path separators
+    fullPathMatch = fullPathMatch.replace(/\//g, path.sep)
+
+    // Return the full path for Node to pick up, including `dist/`
+    return `${surroundingStart}${dirname}${path.sep}dist${path.sep}${fullPathMatch}${surroundingEnd}`
   })
-
-  // This is purely for the docs, otherwise Storybook has the actual file paths in the code examples, which we don't want.
-  s.replace(/@@kanton-basel-stadt/g, '@kanton-basel-stadt')
 
   if (!s.hasChanged()) {
     return

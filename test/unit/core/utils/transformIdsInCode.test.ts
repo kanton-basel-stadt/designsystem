@@ -8,9 +8,11 @@ import {} from '@kanton-basel-stadt/designsystem/foo/bar';
 import {} from '@kanton-basel-stadt/designsystem/foo/bar'
 import {} from "@kanton-basel-stadt/designsystem/foo/bar"
 import {} from "@kanton-basel-stadt/designsystem/dist/foo/bar"
+import {} from "@@kanton-basel-stadt/designsystem/dist/foo/bar"
 ("@kanton-basel-stadt/designsystem/foo/bar")
 ('@kanton-basel-stadt/designsystem/foo/bar')
 (@kanton-basel-stadt/designsystem/foo/bar)
+(@@kanton-basel-stadt/designsystem/foo/bar)
 
 import {} from '@kanton-basel-stadt/designsystem/icons/symbol/foobar';
 import {} from '@kanton-basel-stadt/designsystem/icons/symbol/foobar'
@@ -28,9 +30,11 @@ import {} from '${dirname}${path.sep}dist${path.sep}foo${path.sep}bar';
 import {} from '${dirname}${path.sep}dist${path.sep}foo${path.sep}bar'
 import {} from \"${dirname}${path.sep}dist${path.sep}foo${path.sep}bar\"
 import {} from \"${dirname}${path.sep}dist${path.sep}foo${path.sep}bar\"
+import {} from "@kanton-basel-stadt/designsystem/dist/foo/bar"
 (\"${dirname}${path.sep}dist${path.sep}foo${path.sep}bar\")
 ('${dirname}${path.sep}dist${path.sep}foo${path.sep}bar')
 (${dirname}${path.sep}dist${path.sep}foo${path.sep}bar)
+(@kanton-basel-stadt/designsystem/foo/bar)
 
 import {} from '~icons/symbol/foobar';
 import {} from '~icons/symbol/foobar'
@@ -46,24 +50,7 @@ import {} from \"~icons/symbol/foobar\"
     sources: [
       'someFile.js',
     ],
-    sourcesContent: [
-      `
-import {} from '@kanton-basel-stadt/designsystem/foo/bar';
-import {} from '@kanton-basel-stadt/designsystem/foo/bar'
-import {} from \"@kanton-basel-stadt/designsystem/foo/bar\"
-import {} from \"@kanton-basel-stadt/designsystem/dist/foo/bar\"
-(\"@kanton-basel-stadt/designsystem/foo/bar\")
-('@kanton-basel-stadt/designsystem/foo/bar')
-(@kanton-basel-stadt/designsystem/foo/bar)
-
-import {} from '@kanton-basel-stadt/designsystem/icons/symbol/foobar';
-import {} from '@kanton-basel-stadt/designsystem/icons/symbol/foobar'
-import {} from \"@kanton-basel-stadt/designsystem/icons/symbol/foobar\"
-(\"@kanton-basel-stadt/designsystem/icons/symbol/foobar\")
-('@kanton-basel-stadt/designsystem/icons/symbol/foobar')
-(@kanton-basel-stadt/designsystem/icons/symbol/foobar)
-`,
-    ],
+    sourcesContent: [toTransform],
     version: 3,
   },
 }
