@@ -13,6 +13,10 @@
       }
       &.is-active {
         @apply text-white bg-blue-900;
+
+        @media (forced-colors: active) {
+          @apply border-2 border-[ButtonText];
+        }
       }
     }
   }
