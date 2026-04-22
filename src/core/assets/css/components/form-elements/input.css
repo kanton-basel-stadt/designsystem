@@ -30,4 +30,9 @@
       }
     }
   }
+
+  .search-input::-webkit-search-cancel-button {
+    @apply appearance-none absolute right-0 w-20 h-20 bg-blue-800 top-1/2 -translate-y-1/2;
+    mask: url('../../../symbols/close.svg') no-repeat 100% 100%;
+  }
 }
