@@ -40,5 +40,23 @@
         @apply border-gray-500 bg-gray-500;
       }
     }
+
+    &[data-field-state='error'] input[type='radio'] {
+      &:before {
+        @apply border-red-800 bg-white shadow-none;
+      }
+
+      &:after {
+        @apply opacity-0;
+      }
+
+      &:hover:before {
+        @apply border-red-800 bg-white;
+      }
+
+      &:focus:before {
+        @apply border-red-800 shadow-purple-600;
+      }
+    }
   }
 }
