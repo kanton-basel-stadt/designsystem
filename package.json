@@ -1,7 +1,7 @@
 {
   "name": "@kanton-basel-stadt/designsystem",
   "type": "module",
-  "version": "1.1.5",
+  "version": "1.2.0",
   "packageManager": "npm@6.7.0",
   "description": "Unplugin to install the digital design system of the canton of Basel-Stadt",
   "author": "Kanton Basel-Stadt",
@@ -127,6 +127,7 @@
     "lint:fix": "node ./node_modules/.bin/eslint . --fix",
     "prepublishOnly": "npm run build",
     "release": "bumpp && npm publish --access public",
+    "release:dev": "bumpp --prerelease --tag dev --no-push && npm publish --tag dev --access public",
     "start": "esno src/index.ts",
     "test": "vitest"
   },
