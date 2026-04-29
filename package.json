@@ -1,7 +1,7 @@
 {
   "name": "@kanton-basel-stadt/designsystem",
   "type": "module",
-  "version": "1.2.0-dev.1",
+  "version": "1.2.0-dev.2",
   "packageManager": "npm@6.7.0",
   "description": "Unplugin to install the digital design system of the canton of Basel-Stadt",
   "author": "Kanton Basel-Stadt",
@@ -188,6 +188,7 @@
   },
   "dependencies": {
     "cssnano": "^7.0.4",
+    "lint": "^1.2.2",
     "lodash.merge": "^4.6.2",
     "magic-string": "^0.30.17",
     "postcss": "^8.4.41",
