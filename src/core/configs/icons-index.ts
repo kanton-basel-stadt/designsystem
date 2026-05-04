@@ -12,7 +12,6 @@ import IconSymbolBaselstab from '@kanton-basel-stadt/designsystem/icons/symbol/b
 import IconSymbolBettingenkelch from '@kanton-basel-stadt/designsystem/icons/symbol/bettingenkelch'
 import IconSymbolBreadcrumb from '@kanton-basel-stadt/designsystem/icons/symbol/breadcrumb'
 import IconSymbolCalendar from '@kanton-basel-stadt/designsystem/icons/symbol/calendar'
-import IconSymbolCard from '@kanton-basel-stadt/designsystem/icons/symbol/card'
 import IconSymbolCaret from '@kanton-basel-stadt/designsystem/icons/symbol/caret'
 import IconSymbolCart from '@kanton-basel-stadt/designsystem/icons/symbol/cart'
 import IconSymbolCheck from '@kanton-basel-stadt/designsystem/icons/symbol/check'
@@ -32,16 +31,16 @@ import IconSymbolFile from '@kanton-basel-stadt/designsystem/icons/symbol/file'
 import IconSymbolHands from '@kanton-basel-stadt/designsystem/icons/symbol/hands'
 import IconSymbolHinweiseNoRounded from '@kanton-basel-stadt/designsystem/icons/symbol/hinweise_no_rounded'
 import IconSymbolHinweiseRounded from '@kanton-basel-stadt/designsystem/icons/symbol/hinweise_rounded'
+import IconSymbolInfoClosed from '@kanton-basel-stadt/designsystem/icons/symbol/info-closed'
+import IconSymbolInfoOpened from '@kanton-basel-stadt/designsystem/icons/symbol/info-opened'
 import IconSymbolInstagram from '@kanton-basel-stadt/designsystem/icons/symbol/instagram'
 import IconSymbolLinkedin from '@kanton-basel-stadt/designsystem/icons/symbol/linkedin'
 import IconSymbolLoader from '@kanton-basel-stadt/designsystem/icons/symbol/loader'
 import IconSymbolLocation from '@kanton-basel-stadt/designsystem/icons/symbol/location'
 import IconSymbolMail from '@kanton-basel-stadt/designsystem/icons/symbol/mail'
-import IconSymbolMapPinColoured from '@kanton-basel-stadt/designsystem/icons/symbol/map-pin-coloured'
 import IconSymbolPause from '@kanton-basel-stadt/designsystem/icons/symbol/pause'
 import IconSymbolPen from '@kanton-basel-stadt/designsystem/icons/symbol/pen'
 import IconSymbolPhone from '@kanton-basel-stadt/designsystem/icons/symbol/phone'
-import IconSymbolPin from '@kanton-basel-stadt/designsystem/icons/symbol/pin'
 import IconSymbolPlay from '@kanton-basel-stadt/designsystem/icons/symbol/play'
 import IconSymbolPrint from '@kanton-basel-stadt/designsystem/icons/symbol/print'
 import IconSymbolQuestionmark from '@kanton-basel-stadt/designsystem/icons/symbol/questionmark'
@@ -71,7 +70,6 @@ export default {
   IconSymbolBettingenkelch,
   IconSymbolBreadcrumb,
   IconSymbolCalendar,
-  IconSymbolCard,
   IconSymbolCaret,
   IconSymbolCart,
   IconSymbolCheck,
@@ -91,16 +89,16 @@ export default {
   IconSymbolHands,
   IconSymbolHinweiseNoRounded,
   IconSymbolHinweiseRounded,
+  IconSymbolInfoClosed,
+  IconSymbolInfoOpened,
   IconSymbolInstagram,
   IconSymbolLinkedin,
   IconSymbolLoader,
   IconSymbolLocation,
   IconSymbolMail,
-  IconSymbolMapPinColoured,
   IconSymbolPause,
   IconSymbolPen,
   IconSymbolPhone,
-  IconSymbolPin,
   IconSymbolPlay,
   IconSymbolPrint,
   IconSymbolQuestionmark,
@@ -114,5 +112,5 @@ export default {
   IconSymbolUpload,
   IconSymbolXFormerlyTwitter,
   IconSymbolYoutube,
-  iconNames: ['add', 'alva', 'alva-still', 'arrow-east', 'arrow-east-thin', 'arrow-north', 'arrow-north-east', 'arrow-south', 'arrow-west', 'attachment', 'baselstab', 'bettingenkelch', 'breadcrumb', 'calendar', 'card', 'caret', 'cart', 'check', 'circle-check', 'circle-error', 'circle-ko', 'circle-ok', 'circle-person', 'circle-warning', 'close', 'cloud-upload', 'dots', 'download', 'easy-to-read', 'facebook', 'file', 'hands', 'hinweise_no_rounded', 'hinweise_rounded', 'instagram', 'linkedin', 'loader', 'location', 'mail', 'map-pin-coloured', 'pause', 'pen', 'phone', 'pin', 'play', 'print', 'questionmark', 'reload', 'remove', 'search', 'send-mail', 'share', 'threads', 'trash', 'upload', 'x_formerly_twitter', 'youtube'],
+  iconNames: ['add', 'alva', 'alva-still', 'arrow-east', 'arrow-east-thin', 'arrow-north', 'arrow-north-east', 'arrow-south', 'arrow-west', 'attachment', 'baselstab', 'bettingenkelch', 'breadcrumb', 'calendar', 'caret', 'cart', 'check', 'circle-check', 'circle-error', 'circle-ko', 'circle-ok', 'circle-person', 'circle-warning', 'close', 'cloud-upload', 'dots', 'download', 'easy-to-read', 'facebook', 'file', 'hands', 'hinweise_no_rounded', 'hinweise_rounded', 'info-closed', 'info-opened', 'instagram', 'linkedin', 'loader', 'location', 'mail', 'pause', 'pen', 'phone', 'play', 'print', 'questionmark', 'reload', 'remove', 'search', 'send-mail', 'share', 'threads', 'trash', 'upload', 'x_formerly_twitter', 'youtube'],
 }

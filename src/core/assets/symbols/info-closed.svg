@@ -1,0 +1,10 @@
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    svg:hover .bg {
+    fill: #079BCA;
+    }
+  </style>
+  <circle cx="8" cy="8" r="7.4" fill="#1E4557" class="bg"/>
+  <rect width="1.5" height="5" x="7.25" y="7" rx=".75" fill="#fff"/>
+  <circle cx="8" cy="5" r=".75" fill="#fff"/>
+</svg>
