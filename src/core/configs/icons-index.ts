@@ -30,8 +30,8 @@ import IconSymbolFile from '@kanton-basel-stadt/designsystem/icons/symbol/file'
 import IconSymbolHands from '@kanton-basel-stadt/designsystem/icons/symbol/hands'
 import IconSymbolHinweiseNoRounded from '@kanton-basel-stadt/designsystem/icons/symbol/hinweise_no_rounded'
 import IconSymbolHinweiseRounded from '@kanton-basel-stadt/designsystem/icons/symbol/hinweise_rounded'
-import IconSymbolInfoClosed from '@kanton-basel-stadt/designsystem/icons/symbol/info-closed'
-import IconSymbolInfoOpened from '@kanton-basel-stadt/designsystem/icons/symbol/info-opened'
+import IconSymbolInfoI from '@kanton-basel-stadt/designsystem/icons/symbol/info-i'
+import IconSymbolInfoX from '@kanton-basel-stadt/designsystem/icons/symbol/info-x'
 import IconSymbolInstagram from '@kanton-basel-stadt/designsystem/icons/symbol/instagram'
 import IconSymbolLinkedin from '@kanton-basel-stadt/designsystem/icons/symbol/linkedin'
 import IconSymbolLoader from '@kanton-basel-stadt/designsystem/icons/symbol/loader'
@@ -87,8 +87,8 @@ export default {
   IconSymbolHands,
   IconSymbolHinweiseNoRounded,
   IconSymbolHinweiseRounded,
-  IconSymbolInfoClosed,
-  IconSymbolInfoOpened,
+  IconSymbolInfoI,
+  IconSymbolInfoX,
   IconSymbolInstagram,
   IconSymbolLinkedin,
   IconSymbolLoader,
@@ -110,5 +110,5 @@ export default {
   IconSymbolUpload,
   IconSymbolXFormerlyTwitter,
   IconSymbolYoutube,
-  iconNames: ['add', 'alva', 'alva-still', 'arrow-east', 'arrow-north', 'arrow-north-east', 'arrow-south', 'arrow-west', 'attachment', 'baselstab', 'bettingenkelch', 'breadcrumb', 'calendar', 'caret', 'cart', 'check', 'circle-check', 'circle-error', 'circle-ko', 'circle-ok', 'circle-person', 'circle-warning', 'close', 'cloud-upload', 'dots', 'download', 'easy-to-read', 'facebook', 'file', 'hands', 'hinweise_no_rounded', 'hinweise_rounded', 'info-closed', 'info-opened', 'instagram', 'linkedin', 'loader', 'location', 'mail', 'pause', 'pen', 'phone', 'play', 'print', 'questionmark', 'reload', 'remove', 'search', 'send-mail', 'share', 'threads', 'trash', 'upload', 'x_formerly_twitter', 'youtube'],
+  iconNames: ['add', 'alva', 'alva-still', 'arrow-east', 'arrow-north', 'arrow-north-east', 'arrow-south', 'arrow-west', 'attachment', 'baselstab', 'bettingenkelch', 'breadcrumb', 'calendar', 'caret', 'cart', 'check', 'circle-check', 'circle-error', 'circle-ko', 'circle-ok', 'circle-person', 'circle-warning', 'close', 'cloud-upload', 'dots', 'download', 'easy-to-read', 'facebook', 'file', 'hands', 'hinweise_no_rounded', 'hinweise_rounded', 'info-i', 'info-x', 'instagram', 'linkedin', 'loader', 'location', 'mail', 'pause', 'pen', 'phone', 'play', 'print', 'questionmark', 'reload', 'remove', 'search', 'send-mail', 'share', 'threads', 'trash', 'upload', 'x_formerly_twitter', 'youtube'],
 }
