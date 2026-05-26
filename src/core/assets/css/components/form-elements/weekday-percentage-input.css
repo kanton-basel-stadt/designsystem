@@ -2,7 +2,7 @@
 
 @layer components {
   .weekday-percentage-input {
-    @apply grid grid-rows-[auto_30px_120px_30px_120px] grid-cols-[auto_1fr_1fr_1fr_1fr_1fr] gap-5;
+    @apply grid grid-rows-[auto_30px_90px_30px_90px] grid-cols-[auto_1fr_1fr_1fr_1fr_1fr] gap-10;
 
     thead,
     tbody,
@@ -26,14 +26,22 @@
     }
 
     label {
-      @apply border border-gray-500 w-full h-full block bg-white cursor-pointer transition-all ease-in-out duration-250;
-
-      &:has(:checked) {
-        @apply bg-green-300;
+      @apply flex items-center justify-center rounded border border-blue-900 hover:border-blue-400 bg-gray-100 hover:bg-blue-400 text-gray-100 hover:text-white w-full h-full block cursor-pointer transition-all ease-in-out duration-250;
+      svg {
+        @apply size-20;
       }
-
+      &:has(:checked) {
+        @apply bg-blue-900 text-white;
+      }
       input {
         @apply sr-only;
+      }
+    }
+
+    .header-button {
+      @apply inline-flex rounded-full px-10 py-5 bg-white text-blue-900 transition-all duration-250 ease-in-out hover:border-blue-400 hover:bg-blue-400 hover:text-white cursor-pointer;
+      svg {
+        @apply size-20 rounded-full ml-[12px] mt-2 border;
       }
     }
   }

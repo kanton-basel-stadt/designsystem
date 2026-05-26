@@ -88,3 +88,5 @@ test/e2e/**/.output
 test/e2e/**/.astro
 
 output/test/*
+
+*.DS_Store

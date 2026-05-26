@@ -3,6 +3,7 @@
 @layer components {
   .stepper-nav {
     @apply pt-80 pb-40 my-30;
+    @apply mx-auto w-full max-w-[345px] md:max-w-[738px];
     @apply grid auto-cols-fr grid-rows-1 grid-flow-col relative;
 
     counter-reset: step-number;
@@ -28,7 +29,7 @@
         @apply hidden;
       }
 
-      &[data-active='true'] {
+      &[data-active="true"] {
         & .step-tab-label {
           @apply block text-purple-600;
         }

@@ -1,7 +1,9 @@
 import IconSymbolAdd from '@kanton-basel-stadt/designsystem/icons/symbol/add'
 import IconSymbolAlva from '@kanton-basel-stadt/designsystem/icons/symbol/alva'
+import IconSymbolAlvaStill from '@kanton-basel-stadt/designsystem/icons/symbol/alva-still'
 import IconSymbolArrowEast from '@kanton-basel-stadt/designsystem/icons/symbol/arrow-east'
 import IconSymbolArrowEastThin from '@kanton-basel-stadt/designsystem/icons/symbol/arrow-east-thin'
+import IconSymbolArrowNorth from '@kanton-basel-stadt/designsystem/icons/symbol/arrow-north'
 import IconSymbolArrowNorthEast from '@kanton-basel-stadt/designsystem/icons/symbol/arrow-north-east'
 import IconSymbolArrowSouth from '@kanton-basel-stadt/designsystem/icons/symbol/arrow-south'
 import IconSymbolArrowWest from '@kanton-basel-stadt/designsystem/icons/symbol/arrow-west'
@@ -20,6 +22,7 @@ import IconSymbolCircleOk from '@kanton-basel-stadt/designsystem/icons/symbol/ci
 import IconSymbolCirclePerson from '@kanton-basel-stadt/designsystem/icons/symbol/circle-person'
 import IconSymbolCircleWarning from '@kanton-basel-stadt/designsystem/icons/symbol/circle-warning'
 import IconSymbolClose from '@kanton-basel-stadt/designsystem/icons/symbol/close'
+import IconSymbolCloudUpload from '@kanton-basel-stadt/designsystem/icons/symbol/cloud-upload'
 import IconSymbolDots from '@kanton-basel-stadt/designsystem/icons/symbol/dots'
 import IconSymbolDownload from '@kanton-basel-stadt/designsystem/icons/symbol/download'
 import IconSymbolEasyToRead from '@kanton-basel-stadt/designsystem/icons/symbol/easy-to-read'
@@ -28,16 +31,16 @@ import IconSymbolFile from '@kanton-basel-stadt/designsystem/icons/symbol/file'
 import IconSymbolHands from '@kanton-basel-stadt/designsystem/icons/symbol/hands'
 import IconSymbolHinweiseNoRounded from '@kanton-basel-stadt/designsystem/icons/symbol/hinweise_no_rounded'
 import IconSymbolHinweiseRounded from '@kanton-basel-stadt/designsystem/icons/symbol/hinweise_rounded'
+import IconSymbolInfoI from '@kanton-basel-stadt/designsystem/icons/symbol/info-i'
+import IconSymbolInfoX from '@kanton-basel-stadt/designsystem/icons/symbol/info-x'
 import IconSymbolInstagram from '@kanton-basel-stadt/designsystem/icons/symbol/instagram'
 import IconSymbolLinkedin from '@kanton-basel-stadt/designsystem/icons/symbol/linkedin'
 import IconSymbolLoader from '@kanton-basel-stadt/designsystem/icons/symbol/loader'
 import IconSymbolLocation from '@kanton-basel-stadt/designsystem/icons/symbol/location'
 import IconSymbolMail from '@kanton-basel-stadt/designsystem/icons/symbol/mail'
-import IconSymbolMapPinColoured from '@kanton-basel-stadt/designsystem/icons/symbol/map-pin-coloured'
 import IconSymbolPause from '@kanton-basel-stadt/designsystem/icons/symbol/pause'
 import IconSymbolPen from '@kanton-basel-stadt/designsystem/icons/symbol/pen'
 import IconSymbolPhone from '@kanton-basel-stadt/designsystem/icons/symbol/phone'
-import IconSymbolPin from '@kanton-basel-stadt/designsystem/icons/symbol/pin'
 import IconSymbolPlay from '@kanton-basel-stadt/designsystem/icons/symbol/play'
 import IconSymbolPrint from '@kanton-basel-stadt/designsystem/icons/symbol/print'
 import IconSymbolQuestionmark from '@kanton-basel-stadt/designsystem/icons/symbol/questionmark'
@@ -48,14 +51,17 @@ import IconSymbolSendMail from '@kanton-basel-stadt/designsystem/icons/symbol/se
 import IconSymbolShare from '@kanton-basel-stadt/designsystem/icons/symbol/share'
 import IconSymbolThreads from '@kanton-basel-stadt/designsystem/icons/symbol/threads'
 import IconSymbolTrash from '@kanton-basel-stadt/designsystem/icons/symbol/trash'
+import IconSymbolUpload from '@kanton-basel-stadt/designsystem/icons/symbol/upload'
 import IconSymbolXFormerlyTwitter from '@kanton-basel-stadt/designsystem/icons/symbol/x_formerly_twitter'
 import IconSymbolYoutube from '@kanton-basel-stadt/designsystem/icons/symbol/youtube'
 
 export default {
   IconSymbolAdd,
   IconSymbolAlva,
+  IconSymbolAlvaStill,
   IconSymbolArrowEast,
   IconSymbolArrowEastThin,
+  IconSymbolArrowNorth,
   IconSymbolArrowNorthEast,
   IconSymbolArrowSouth,
   IconSymbolArrowWest,
@@ -74,6 +80,7 @@ export default {
   IconSymbolCirclePerson,
   IconSymbolCircleWarning,
   IconSymbolClose,
+  IconSymbolCloudUpload,
   IconSymbolDots,
   IconSymbolDownload,
   IconSymbolEasyToRead,
@@ -82,16 +89,16 @@ export default {
   IconSymbolHands,
   IconSymbolHinweiseNoRounded,
   IconSymbolHinweiseRounded,
+  IconSymbolInfoI,
+  IconSymbolInfoX,
   IconSymbolInstagram,
   IconSymbolLinkedin,
   IconSymbolLoader,
   IconSymbolLocation,
   IconSymbolMail,
-  IconSymbolMapPinColoured,
   IconSymbolPause,
   IconSymbolPen,
   IconSymbolPhone,
-  IconSymbolPin,
   IconSymbolPlay,
   IconSymbolPrint,
   IconSymbolQuestionmark,
@@ -102,7 +109,8 @@ export default {
   IconSymbolShare,
   IconSymbolThreads,
   IconSymbolTrash,
+  IconSymbolUpload,
   IconSymbolXFormerlyTwitter,
   IconSymbolYoutube,
-  iconNames: ['add', 'alva', 'arrow-east', 'arrow-east-thin', 'arrow-north-east', 'arrow-south', 'arrow-west', 'attachment', 'baselstab', 'bettingenkelch', 'breadcrumb', 'calendar', 'caret', 'cart', 'check', 'circle-check', 'circle-error', 'circle-ko', 'circle-ok', 'circle-person', 'circle-warning', 'close', 'dots', 'download', 'easy-to-read', 'facebook', 'file', 'hands', 'hinweise_no_rounded', 'hinweise_rounded', 'instagram', 'linkedin', 'loader', 'location', 'mail', 'map-pin-coloured', 'pause', 'pen', 'phone', 'pin', 'play', 'print', 'questionmark', 'reload', 'remove', 'search', 'send-mail', 'share', 'threads', 'trash', 'x_formerly_twitter', 'youtube'],
+  iconNames: ['add', 'alva', 'alva-still', 'arrow-east', 'arrow-east-thin', 'arrow-north', 'arrow-north-east', 'arrow-south', 'arrow-west', 'attachment', 'baselstab', 'bettingenkelch', 'breadcrumb', 'calendar', 'caret', 'cart', 'check', 'circle-check', 'circle-error', 'circle-ko', 'circle-ok', 'circle-person', 'circle-warning', 'close', 'cloud-upload', 'dots', 'download', 'easy-to-read', 'facebook', 'file', 'hands', 'hinweise_no_rounded', 'hinweise_rounded', 'info-i', 'info-x', 'instagram', 'linkedin', 'loader', 'location', 'mail', 'pause', 'pen', 'phone', 'play', 'print', 'questionmark', 'reload', 'remove', 'search', 'send-mail', 'share', 'threads', 'trash', 'upload', 'x_formerly_twitter', 'youtube'],
 }
