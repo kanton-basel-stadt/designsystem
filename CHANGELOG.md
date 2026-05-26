@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0] - 2026-05-26
+
+### Changed
+- fieldset title in green
+- stepper navigation better placement
+- pagination color for step navigation
+- removed 2 icons: map-pin-coloured.svg and pin.svg
+- help box open icon
+
+### Added
+
+- help box close icon
+
 ## [1.1.5] - 2026-03-26
 
 ### Added
