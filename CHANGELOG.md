@@ -4,6 +4,7 @@
 
 ### Changed
 - new color variant "red" for the component tag
+- add new icon "submit-doc"
 
 ## [1.2.0] - 2026-05-26
 

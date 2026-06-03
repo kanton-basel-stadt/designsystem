@@ -49,6 +49,7 @@ import IconSymbolRemove from '@kanton-basel-stadt/designsystem/icons/symbol/remo
 import IconSymbolSearch from '@kanton-basel-stadt/designsystem/icons/symbol/search'
 import IconSymbolSendMail from '@kanton-basel-stadt/designsystem/icons/symbol/send-mail'
 import IconSymbolShare from '@kanton-basel-stadt/designsystem/icons/symbol/share'
+import IconSymbolSubmitDoc from '@kanton-basel-stadt/designsystem/icons/symbol/submit-doc'
 import IconSymbolThreads from '@kanton-basel-stadt/designsystem/icons/symbol/threads'
 import IconSymbolTrash from '@kanton-basel-stadt/designsystem/icons/symbol/trash'
 import IconSymbolUpload from '@kanton-basel-stadt/designsystem/icons/symbol/upload'
@@ -107,10 +108,11 @@ export default {
   IconSymbolSearch,
   IconSymbolSendMail,
   IconSymbolShare,
+  IconSymbolSubmitDoc,
   IconSymbolThreads,
   IconSymbolTrash,
   IconSymbolUpload,
   IconSymbolXFormerlyTwitter,
   IconSymbolYoutube,
-  iconNames: ['add', 'alva', 'alva-still', 'arrow-east', 'arrow-east-thin', 'arrow-north', 'arrow-north-east', 'arrow-south', 'arrow-west', 'attachment', 'baselstab', 'bettingenkelch', 'breadcrumb', 'calendar', 'caret', 'cart', 'check', 'circle-check', 'circle-error', 'circle-ko', 'circle-ok', 'circle-person', 'circle-warning', 'close', 'cloud-upload', 'dots', 'download', 'easy-to-read', 'facebook', 'file', 'hands', 'hinweise_no_rounded', 'hinweise_rounded', 'info-i', 'info-x', 'instagram', 'linkedin', 'loader', 'location', 'mail', 'pause', 'pen', 'phone', 'play', 'print', 'questionmark', 'reload', 'remove', 'search', 'send-mail', 'share', 'threads', 'trash', 'upload', 'x_formerly_twitter', 'youtube'],
+  iconNames: ['add', 'alva', 'alva-still', 'arrow-east', 'arrow-east-thin', 'arrow-north', 'arrow-north-east', 'arrow-south', 'arrow-west', 'attachment', 'baselstab', 'bettingenkelch', 'breadcrumb', 'calendar', 'caret', 'cart', 'check', 'circle-check', 'circle-error', 'circle-ko', 'circle-ok', 'circle-person', 'circle-warning', 'close', 'cloud-upload', 'dots', 'download', 'easy-to-read', 'facebook', 'file', 'hands', 'hinweise_no_rounded', 'hinweise_rounded', 'info-i', 'info-x', 'instagram', 'linkedin', 'loader', 'location', 'mail', 'pause', 'pen', 'phone', 'play', 'print', 'questionmark', 'reload', 'remove', 'search', 'send-mail', 'share', 'submit-doc', 'threads', 'trash', 'upload', 'x_formerly_twitter', 'youtube'],
 }
