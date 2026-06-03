@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.2.1] - 2026-06-01
+
+### Changed
+- new color variant "red" for the component tag
+
 ## [1.2.0] - 2026-05-26
 
 ### Changed
