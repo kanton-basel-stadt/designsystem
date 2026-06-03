@@ -12,6 +12,10 @@
     @apply bg-primary-600;
   }
 
+  &.is-red {
+    @apply bg-red-800;
+  }
+
   svg {
     @apply w-20 h-20;
   }
