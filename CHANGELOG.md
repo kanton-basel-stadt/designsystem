@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.2.1] - 2026-06-01
+
+### Added
+- new color variant "red" for the component tag
+- add new icon "submit-doc"
+
+### Changed
+- reduce the right padding of the tag component from 20 to 10
+ 
 ## [1.2.0] - 2026-05-26
 
 ### Changed
