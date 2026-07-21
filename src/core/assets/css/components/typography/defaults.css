@@ -8,7 +8,7 @@
   }
 
   .pre-heading {
-    @apply font-bold text-xs md:text-sm break-words hyphens-auto;
+    @apply font-bold text-sm break-words hyphens-auto;
   }
 
   .h1 {

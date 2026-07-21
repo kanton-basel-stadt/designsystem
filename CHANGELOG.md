@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.2.2] - 2026-07-21
+
+### Changed
+- increase the size of the pre-heading (h2) font from 12 to 14px
+
 ## [1.2.1] - 2026-06-01
 
 ### Added
