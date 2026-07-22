@@ -16,7 +16,7 @@
 @import './components/typography/defaults.css';
 @import './components/typography/link.css';
 @import './components/typography/tag.css';
-@import './components/typography/table.css';
+@import './components/sections/table.css';
 
 /* Buttons */
 @import './components/button/base.css';

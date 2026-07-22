@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3] - 2026-07-22
+
+### Changed
+- move table.css from dir typography to dir sections
+- increase the font size of table headers from 12 to 16px
+- update table header color from green-500 to green-700
+
 ## [1.2.2] - 2026-07-21
 
 ### Changed

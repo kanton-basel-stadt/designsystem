@@ -81,7 +81,7 @@
       }
 
       td[data-head-label]:before {
-        @apply mobile-only:content-[attr(data-head-label)] mobile-only:block mobile-only:text-xs mobile-only:text-green-500 mobile-only:font-bold mobile-only:mb-10;
+        @apply mobile-only:content-[attr(data-head-label)] mobile-only:block mobile-only:text-green-700 mobile-only:font-bold mobile-only:mb-10;
       }
 
       td {
