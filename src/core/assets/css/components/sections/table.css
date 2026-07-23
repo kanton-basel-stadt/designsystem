@@ -17,7 +17,7 @@
       @apply text-left align-top break-words;
     }
     thead {
-      @apply border-b-[1.5px] border-b-body text-primary-600;
+      @apply border-b-[1.5px] border-b-body text-primary-700;
       th {
         @apply pb-5;
       }
@@ -27,7 +27,7 @@
       @apply border-b;
       td,
       th {
-        @apply p-10;
+        @apply border-b border-b-gray-300 p-10;
       }
     }
 
@@ -38,10 +38,6 @@
 
     tr:has(td[rowspan]) ~ tr:not(:has(td:first-child[rowspan])) td:first-child {
       @apply pl-10;
-    }
-
-    td {
-      @apply border-b border-b-gray-300;
     }
 
     caption {
