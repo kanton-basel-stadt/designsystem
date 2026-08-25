@@ -15,7 +15,7 @@
     }
 
     &:focus:before {
-      @apply outline-none shadow-purple-600 border-purple-600;
+      @apply outline-hidden shadow-purple-600 border-purple-600;
     }
 
     &[data-checked='true']:before,
@@ -47,7 +47,7 @@
     @apply text-base text-gray-900 pb-0 cursor-pointer;
 
     & input[type='checkbox'] {
-      @apply appearance-none outline-none border-none relative w-20 h-20;
+      @apply appearance-none outline-hidden border-none relative w-20 h-20;
 
       &:before,
       &:after {
@@ -63,7 +63,7 @@
       }
 
       &:focus:before {
-        @apply outline-none shadow-purple-600 border-purple-600;
+        @apply outline-hidden shadow-purple-600 border-purple-600;
       }
 
       &[data-checked='true']:before,

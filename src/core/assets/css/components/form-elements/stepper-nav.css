@@ -1,5 +1,3 @@
-@tailwind components;
-
 @layer components {
   .stepper-nav {
     @apply pt-80 pb-40 my-30;
@@ -18,7 +16,7 @@
 
       &:before {
         counter-increment: step-number;
-        @apply content-[counter(step-number)] w-30 h-30 bg-blue-900 text-white border border-blue-900 rounded-full flex-shrink-0 mb-10 flex items-center justify-center;
+        @apply content-[counter(step-number)] w-30 h-30 bg-blue-900 text-white border border-blue-900 rounded-full shrink-0 mb-10 flex items-center justify-center;
       }
 
       &:after {

@@ -1,27 +1,27 @@
 @layer base {
   :root {
-    --color-primary-50: rgba(theme(colors.green-50));
-    --color-primary-100: rgba(theme(colors.green-100));
-    --color-primary-200: rgba(theme(colors.green-200));
-    --color-primary-300: rgba(theme(colors.green-300));
-    --color-primary-400: rgba(theme(colors.green-400));
-    --color-primary-500: rgba(theme(colors.green-500));
-    --color-primary-600: rgba(theme(colors.green-600));
-    --color-primary-700: rgba(theme(colors.green-700));
-    --color-primary-800: rgba(theme(colors.green-800));
-    --color-primary-900: rgba(theme(colors.green-900));
+    --color-primary-50: 242 247 243; /* green.50 #F2F7F3 */
+    --color-primary-100: 221 236 222; /* green.100 #DDECDE */
+    --color-primary-200: 184 214 190; /* green.200 #B8D6BE */
+    --color-primary-300: 123 181 137; /* green.300 #7BB589 */
+    --color-primary-400: 70 154 93; /* green.400 #469A5D */
+    --color-primary-500: 42 151 73; /* green.500 #2A9749 */
+    --color-primary-600: 50 131 74; /* green.600 #32834A */
+    --color-primary-700: 42 113 63; /* green.700 #2A713F */
+    --color-primary-800: 36 83 51; /* green.800 #245333 */
+    --color-primary-900: 31 64 42; /* green.900 #1F402A */
   }
 
   html.is-site-bettingen {
-    --color-primary-50: rgba(#f1f1f1);
-    --color-primary-100: rgba(#f2f2f2);
-    --color-primary-200: rgba(#f8d1d0);
-    --color-primary-300: rgba(#f2b1af);
-    --color-primary-400: rgba(#e98380);
-    --color-primary-500: rgba(#db5c58);
-    --color-primary-600: rgba(#a40500);
-    --color-primary-700: rgba(#a7312e);
-    --color-primary-800: rgba(#8b2c29);
-    --color-primary-900: rgba(#742a28);
+    --color-primary-50: 241 241 241; /* #f1f1f1 */
+    --color-primary-100: 242 242 242; /* #f2f2f2 */
+    --color-primary-200: 248 209 208; /* #f8d1d0 */
+    --color-primary-300: 242 177 175; /* #f2b1af */
+    --color-primary-400: 233 131 128; /* #e98380 */
+    --color-primary-500: 219 92 88; /* #db5c58 */
+    --color-primary-600: 164 5 0; /* #a40500 */
+    --color-primary-700: 167 49 46; /* #a7312e */
+    --color-primary-800: 139 44 41; /* #8b2c29 */
+    --color-primary-900: 116 42 40; /* #742a28 */
   }
 }

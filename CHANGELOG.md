@@ -1,8 +1,75 @@
 # Changelog
 
+## [2.0.0] - 2026-09-01
+
+### Breaking
+
+- Upgrade from Tailwind CSS v3.4 to v4. The unplugin now ships `tailwindcss` and `@tailwindcss/postcss` v4. This requires **Safari 16.4+, Chrome 111+, or Firefox 128+**.
+- Tailwind v4 no longer supports `safelist`, `corePlugins`, or `separator` in the JavaScript config. `tailwindOptions.config.safelist` is ignored. Use `@source inline("…")` in CSS instead (see below).
+- Custom classes defined in `@layer components` can no longer be `@apply`'d. Convert those classes to `@utility` if something applies them.
+- Several Tailwind utilities changed meaning. In this package: `outline-none` → `outline-hidden` (keeps a forced-colors focus ring), `flex-shrink-0` → `shrink-0`, and bare `border` utilities now get an explicit colour. **Your own templates** may still need the same updates.
+
+### Changed
+
+- Load the existing `tailwind.config.ts` from CSS via `@config` (hybrid setup; the JS theme is unchanged).
+- Replace `postcss-hexrgba` / `postcss-nesting` with Tailwind v4's built-in import, nesting, and prefixing.
+- Pin `max-w-prose` to `836px` so v4's default `65ch` does not shrink `.container`.
+- `.button` sets `cursor-pointer` to preserve the v3 Preflight look (v4 buttons default to `cursor: default`).
+
+### Migration
+
+After upgrading the package, rebuild your app. Then check the following in **your** CSS and markup (the design-system sources are already updated).
+
+**1. Safelist** — if you passed `tailwindOptions.config.safelist`, move those class names into your CSS:
+
+```css
+@import "@kanton-basel-stadt/designsystem/assets/css/tailwind.css";
+
+@source inline("prose lg:hidden");
+```
+
+**2. Extra CSS** — keep `@import` of the design-system CSS first. Component styles can stay in `@layer components`. Classes you `@apply` or use with variants (`hover:`, `md:`, …) must be `@utility`:
+
+```css
+@import "@kanton-basel-stadt/designsystem/assets/css/tailwind.css";
+
+@layer components {
+  .my-card {
+    padding: 20px;
+  }
+}
+
+@utility my-chip {
+  @apply rounded-full px-10 text-sm;
+}
+```
+
+**3. Vue / Svelte `<style>` blocks** that use `@apply`, `@variant`, or `theme()` need a reference to the design-system entry (plain `<style>`, not `lang="postcss"`):
+
+```vue
+<style>
+@reference "@kanton-basel-stadt/designsystem/assets/css/tailwind.css";
+.foo {
+  @apply text-blue-900;
+}
+</style>
+```
+
+**4. Utility renames in your HTML** (only where you used them):
+
+| v3                                    | v4                                     |
+| ------------------------------------- | -------------------------------------- |
+| `outline-none` (invisible focus ring) | `outline-hidden`                       |
+| `flex-shrink-0` / `flex-grow-0`       | `shrink-0` / `grow-0`                  |
+| `shadow-sm`                           | `shadow-xs` (v4 `shadow-sm` is larger) |
+| `border` / `border-b` with no colour  | add a colour, e.g. `border-gray-200`   |
+
+`tailwindOptions.config` (content paths, theme, plugins) is still deep-merged as before. See the [Tailwind v4 upgrade guide](https://tailwindcss.com/docs/upgrade-guide) for the full list of framework changes.
+
 ## [1.2.3] - 2026-07-22
 
 ### Changed
+
 - move table.css from dir typography to dir sections
 - increase the font size of table headers from 12 to 16px
 - update table header color from green-500 to green-700
@@ -10,20 +77,24 @@
 ## [1.2.2] - 2026-07-21
 
 ### Changed
+
 - increase the size of the pre-heading (h2) font from 12 to 14px
 
 ## [1.2.1] - 2026-06-01
 
 ### Added
+
 - new color variant "red" for the component tag
 - add new icon "submit-doc"
 
 ### Changed
+
 - reduce the right padding of the tag component from 20 to 10
- 
+
 ## [1.2.0] - 2026-05-26
 
 ### Changed
+
 - fieldset title in green
 - stepper navigation better placement
 - pagination color for step navigation

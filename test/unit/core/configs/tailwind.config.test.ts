@@ -1,4 +1,4 @@
-import type { PluginAPI, PluginCreator } from 'tailwindcss/types/config'
+import type { PluginAPI, PluginCreator } from 'tailwindcss/plugin'
 import { describe, expect, it } from 'vitest'
 import config from '../../../../src/core/configs/tailwind.config.ts'
 
@@ -18,19 +18,13 @@ describe('tailwind CSS Configuration - Basic Assertions', () => {
     })
   })
 
-  it('should include the correct safelist and an empty blocklist', () => {
-    expect(config.safelist).toContain('h-0')
-    expect(config.blocklist).toEqual([])
+  it('should include an empty safelist replacement and block the core container utility', () => {
+    expect(config.safelist).toBeUndefined()
+    expect(config.blocklist).toEqual(['container'])
   })
 
-  it('should have expected corePlugins disabled', () => {
-    expect(config.corePlugins).toEqual(
-      expect.objectContaining({
-        textOpacity: false,
-        container: false,
-        content: false,
-      }),
-    )
+  it('should not use corePlugins (unsupported in Tailwind v4)', () => {
+    expect(config.corePlugins).toBeUndefined()
   })
 })
 
@@ -88,15 +82,14 @@ describe('theme - Detailed Checks', () => {
     })
   })
 
-  it('should define font sizes as arrays of two pixel values', () => {
+  it('should define font sizes as size/line-height tuples', () => {
     const fontSizes = config.theme?.fontSize
-    Object.entries(fontSizes as unknown as string[][]).forEach(([_, value]) => {
+    Object.entries(fontSizes as unknown as Record<string, [string, { lineHeight: string }]>).forEach(([_, value]) => {
       expect(Array.isArray(value)).toBe(true)
       expect(value).toHaveLength(2)
-      value.forEach((v) => {
-        expect(typeof v).toBe('string')
-        expect(v).toMatch(/\d+px/)
-      })
+      expect(typeof value[0]).toBe('string')
+      expect(value[0]).toMatch(/\d+px/)
+      expect(value[1]).toEqual({ lineHeight: expect.stringMatching(/\d+px/) })
     })
   })
 

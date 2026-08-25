@@ -2,7 +2,7 @@
   .carousel-button {
     @apply px-25 md:px-15 flex items-center cursor-pointer pointer-events-auto relative overflow-hidden;
 
-    @screen md {
+    @variant md {
       &:before {
         @apply content-empty absolute top-0 bottom-0;
         @apply from-body/40 to-body/0;
@@ -42,7 +42,7 @@
   }
 
   .carousel__slide {
-    @apply snap-always flex-shrink-0 m-0 relative flex justify-center items-start;
+    @apply snap-always shrink-0 m-0 relative flex justify-center items-start;
     @apply px-15 md:px-0;
 
     /* Fix iOS scrolling #22 */

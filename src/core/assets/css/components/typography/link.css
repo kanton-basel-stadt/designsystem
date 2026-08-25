@@ -2,7 +2,7 @@
   .link {
     @apply font-bold inline-grid gap-x-10 !leading-tight;
     @apply text-blue-900;
-    @apply visited:text-blue-900 focus:outline-none focus-visible:bg-blue-50 focus-visible:outline-blue-600;
+    @apply visited:text-blue-900 focus:outline-hidden focus-visible:bg-blue-50 focus-visible:outline-blue-600;
     grid-auto-flow: column;
     word-break: break-word;
 
@@ -91,12 +91,12 @@
   .group\/link[href*='.qdf']:hover .link.with-icon:before {
     @apply animate-jump-y;
   }
+}
 
-  .inline-link {
-    @apply text-blue-700;
-    @apply underline underline-offset-[5px] decoration-gray-300 decoration-[1px];
-    @apply hover:text-blue-900 hover:decoration-blue-900;
-    @apply active:text-blue-700 active:decoration-blue-700;
-    @apply visited:text-purple-600 visited:decoration-purple-600;
-  }
+@utility inline-link {
+  @apply text-blue-700;
+  @apply underline underline-offset-[5px] decoration-gray-300 decoration-[1px];
+  @apply hover:text-blue-900 hover:decoration-blue-900;
+  @apply active:text-blue-700 active:decoration-blue-700;
+  @apply visited:text-purple-600 visited:decoration-purple-600;
 }

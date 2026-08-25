@@ -3,7 +3,7 @@
     "target": "es2017",
     "lib": ["ESNext", "DOM"],
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "paths": {
       "*": ["./types/*"]
     },

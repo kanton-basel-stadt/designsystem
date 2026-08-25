@@ -1,7 +1,5 @@
 @import "./../icons/icon-animations.css";
 
-@tailwind components;
-
 @layer components {
   /* Many of these nested elements stem from formkit. Once Pro elements can be exported, we'd need to rethink that structure. */
   /* Related GH issue: https://github.com/formkit/formkit/issues/412 */
@@ -13,8 +11,8 @@
         /* Manually setting the height ensures consistent look&feel for all browsers. */
         @apply border border-blue-900 bg-white rounded p-10 text-base text-gray-900 transition-all ease-in-out duration-250 h-[46px];
         @apply hover:border-blue-500;
-        @apply focus:outline-none focus:shadow-purple-600 focus:border-purple-600;
-        @apply focus-within:outline-none focus-within:shadow-purple-600 focus-within:border-purple-600;
+        @apply focus:outline-hidden focus:shadow-purple-600 focus:border-purple-600;
+        @apply focus-within:outline-hidden focus-within:shadow-purple-600 focus-within:border-purple-600;
 
         @apply disabled:border-gray-300 disabled:bg-gray-300 disabled:text-gray-800 disabled:cursor-default;
 
@@ -87,7 +85,7 @@
         }
 
         &:focus:before {
-          @apply outline-none shadow-purple-600 border-purple-600;
+          @apply outline-hidden shadow-purple-600 border-purple-600;
         }
 
         &[data-checked="true"]:before,

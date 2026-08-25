@@ -5,7 +5,7 @@
     --page-header-height: calc(
         var(--page-header-top-height) + var(--page-header-bottom-height)
     );
-    @screen lg {
+    @variant lg {
       --page-header-bottom-height: 0px;
       --page-header-top-height: 70px;
     }
@@ -20,7 +20,7 @@
     grid-template: 'L . M' 'N N N';
     grid-template-rows: 46px 1fr;
 
-    @screen lg {
+    @variant lg {
       grid-template: 'L N M';
       grid-template-rows: auto;
     }

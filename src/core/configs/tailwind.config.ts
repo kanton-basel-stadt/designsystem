@@ -2,7 +2,9 @@ import type { Config } from 'tailwindcss'
 
 import fs from 'node:fs'
 import path from 'node:path'
+import merge from 'lodash.merge'
 import plugin from 'tailwindcss/plugin.js'
+import { getTailwindUserConfig } from './applyTailwindUserConfig.ts'
 import colors from './colors.ts'
 
 const customContent: Record<string, string> = {
@@ -31,20 +33,20 @@ const zIndex = ['app-top', 'alva', 'search-input-suggestions'].reduce<
   return acc
 }, {})
 
-const fontSize: Record<string, [string, string]> = {
-  '9xl': ['128px', '128px'],
-  '8xl': ['96px', '96px'],
-  '7xl': ['72px', '72px'],
-  '6xl': ['60px', '60px'],
-  '5xl': ['48px', '48px'],
-  '4xl': ['36px', '40px'],
-  '3xl': ['30px', '34px'],
-  '2xl': ['24px', '32px'],
-  'xl': ['20px', '28px'],
-  'lg': ['18px', '24px'],
-  'base': ['16px', '22px'],
-  'sm': ['14px', '20px'],
-  'xs': ['12px', '18px'],
+const fontSize: Record<string, [string, { lineHeight: string }]> = {
+  '9xl': ['128px', { lineHeight: '128px' }],
+  '8xl': ['96px', { lineHeight: '96px' }],
+  '7xl': ['72px', { lineHeight: '72px' }],
+  '6xl': ['60px', { lineHeight: '60px' }],
+  '5xl': ['48px', { lineHeight: '48px' }],
+  '4xl': ['36px', { lineHeight: '40px' }],
+  '3xl': ['30px', { lineHeight: '34px' }],
+  '2xl': ['24px', { lineHeight: '32px' }],
+  'xl': ['20px', { lineHeight: '28px' }],
+  'lg': ['18px', { lineHeight: '24px' }],
+  'base': ['16px', { lineHeight: '22px' }],
+  'sm': ['14px', { lineHeight: '20px' }],
+  'xs': ['12px', { lineHeight: '18px' }],
 }
 
 const colorsShaded = Object.keys(colors).reduce<Record<string, string>>(
@@ -102,8 +104,8 @@ function getContentDependencies(path: string) {
 
 const config: Config = {
   content: getContentDependencies(projectRoot),
-  safelist: ['h-0'],
-  blocklist: [],
+  // `container` is a core v4 utility; block it so our `.container` component wins.
+  blocklist: ['container'],
   plugins: [
     /**
      * Various additional variants
@@ -162,12 +164,6 @@ const config: Config = {
       )
     }),
   ],
-  corePlugins: {
-    textOpacity: false,
-    container: false,
-    // Disabled because we have our own implementation that adds a fallback.
-    content: false,
-  },
   theme: {
     customContent,
     screens: {
@@ -212,7 +208,7 @@ const config: Config = {
     },
     maxWidth: {
       reduced: '970px',
-      // @todo: Consolidate sizing with container, max-width and other layout classes.
+      // Override v4's default `prose` (65ch) so `max-w-prose` stays 836px.
       prose: '836px',
       box: '610px',
       fit: 'fit-content',
@@ -401,4 +397,4 @@ const config: Config = {
   },
 }
 
-export default config
+export default merge({}, config, getTailwindUserConfig()) as Config

@@ -1,5 +1,3 @@
-@tailwind components;
-
 @layer components {
   .weekday-percentage-input {
     @apply grid grid-rows-[auto_30px_90px_30px_90px] grid-cols-[auto_1fr_1fr_1fr_1fr_1fr] gap-10;
@@ -41,7 +39,7 @@
     .header-button {
       @apply inline-flex rounded-full px-10 py-5 bg-white text-blue-900 transition-all duration-250 ease-in-out hover:border-blue-400 hover:bg-blue-400 hover:text-white cursor-pointer;
       svg {
-        @apply size-20 rounded-full ml-[12px] mt-2 border;
+        @apply size-20 rounded-full ml-[12px] mt-2 border border-gray-200;
       }
     }
   }

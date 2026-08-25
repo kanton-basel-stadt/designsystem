@@ -11,7 +11,8 @@ way of including components is next to impossible. We, therefore, settled on pro
 necessary to create components but not the components themselves. The markup for the components can be found in Storybook.
 
 The Unplugin provides all the necessary code to create a website with the look and feel of www.bs.ch. It's based
-on [Tailwind](https://tailwindcss.com). To get afull picture of the Digital Design System, please refer to the [Storybook
+on [Tailwind CSS v4](https://tailwindcss.com). That requires Safari 16.4+, Chrome 111+, or Firefox 128+. To get a
+full picture of the Digital Design System, please refer to the [Storybook
 instance](https://kanton-basel-stadt.github.io/storybook).
 
 ## Installation and setup
@@ -309,9 +310,16 @@ In the above example, Tailwind will look for any HTML and JS file in `/path/to/y
 subdirectories to find Tailwind classes to include in the built CSS.
 
 You may also overwrite any other part of the config, such as the theme (to add things, such as additional colours, font
-sizes, etc.), the safelist (to guarantee certain classes to be present in the built CSS), to add plugins, etc.
+sizes, etc.) or plugins.
 
-The entire config is deep-merged with the standard config.
+The entire config is deep-merged with the standard config. Tailwind v4 ignores `safelist`, `corePlugins`, and `separator`
+in the JavaScript config. To force classes into the build, add them in CSS after the design-system import:
+
+```css
+@import '@kanton-basel-stadt/designsystem/assets/css/tailwind.css';
+
+@source inline("prose lg:hidden");
+```
 
 **Please keep in mind, that any change to the theme should adhere to the design specifications. Use custom components
 over theme changes, and, if the value is only used once or twice, use arbitrary value syntax (i.e. `bg-[#ff0000]`).**
@@ -519,7 +527,7 @@ information on types, etc.**
 
 This unplugin uses PostCSS and Tailwind, both preconfigured. So, any tree-shaking of any Tailwind classes will be handled.
 
-To include the framework in your CSS, apply the top of your CSS:
+To include the framework in your CSS, put the import **first** (before any other rules except `@charset`):
 
 ```css
 @import '@kanton-basel-stadt/designsystem/assets/css/tailwind.css';
@@ -527,13 +535,43 @@ To include the framework in your CSS, apply the top of your CSS:
 /* Apply custom CSS here */
 ```
 
-Please keep in mind that any additional CSS should be kept within `@layer components {  /* ... */ }`, so Tailwind knows
-what to do with it.
+Component styles that do not need `@apply` or variants can stay in `@layer components`. Classes you `@apply` or use
+with variants (`hover:`, `md:`, …) must be declared with `@utility` — Tailwind v4 cannot `@apply` `@layer components`
+classes.
+
+```css
+@import '@kanton-basel-stadt/designsystem/assets/css/tailwind.css';
+
+@layer components {
+  .my-card {
+    padding: 20px;
+  }
+}
+
+@utility my-chip {
+  @apply rounded-full px-10 text-sm;
+}
+```
+
+Vue or Svelte `<style>` blocks that use `@apply`, `@variant`, or `theme()` must reference the design-system entry and
+should not use `lang="postcss"`:
+
+```vue
+<style>
+@reference "@kanton-basel-stadt/designsystem/assets/css/tailwind.css";
+.foo {
+  @apply text-blue-900;
+}
+</style>
+```
 
 If you want to simply use Tailwind as is with no additional CSS, you can do so by applying the desired classes to your
 HTML elements. For that, please consult the official [Tailwind documentation](https://tailwindcss.com/docs/installation),
 Storybook and the Tailwind config of this repository. Please keep in mind that Storybook is currently not up to date with
 the latest implementations, especially when it comes to icons. They may need some adjustment.
+
+When upgrading from a previous version of this package, see the **Migration** section in `CHANGELOG.md` (utility
+renames such as `outline-none` → `outline-hidden`, and the v4 browser baseline).
 
 ## Development
 

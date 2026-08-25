@@ -5,7 +5,7 @@
   /* Buttons may have icons on their left, right, be icon only or have no icon at all. These icons are placed both in the DOM via markup and with classes. */
   .button {
     /* Basics */
-    @apply rounded-[20px] border font-medium inline-grid min-h-40 min-w-40 text-left relative overflow-hidden w-auto items-center gap-[7px] justify-start max-w-fit;
+    @apply rounded-[20px] border font-medium inline-grid min-h-40 min-w-40 text-left relative overflow-hidden w-auto items-center gap-[7px] justify-start max-w-fit cursor-pointer;
     @apply text-base px-[0.75em] pt-[0.55em] pb-[0.45em];
     @apply hyphens-auto;
     @apply focus-visible:outline focus-visible:outline-blue-900 focus-visible:outline-[3px] grid-flow-col;

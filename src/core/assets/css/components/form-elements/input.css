@@ -8,9 +8,9 @@
     }
 
     @apply hover:border-blue-500;
-    @apply focus:outline-none focus:shadow-purple-600 focus:border-purple-600;
-    @apply focus-within:outline-none focus-within:shadow-purple-600 focus-within:border-purple-600;
-    @apply focus-visible:outline-none focus-visible:shadow-purple-600 focus-visible:border-purple-600;
+    @apply focus:outline-hidden focus:shadow-purple-600 focus:border-purple-600;
+    @apply focus-within:outline-hidden focus-within:shadow-purple-600 focus-within:border-purple-600;
+    @apply focus-visible:outline-hidden focus-visible:shadow-purple-600 focus-visible:border-purple-600;
 
     @apply disabled:border-gray-300 disabled:bg-gray-300 disabled:text-gray-800 disabled:cursor-default;
 

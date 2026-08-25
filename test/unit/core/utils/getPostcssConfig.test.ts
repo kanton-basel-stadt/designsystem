@@ -6,16 +6,15 @@ beforeEach(() => {
     return {
       default: {
         plugins: {
-          tailwindcss: {
-            config: {
-              someOption: 'someValue',
-              someArray: ['some', 'values'],
-            },
-          },
+          '@tailwindcss/postcss': {},
         },
       },
     }
   })
+
+  vi.mock('../../../../src/core/configs/applyTailwindUserConfig.ts', () => ({
+    applyTailwindUserConfig: vi.fn(),
+  }))
 
   vi.mock('postcss-load-config/src/options.js', () => ({
     default: vi.fn(() => 'Options loaded'),
@@ -24,15 +23,12 @@ beforeEach(() => {
   vi.mock('postcss-load-config/src/plugins.js', () => ({
     default: vi.fn(() => 'Plugins loaded'),
   }))
-
-  vi.mock('lodash.merge', () => ({
-    default: vi.fn(() => 'merged'),
-  }))
 })
 
 it('delivers the standard PostCSS + Tailwind config if no alterations are specified', async () => {
   const loadPluginsMock = await import('postcss-load-config/src/plugins.js')
   const loadOptionsMock = await import('postcss-load-config/src/options.js')
+  const { applyTailwindUserConfig } = await import('../../../../src/core/configs/applyTailwindUserConfig.ts')
 
   const loadPluginsSpy = vi.spyOn(loadPluginsMock, 'default')
   const loadOptionsSpy = vi.spyOn(loadOptionsMock, 'default')
@@ -45,42 +41,31 @@ it('delivers the standard PostCSS + Tailwind config if no alterations are specif
     options: 'Options loaded',
   })
 
-  expect(loadPluginsSpy).toHaveBeenCalledOnce()
-  expect(loadPluginsSpy).toHaveBeenCalledWith({
+  expect(applyTailwindUserConfig).not.toHaveBeenCalled()
+
+  const expectedConfig = {
     plugins: {
-      tailwindcss: {
-        config: {
-          someOption: 'someValue',
-          someArray: ['some', 'values'],
-        },
-      },
+      '@tailwindcss/postcss': {},
     },
-  }, 'some/config/path/postcss.config.ts')
+  }
+
+  expect(loadPluginsSpy).toHaveBeenCalledOnce()
+  expect(loadPluginsSpy).toHaveBeenCalledWith(expectedConfig, 'some/config/path/postcss.config.ts')
 
   expect(loadOptionsSpy).toHaveBeenCalledOnce()
-  expect(loadOptionsSpy).toHaveBeenCalledWith({
-    plugins: {
-      tailwindcss: {
-        config: {
-          someOption: 'someValue',
-          someArray: ['some', 'values'],
-        },
-      },
-    },
-  }, 'some/config/path/postcss.config.ts')
+  expect(loadOptionsSpy).toHaveBeenCalledWith(expectedConfig, 'some/config/path/postcss.config.ts')
 })
 
-it('should merge Tailwind config, if present', async () => {
+it('should apply Tailwind config overrides, if present', async () => {
   const loadPluginsMock = await import('postcss-load-config/src/plugins.js')
   const loadOptionsMock = await import('postcss-load-config/src/options.js')
-  const mergeMock = await import('lodash.merge')
+  const { applyTailwindUserConfig } = await import('../../../../src/core/configs/applyTailwindUserConfig.ts')
 
   const loadPluginsSpy = vi.spyOn(loadPluginsMock, 'default')
   const loadOptionsSpy = vi.spyOn(loadOptionsMock, 'default')
-  const mergeSpy = vi.spyOn(mergeMock, 'default')
 
   const result = await getPostcssConfig('some/config/path', {
-    someOtherKey: 'someOtherValue',
+    content: ['/path/to/templates/**/*.html'],
   })
 
   expect(result).toStrictEqual({
@@ -89,27 +74,17 @@ it('should merge Tailwind config, if present', async () => {
     options: 'Options loaded',
   })
 
-  expect(mergeSpy).toHaveBeenCalledOnce()
-  expect(mergeSpy).toHaveBeenCalledWith({
-    someOption: 'someValue',
-    someArray: ['some', 'values'],
-  }, {
-    someOtherKey: 'someOtherValue',
+  expect(applyTailwindUserConfig).toHaveBeenCalledOnce()
+  expect(applyTailwindUserConfig).toHaveBeenCalledWith({
+    content: ['/path/to/templates/**/*.html'],
   })
 
-  expect(loadPluginsSpy).toHaveBeenCalledWith({
+  const expectedConfig = {
     plugins: {
-      tailwindcss: {
-        config: 'merged',
-      },
+      '@tailwindcss/postcss': {},
     },
-  }, 'some/config/path/postcss.config.ts')
+  }
 
-  expect(loadOptionsSpy).toHaveBeenCalledWith({
-    plugins: {
-      tailwindcss: {
-        config: 'merged',
-      },
-    },
-  }, 'some/config/path/postcss.config.ts')
+  expect(loadPluginsSpy).toHaveBeenCalledWith(expectedConfig, 'some/config/path/postcss.config.ts')
+  expect(loadOptionsSpy).toHaveBeenCalledWith(expectedConfig, 'some/config/path/postcss.config.ts')
 })

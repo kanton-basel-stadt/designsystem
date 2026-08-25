@@ -5,7 +5,7 @@
     }
 
     &:has(~ figcaption) tbody {
-      @apply border-b;
+      @apply border-b border-b-gray-200;
     }
   }
 
@@ -24,7 +24,7 @@
     }
 
     tbody {
-      @apply border-b;
+      @apply border-b border-b-gray-200;
       td,
       th {
         @apply border-b border-b-gray-300 p-10;
@@ -58,7 +58,7 @@
     }
 
     &.has-mobile-style {
-      @apply mobile-only:border-t;
+      @apply mobile-only:border-t mobile-only:border-t-gray-200;
       thead {
         @apply mobile-only:hidden;
       }
@@ -73,7 +73,7 @@
       }
 
       tbody tr {
-        @apply mobile-only:border-t;
+        @apply mobile-only:border-t mobile-only:border-t-gray-200;
       }
 
       td[data-head-label]:before {

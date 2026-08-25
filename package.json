@@ -187,19 +187,18 @@
     }
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.3.2",
     "cssnano": "^7.0.4",
     "lint": "^1.2.2",
     "lodash.merge": "^4.6.2",
     "magic-string": "^0.30.17",
     "postcss": "^8.4.41",
-    "postcss-hexrgba": "github:thormeier/postcss-hexrgba",
     "postcss-inline-svg": "^6.0.0",
     "postcss-load-config": "^6.0.1",
     "postcss-mixins": "^10.0.1",
-    "postcss-nesting": "^12.1.5",
     "postcss-url-copy": "github:thormeier/postcss-url-copy",
     "svgo": "^3.3.2",
-    "tailwindcss": "^3.4.7",
+    "tailwindcss": "^4.3.2",
     "unplugin": "^1.14.1",
     "unplugin-icons": "^0.19.3"
   },
