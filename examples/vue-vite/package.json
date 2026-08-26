@@ -12,16 +12,16 @@
   },
   "dependencies": {
     "@kanton-basel-stadt/designsystem": "../../",
-    "vue": "^3.4.21"
+    "vue": "^3.5.41"
   },
   "devDependencies": {
-    "@tsconfig/node20": "^20.1.4",
-    "@types/node": "^20.12.5",
-    "@vitejs/plugin-vue": "^5.0.4",
-    "@vue/tsconfig": "^0.5.1",
-    "npm-run-all2": "^6.1.2",
-    "typescript": "~5.4.0",
-    "vite": "^5.2.8",
-    "vue-tsc": "^2.0.11"
+    "@tsconfig/node20": "^20.1.10",
+    "@types/node": "^20.19.43",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "@vue/tsconfig": "^0.9.1",
+    "npm-run-all2": "^9.0.3",
+    "typescript": "~5.9.3",
+    "vite": "^6.4.3",
+    "vue-tsc": "^2.2.12"
   }
 }

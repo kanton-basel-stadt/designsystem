@@ -234,14 +234,16 @@ it('sets up the correct config for ESBuild', async () => {
   // @ts-expect-error The setup method exists, otherwise the plugin isn't functional at all.
   await postcssTailwindUnplugin.esbuild.setup(build)
 
-  expect(onLoadSpy).toHaveBeenCalledTimes(2)
+  expect(onLoadSpy).toHaveBeenCalledTimes(3)
 
   expect(onLoadSpy).toHaveBeenNthCalledWith(1, { filter: /\.woff2?$/i }, cbs[0])
-  expect(onLoadSpy).toHaveBeenNthCalledWith(2, { filter: /\.css$/i }, cbs[1])
+  expect(onLoadSpy).toHaveBeenNthCalledWith(2, { filter: /\.svg$/i }, cbs[1])
+  expect(onLoadSpy).toHaveBeenNthCalledWith(3, { filter: /\.css$/i }, cbs[2])
 
   expect(cbs[0]()).toStrictEqual({ loader: 'copy' })
+  expect(cbs[1]()).toStrictEqual({ loader: 'file' })
 
-  expect(await cbs[1]({ path: '/foo' })).toStrictEqual({
+  expect(await cbs[2]({ path: '/foo' })).toStrictEqual({
     contents: 'transformed mock',
     loader: 'css',
   })

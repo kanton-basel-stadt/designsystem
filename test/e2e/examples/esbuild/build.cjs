@@ -22,5 +22,6 @@ esbuild.build({
     // Necessary for the font files to work
     '.woff': 'file',
     '.woff2': 'file',
+    '.svg': 'file',
   },
 })

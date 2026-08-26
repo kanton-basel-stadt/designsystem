@@ -11,9 +11,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.10",
-    "astro": "^4.6.0",
-    "typescript": "^5.4.5"
+    "@astrojs/check": "^0.9.10",
+    "astro": "^7.2.7",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@kanton-basel-stadt/designsystem": "../../"

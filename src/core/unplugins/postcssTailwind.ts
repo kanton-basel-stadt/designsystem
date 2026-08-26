@@ -7,7 +7,9 @@ import { getPostcssConfig } from '../utils/getPostcssConfig.ts'
 import { transformIdsInCode } from '../utils/transformIdsInCode.ts'
 
 export function getPostcssTailwindUnplugin(options: Options): UnpluginOptions {
-  const postcssConfig = getPostcssConfig(getConfigsPath(), options.tailwindOptions?.config)
+  const postcssConfig = getPostcssConfig(getConfigsPath(), options.tailwindOptions?.config, {
+    useTailwindVitePlugin: options.tailwindOptions?.useVitePlugin,
+  })
 
   return {
     name: '@kanton-basel-stadt/designsystem/postcss-tailwind',
@@ -16,6 +18,10 @@ export function getPostcssTailwindUnplugin(options: Options): UnpluginOptions {
       async setup(build) {
         build.onLoad({ filter: /\.woff2?$/i }, () => {
           return { loader: 'copy' }
+        })
+
+        build.onLoad({ filter: /\.svg$/i }, () => {
+          return { loader: 'file' }
         })
 
         const postcss = (await import('postcss')).default

@@ -11,11 +11,11 @@
   },
   "dependencies": {
     "@kanton-basel-stadt/designsystem": "../../../../",
-    "nuxt": "^3.15.4",
-    "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "nuxt": "^3.21.11",
+    "vue": "^3.5.41",
+    "vue-router": "^4.6.4"
   },
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.4.21"
+    "@vue/compiler-sfc": "^3.5.41"
   }
 }

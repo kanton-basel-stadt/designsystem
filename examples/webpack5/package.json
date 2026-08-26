@@ -9,11 +9,11 @@
   },
   "devDependencies": {
     "@kanton-basel-stadt/designsystem": "../../",
-    "css-loader": "6.11.0",
-    "mini-css-extract-plugin": "^2.8.1",
-    "postcss-loader": "^8.1.1",
-    "style-loader": "^3.3.4",
-    "webpack": "^5.91.0",
+    "css-loader": "^7.1.4",
+    "mini-css-extract-plugin": "^2.10.2",
+    "postcss-loader": "^8.2.1",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.109.2",
     "webpack-cli": "^5.1.4"
   }
 }

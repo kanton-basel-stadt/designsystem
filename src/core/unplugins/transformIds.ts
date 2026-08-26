@@ -7,10 +7,10 @@ export function getTransformIdsUnplugin(): UnpluginOptions {
     enforce: 'pre',
     transform: transformIdsInCode,
     transformInclude(id) {
-      return !id.endsWith('.woff') && !id.endsWith('.woff2')
+      return !id.endsWith('.woff') && !id.endsWith('.woff2') && !id.endsWith('.svg')
     },
     esbuild: {
-      onLoadFilter: /\.(?!woff2?$)[^.]+$/i,
+      onLoadFilter: /\.(?!woff$|woff2$|svg$)[^.]+$/i,
     },
     vite: {
       config() {

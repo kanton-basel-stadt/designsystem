@@ -6,5 +6,7 @@ export interface Options {
   tailwindOptions?: {
     targetDir?: string
     config?: Partial<TailwindConfig>
+    /** Use @tailwindcss/vite instead of @tailwindcss/postcss (required for Astro 7 / Vite 8). */
+    useVitePlugin?: boolean
   }
 }

@@ -9,7 +9,7 @@ it('sets up a correct unplugin with configs', () => {
   expect(transformIdsUnplugin.enforce).toBe('pre')
   expect(transformIdsUnplugin.transform).toStrictEqual(transformIdsInCode)
   expect(transformIdsUnplugin.esbuild).toStrictEqual({
-    onLoadFilter: /\.(?!woff2?$)[^.]+$/i,
+    onLoadFilter: /\.(?!woff$|woff2$|svg$)[^.]+$/i,
   })
 
   expect(transformIdsUnplugin.vite).toBeDefined()

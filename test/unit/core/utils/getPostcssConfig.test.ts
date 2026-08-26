@@ -4,6 +4,11 @@ import { getPostcssConfig } from '../../../../src/core/utils/getPostcssConfig.ts
 beforeEach(() => {
   vi.mock('../../../../src/core/configs/postcss.config', () => {
     return {
+      createPostcssConfig: vi.fn((options?: { useTailwindVitePlugin?: boolean }) => ({
+        plugins: {
+          ...(options?.useTailwindVitePlugin ? {} : { '@tailwindcss/postcss': {} }),
+        },
+      })),
       default: {
         plugins: {
           '@tailwindcss/postcss': {},
@@ -83,6 +88,23 @@ it('should apply Tailwind config overrides, if present', async () => {
     plugins: {
       '@tailwindcss/postcss': {},
     },
+  }
+
+  expect(loadPluginsSpy).toHaveBeenCalledWith(expectedConfig, 'some/config/path/postcss.config.ts')
+  expect(loadOptionsSpy).toHaveBeenCalledWith(expectedConfig, 'some/config/path/postcss.config.ts')
+})
+
+it('omits @tailwindcss/postcss when the Tailwind Vite plugin is used', async () => {
+  const loadPluginsMock = await import('postcss-load-config/src/plugins.js')
+  const loadOptionsMock = await import('postcss-load-config/src/options.js')
+
+  const loadPluginsSpy = vi.spyOn(loadPluginsMock, 'default')
+  const loadOptionsSpy = vi.spyOn(loadOptionsMock, 'default')
+
+  await getPostcssConfig('some/config/path', undefined, { useTailwindVitePlugin: true })
+
+  const expectedConfig = {
+    plugins: {},
   }
 
   expect(loadPluginsSpy).toHaveBeenCalledWith(expectedConfig, 'some/config/path/postcss.config.ts')

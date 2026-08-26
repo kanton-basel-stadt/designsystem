@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@kanton-basel-stadt/designsystem": "../../",
-    "typescript": "^5.2.2",
-    "vite": "^5.2.0"
+    "typescript": "^5.9.3",
+    "vite": "^6.4.3"
   }
 }
