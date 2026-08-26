@@ -19,7 +19,7 @@ const colors: Record<string, Record<number, string>> = {
     300: "#85D4EE",
     400: "#51b9da",
     500: "#079BCA",
-    600: "#0E80A0 ",
+    600: "#0E80A0",
     700: "#146C8B",
     800: "#1B5268",
     900: "#1E4557",
